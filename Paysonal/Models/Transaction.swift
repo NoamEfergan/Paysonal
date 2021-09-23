@@ -11,13 +11,15 @@ class Transaction {
 
     // MARK: - Variables
 
-    let amount: String!
+    let amount: Double!
     let date: String!
+    let category: String!
 
     // MARK: - init method
-    init(amount: String, date: String) {
+    init(amount: Double, date: String, category: String) {
         self.amount = amount
         self.date = date
+        self.category = category
     }
 
 }

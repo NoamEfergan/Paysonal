@@ -25,6 +25,14 @@ class DashboardVC: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
         self.monthLabel.text = viewModel.getDateForLabel()
+        updatePieChartData()
+    }
+
+    // MARK: - Private methods
+
+    private func updatePieChartData() {
+        self.chartView.data = viewModel.getDataForChart()
+        self.chartView.centerText = viewModel.getCenterText()
     }
 }
 

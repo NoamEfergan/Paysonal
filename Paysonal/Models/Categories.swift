@@ -8,6 +8,10 @@
 import Foundation
 
 struct Categories {
-    public static var defaultCategories = ["Housing", "Car", "Amenities"]
+    enum defaultCategories: String, CaseIterable {
+        case Housing
+        case Car
+        case Amenities
+    }
     public static var userCategories: [String] = []
 }
