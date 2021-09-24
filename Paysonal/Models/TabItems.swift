@@ -9,6 +9,7 @@ import UIKit
 
 enum TabItem: String, CaseIterable {
     case dashboard = "Dashboard"
+    case add = "Add"
     case settings = "Settings"
 
     var viewController: UIViewController {
@@ -19,6 +20,9 @@ enum TabItem: String, CaseIterable {
         case .settings:
             let storyboard = UIStoryboard(name: "Settings", bundle: .main)
             return storyboard.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsVC
+        case .add:
+            let storyboard = UIStoryboard(name: "AddTransaction", bundle: .main)
+            return storyboard.instantiateViewController(withIdentifier: "AddTransactionVC") as! AddTransactionVC
         }
     }
 
@@ -28,6 +32,8 @@ enum TabItem: String, CaseIterable {
             return UIImage(systemName: "house.circle")!
         case .settings:
             return UIImage(systemName: "gear.circle")!
+        case .add:
+            return UIImage(systemName: "plus.circle")!
         }
     }
     var displayTitle: String {

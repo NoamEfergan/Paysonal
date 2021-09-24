@@ -8,7 +8,7 @@
 import UIKit
 import Charts
 
-class DashboardVC: UIViewController {
+class DashboardVC: UIViewController, ChartViewDelegate {
 
     // MARK: -  Outlets
 
@@ -24,6 +24,7 @@ class DashboardVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.chartView.delegate = self
         initUI()
     }
 
@@ -47,6 +48,8 @@ class DashboardVC: UIViewController {
     private func updatePieChartData() {
         self.chartView.data = viewModel.getDataForChart()
         self.chartView.centerText = viewModel.getCenterText()
+        self.chartView.transparentCircleColor = .secondarySystemBackground
+        self.chartView.holeColor = .secondarySystemBackground
     }
 }
 
