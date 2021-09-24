@@ -27,7 +27,7 @@
 		CA78F81026FC6AB000A6C0F8 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78F80F26FC6AB000A6C0F8 /* SettingsVC.swift */; };
 		CA78F81226FC6E6500A6C0F8 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA78F81126FC6E6500A6C0F8 /* Dashboard.storyboard */; };
 		CAD0D3D526FCAAB4005B0254 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD0D3D426FCAAB4005B0254 /* Transaction.swift */; };
-		CAD0D3D726FCABDE005B0254 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD0D3D626FCABDE005B0254 /* Categories.swift */; };
+		CAD0D3D726FCABDE005B0254 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD0D3D626FCABDE005B0254 /* UserPreferences.swift */; };
 		CAD0D3D926FCADDC005B0254 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD0D3D826FCADDC005B0254 /* DashboardViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,7 +55,7 @@
 		CA78F80F26FC6AB000A6C0F8 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		CA78F81126FC6E6500A6C0F8 /* Dashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
 		CAD0D3D426FCAAB4005B0254 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
-		CAD0D3D626FCABDE005B0254 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		CAD0D3D626FCABDE005B0254 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		CAD0D3D826FCADDC005B0254 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		DBA8396DA5F30127BDB8C52E /* Pods_Paysonal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Paysonal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -87,7 +87,7 @@
 				CA2DCB5A26FDB8C7001A77B8 /* TabItems.swift */,
 				CA0B6E3C26FC88B400B2CEA3 /* Colors.swift */,
 				CAD0D3D426FCAAB4005B0254 /* Transaction.swift */,
-				CAD0D3D626FCABDE005B0254 /* Categories.swift */,
+				CAD0D3D626FCABDE005B0254 /* UserPreferences.swift */,
 				CA2DCB5426FCBC6A001A77B8 /* Entry.swift */,
 			);
 			path = Models;
@@ -305,7 +305,7 @@
 				CA2DCB5B26FDB8C7001A77B8 /* TabItems.swift in Sources */,
 				CA78F7F126FC5BD800A6C0F8 /* SceneDelegate.swift in Sources */,
 				CA0B6E3926FC7F6D00B2CEA3 /* UIColorExtension.swift in Sources */,
-				CAD0D3D726FCABDE005B0254 /* Categories.swift in Sources */,
+				CAD0D3D726FCABDE005B0254 /* UserPreferences.swift in Sources */,
 				CA78F81026FC6AB000A6C0F8 /* SettingsVC.swift in Sources */,
 				CA2DCB6526FDEB80001A77B8 /* AddTransactionViewModel.swift in Sources */,
 				CA0B6E3B26FC84E100B2CEA3 /* BottomTabBarController.swift in Sources */,

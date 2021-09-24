@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,10 +21,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="az3-mx-lUe">
-                                        <rect key="frame" x="20" y="134.5" width="374" height="627"/>
+                                        <rect key="frame" x="20" y="112" width="374" height="672"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="4Bk-W8-QtG">
-                                                <rect key="frame" x="8" y="572" width="358" height="50"/>
+                                                <rect key="frame" x="8" y="617" width="358" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhf-Pd-DvX">
                                                         <rect key="frame" x="0.0" y="0.0" width="171.5" height="50"/>
@@ -46,22 +47,55 @@
                                                     <constraint firstAttribute="height" constant="50" id="NhG-LJ-Ucn"/>
                                                 </constraints>
                                             </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Rua-N3-Nug">
+                                                <rect key="frame" x="8" y="10" width="358" height="34"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s39-cb-6fl">
+                                                        <rect key="frame" x="0.0" y="0.0" width="245" height="34"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="next"/>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2VD-DY-yN2">
+                                                        <rect key="frame" x="295" y="0.0" width="63" height="34"/>
+                                                        <menu key="menu" id="RAq-TO-dX0">
+                                                            <children>
+                                                                <command title="Item 1" id="Bnv-2T-Bx0"/>
+                                                                <command title="Item 2" id="42m-ZH-hmS"/>
+                                                            </children>
+                                                        </menu>
+                                                        <state key="normal" title="Category"/>
+                                                        <connections>
+                                                            <action selector="categoryButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Rnw-nL-5bh"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="e2z-Cf-DlI">
+                                                <rect key="frame" x="8" y="52" width="358" height="557"/>
+                                            </datePicker>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="4Bk-W8-QtG" secondAttribute="trailing" constant="8" id="Cv7-ZK-vC9"/>
+                                            <constraint firstItem="e2z-Cf-DlI" firstAttribute="top" secondItem="Rua-N3-Nug" secondAttribute="bottom" constant="8" id="DUt-Au-0py"/>
+                                            <constraint firstAttribute="trailing" secondItem="Rua-N3-Nug" secondAttribute="trailing" constant="8" id="LoX-Rt-kyr"/>
+                                            <constraint firstItem="Rua-N3-Nug" firstAttribute="top" secondItem="az3-mx-lUe" secondAttribute="top" constant="10" id="NvA-3Z-BS3"/>
                                             <constraint firstItem="4Bk-W8-QtG" firstAttribute="leading" secondItem="az3-mx-lUe" secondAttribute="leading" constant="8" id="RQ9-9U-D2z"/>
+                                            <constraint firstAttribute="trailing" secondItem="e2z-Cf-DlI" secondAttribute="trailing" constant="8" id="WsI-pB-FEO"/>
+                                            <constraint firstItem="4Bk-W8-QtG" firstAttribute="top" secondItem="e2z-Cf-DlI" secondAttribute="bottom" constant="8" id="deV-h3-K0r"/>
+                                            <constraint firstItem="Rua-N3-Nug" firstAttribute="leading" secondItem="az3-mx-lUe" secondAttribute="leading" constant="8" id="qg4-op-qOr"/>
+                                            <constraint firstItem="e2z-Cf-DlI" firstAttribute="leading" secondItem="az3-mx-lUe" secondAttribute="leading" constant="8" id="tQt-14-RP4"/>
                                             <constraint firstAttribute="bottom" secondItem="4Bk-W8-QtG" secondAttribute="bottom" constant="5" id="u4u-Ro-Dra"/>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
                                 <constraints>
+                                    <constraint firstItem="az3-mx-lUe" firstAttribute="height" secondItem="8yD-bR-jsQ" secondAttribute="height" multiplier="0.75" id="5G8-8q-LK8"/>
                                     <constraint firstItem="az3-mx-lUe" firstAttribute="leading" secondItem="8yD-bR-jsQ" secondAttribute="leading" constant="20" id="Gei-3W-yeT"/>
                                     <constraint firstItem="az3-mx-lUe" firstAttribute="centerX" secondItem="8yD-bR-jsQ" secondAttribute="centerX" id="SJc-99-ZO6"/>
                                     <constraint firstAttribute="trailing" secondItem="az3-mx-lUe" secondAttribute="trailing" constant="20" id="Xd2-2q-u1o"/>
                                     <constraint firstItem="az3-mx-lUe" firstAttribute="centerY" secondItem="8yD-bR-jsQ" secondAttribute="centerY" id="qHo-Lk-mIK"/>
-                                    <constraint firstItem="az3-mx-lUe" firstAttribute="height" secondItem="8yD-bR-jsQ" secondAttribute="height" multiplier="0.7" id="z0m-E5-ejV"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -75,8 +109,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="amountTextField" destination="s39-cb-6fl" id="GL1-Af-jrt"/>
                         <outlet property="applyButton" destination="hhf-Pd-DvX" id="xk6-Bg-Ahx"/>
+                        <outlet property="categoryButton" destination="2VD-DY-yN2" id="yRC-oV-E1k"/>
                         <outlet property="containerView" destination="az3-mx-lUe" id="7E8-Zb-E30"/>
+                        <outlet property="datePicker" destination="e2z-Cf-DlI" id="874-6h-L8o"/>
                         <outlet property="dismissButton" destination="u2E-Ed-0IY" id="dh2-G2-oii"/>
                         <outlet property="shadeBackground" destination="8yD-bR-jsQ" id="MQw-ti-Yxe"/>
                     </connections>
@@ -87,6 +124,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
