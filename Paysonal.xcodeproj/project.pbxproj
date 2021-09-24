@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		2EBEB68353A51E5B21FBCE64 /* Pods_Paysonal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA8396DA5F30127BDB8C52E /* Pods_Paysonal.framework */; };
-		CA0B6E3226FC77E400B2CEA3 /* TabItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0B6E3126FC77E400B2CEA3 /* TabItems.swift */; };
 		CA0B6E3926FC7F6D00B2CEA3 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0B6E3826FC7F6D00B2CEA3 /* UIColorExtension.swift */; };
 		CA0B6E3B26FC84E100B2CEA3 /* BottomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0B6E3A26FC84E100B2CEA3 /* BottomTabBarController.swift */; };
 		CA0B6E3D26FC88B400B2CEA3 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0B6E3C26FC88B400B2CEA3 /* Colors.swift */; };
 		CA2DCB5526FCBC6A001A77B8 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2DCB5426FCBC6A001A77B8 /* Entry.swift */; };
+		CA2DCB5726FDB0CA001A77B8 /* TransactionHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2DCB5626FDB0CA001A77B8 /* TransactionHistoryCell.xib */; };
+		CA2DCB5926FDB211001A77B8 /* TransactionHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2DCB5826FDB211001A77B8 /* TransactionHistoryCell.swift */; };
+		CA2DCB5B26FDB8C7001A77B8 /* TabItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2DCB5A26FDB8C7001A77B8 /* TabItems.swift */; };
 		CA78F7EF26FC5BD800A6C0F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78F7EE26FC5BD800A6C0F8 /* AppDelegate.swift */; };
 		CA78F7F126FC5BD800A6C0F8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78F7F026FC5BD800A6C0F8 /* SceneDelegate.swift */; };
 		CA78F7F326FC5BD800A6C0F8 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78F7F226FC5BD800A6C0F8 /* DashboardVC.swift */; };
@@ -29,11 +31,13 @@
 /* Begin PBXFileReference section */
 		09F6A8375E3D44A7A36BD08D /* Pods-Paysonal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Paysonal.debug.xcconfig"; path = "Target Support Files/Pods-Paysonal/Pods-Paysonal.debug.xcconfig"; sourceTree = "<group>"; };
 		1FC917A6C75A2E07C38D71F5 /* Pods-Paysonal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Paysonal.release.xcconfig"; path = "Target Support Files/Pods-Paysonal/Pods-Paysonal.release.xcconfig"; sourceTree = "<group>"; };
-		CA0B6E3126FC77E400B2CEA3 /* TabItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabItems.swift; path = ../../../../Desktop/TabItems.swift; sourceTree = "<group>"; };
 		CA0B6E3826FC7F6D00B2CEA3 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		CA0B6E3A26FC84E100B2CEA3 /* BottomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTabBarController.swift; sourceTree = "<group>"; };
 		CA0B6E3C26FC88B400B2CEA3 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		CA2DCB5426FCBC6A001A77B8 /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		CA2DCB5626FDB0CA001A77B8 /* TransactionHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionHistoryCell.xib; sourceTree = "<group>"; };
+		CA2DCB5826FDB211001A77B8 /* TransactionHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryCell.swift; sourceTree = "<group>"; };
+		CA2DCB5A26FDB8C7001A77B8 /* TabItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabItems.swift; sourceTree = "<group>"; };
 		CA78F7EB26FC5BD800A6C0F8 /* Paysonal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Paysonal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA78F7EE26FC5BD800A6C0F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA78F7F026FC5BD800A6C0F8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,7 +78,7 @@
 		CA0B6E3026FC77CF00B2CEA3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CA0B6E3126FC77E400B2CEA3 /* TabItems.swift */,
+				CA2DCB5A26FDB8C7001A77B8 /* TabItems.swift */,
 				CA0B6E3C26FC88B400B2CEA3 /* Colors.swift */,
 				CAD0D3D426FCAAB4005B0254 /* Transaction.swift */,
 				CAD0D3D626FCABDE005B0254 /* Categories.swift */,
@@ -131,6 +135,7 @@
 			children = (
 				CA78F7F226FC5BD800A6C0F8 /* DashboardVC.swift */,
 				CA78F80F26FC6AB000A6C0F8 /* SettingsVC.swift */,
+				CA2DCB5826FDB211001A77B8 /* TransactionHistoryCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -140,6 +145,7 @@
 			children = (
 				CA78F80D26FC6AA800A6C0F8 /* Settings.storyboard */,
 				CA78F81126FC6E6500A6C0F8 /* Dashboard.storyboard */,
+				CA2DCB5626FDB0CA001A77B8 /* TransactionHistoryCell.xib */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -225,6 +231,7 @@
 				CA78F7F826FC5BDD00A6C0F8 /* Assets.xcassets in Resources */,
 				CA78F80E26FC6AA800A6C0F8 /* Settings.storyboard in Resources */,
 				CA78F81226FC6E6500A6C0F8 /* Dashboard.storyboard in Resources */,
+				CA2DCB5726FDB0CA001A77B8 /* TransactionHistoryCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,14 +285,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA2DCB5526FCBC6A001A77B8 /* Entry.swift in Sources */,
+				CA2DCB5926FDB211001A77B8 /* TransactionHistoryCell.swift in Sources */,
 				CAD0D3D526FCAAB4005B0254 /* Transaction.swift in Sources */,
 				CA78F7F326FC5BD800A6C0F8 /* DashboardVC.swift in Sources */,
 				CA0B6E3D26FC88B400B2CEA3 /* Colors.swift in Sources */,
 				CA78F7EF26FC5BD800A6C0F8 /* AppDelegate.swift in Sources */,
 				CAD0D3D926FCADDC005B0254 /* DashboardViewModel.swift in Sources */,
+				CA2DCB5B26FDB8C7001A77B8 /* TabItems.swift in Sources */,
 				CA78F7F126FC5BD800A6C0F8 /* SceneDelegate.swift in Sources */,
 				CA0B6E3926FC7F6D00B2CEA3 /* UIColorExtension.swift in Sources */,
-				CA0B6E3226FC77E400B2CEA3 /* TabItems.swift in Sources */,
 				CAD0D3D726FCABDE005B0254 /* Categories.swift in Sources */,
 				CA78F81026FC6AB000A6C0F8 /* SettingsVC.swift in Sources */,
 				CA0B6E3B26FC84E100B2CEA3 /* BottomTabBarController.swift in Sources */,

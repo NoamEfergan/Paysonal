@@ -13,6 +13,7 @@ public class DashboardViewModel: ChartViewDelegate {
     // MARK: - Variables
 
     private var dataEntries: [Entry] = []
+    private var transactions: [Transaction] = []
 
     // MARK: - Dummy data
     let dummyHousing = Entry(category: Categories.defaultCategories.Housing.rawValue)
@@ -22,6 +23,7 @@ public class DashboardViewModel: ChartViewDelegate {
     // MARK: - Init method
     init() {
         createDummyData()
+        getAllTransactions()
     }
 
     // MARK: - Public methods
@@ -53,7 +55,23 @@ public class DashboardViewModel: ChartViewDelegate {
         return "Total spent this month: \n\(amounts)"
     }
 
+    public func getTransaction(_ location: Int) -> Transaction? {
+        guard !(location > transactions.count) else { return nil }
+        return transactions[location]
+    }
+
+    public func getNumberOfCells() -> Int {
+        return transactions.count
+    }
+
     // MARK: - Private methods
+
+    private func getAllTransactions() {
+        self.transactions = []
+        for entry in dataEntries {
+            self.transactions += entry.getTransactions()
+        }
+    }
 
     private func createDummyData() {
         let txHousing = [

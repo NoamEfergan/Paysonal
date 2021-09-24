@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Transaction {
+public class Transaction {
 
     // MARK: - Variables
 

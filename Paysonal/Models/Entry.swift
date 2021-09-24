@@ -31,6 +31,10 @@ class Entry {
         transactions += txs
     }
 
+    public func getTransactions() -> [Transaction] {
+        return self.transactions
+    }
+
     /// A method to get the value of all the transactions in the entry
     /// - Returns: A double value of all of the transactions
     public func getTotalValue() -> Double {
