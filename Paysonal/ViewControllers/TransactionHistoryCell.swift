@@ -26,7 +26,7 @@ class TransactionHistoryCell: UITableViewCell {
 
     func customise(transaction: Transaction ) {
         self.contentView.backgroundColor = .secondarySystemBackground
-        self.containerView.layer.cornerRadius = 15
+        self.containerView.layer.cornerRadius = AppConstants.cornerRad
         self.dateLabel.text = transaction.date
         self.categoryLabel.text = transaction.category
         self.amountLabel.text = transaction.amount.description

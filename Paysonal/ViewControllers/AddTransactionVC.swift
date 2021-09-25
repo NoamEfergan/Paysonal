@@ -35,12 +35,12 @@ class AddTransactionVC: UIViewController {
     // MARK: - Private methods
 
     private func initUI() {
-        self.shadeBackground.backgroundColor = .black.withAlphaComponent(0.7)
+        self.shadeBackground.backgroundColor = .black.withAlphaComponent(AppConstants.shadowOpacity)
         self.applyButton.tintColor = AppColors.tintColor
-        self.containerView.layer.cornerRadius = 15
+        self.containerView.layer.cornerRadius = AppConstants.cornerRad
         self.containerView.backgroundColor = .secondarySystemBackground
         self.categoryButton.menu = UIMenu.init(
-            title: "Choose a category",
+            title: AppStrings.chooseCategory,
             options: .displayInline,
             children: viewModel.getOptions()
         )
@@ -76,9 +76,9 @@ extension AddTransactionVC: UITextFieldDelegate {
 extension AddTransactionVC: AddTransactionService {
 
     func askForNewCategory() {
-        let alert = UIAlertController(title: "Enter name of the category", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: AppStrings.newCategoryAlertTitle, message: nil, preferredStyle: .alert)
         alert.addTextField { textField in
-            textField.placeholder = "Name your category!"
+            textField.placeholder = AppStrings.newCategoryAlertBody
         }
 
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
@@ -92,8 +92,8 @@ extension AddTransactionVC: AddTransactionService {
 
     func showError() {
         let alert = UIAlertController(
-            title: "Oops!",
-            message: "Seems like that name already exists, try another one!",
+            title: AppStrings.errorTitle,
+            message: AppStrings.categoryExists,
             preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
@@ -104,9 +104,10 @@ extension AddTransactionVC: AddTransactionService {
 
     func updateMenu(title: String) {
         self.categoryButton.menu = UIMenu.init(
-            title: title,
+            title: AppStrings.chooseCategory,
             options: .displayInline,
             children: viewModel.getOptions()
         )
+        self.categoryButton.titleLabel?.text = title
     }
 }

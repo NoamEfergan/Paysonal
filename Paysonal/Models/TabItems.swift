@@ -15,25 +15,25 @@ enum TabItem: String, CaseIterable {
     var viewController: UIViewController {
         switch self {
         case .dashboard:
-            let storyboard = UIStoryboard(name: "Dashboard", bundle: .main)
-            return storyboard.instantiateViewController(withIdentifier: "DashboardVC") as! DashboardVC
+            let storyboard = UIStoryboard(name: NibNames.dashboard, bundle: .main)
+            return storyboard.instantiateViewController(withIdentifier: NibNames.dashboard + "VC") as! DashboardVC
         case .settings:
-            let storyboard = UIStoryboard(name: "Settings", bundle: .main)
-            return storyboard.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsVC
+            let storyboard = UIStoryboard(name: NibNames.settings, bundle: .main)
+            return storyboard.instantiateViewController(withIdentifier: NibNames.settings + "VC") as! SettingsVC
         case .add:
-            let storyboard = UIStoryboard(name: "AddTransaction", bundle: .main)
-            return storyboard.instantiateViewController(withIdentifier: "AddTransactionVC") as! AddTransactionVC
+            let storyboard = UIStoryboard(name: NibNames.addTransaction, bundle: .main)
+            return storyboard.instantiateViewController(withIdentifier: NibNames.addTransaction + "VC") as! AddTransactionVC
         }
     }
 
     var icon: UIImage {
         switch self {
         case .dashboard:
-            return UIImage(systemName: "house.circle")!
+            return UIImage(systemName: AppConstants.dashIcon)!
         case .settings:
-            return UIImage(systemName: "gear.circle")!
+            return UIImage(systemName: AppConstants.settingsIcon)!
         case .add:
-            return UIImage(systemName: "plus.circle")!
+            return UIImage(systemName: AppConstants.addIcon)!
         }
     }
     var displayTitle: String {

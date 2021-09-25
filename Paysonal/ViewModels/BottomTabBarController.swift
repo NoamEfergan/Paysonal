@@ -33,10 +33,10 @@ class BottomTabBarController: UITabBarController, UITabBarControllerDelegate {
 
     private func addShadow() {
         tabBar.layer.shadowColor = UIColor.lightGray.cgColor
-        self.tabBar.layer.cornerRadius = 20
-        tabBar.layer.shadowOpacity = 0.7
+        self.tabBar.layer.cornerRadius = AppConstants.cornerRadTabBar
+        tabBar.layer.shadowOpacity = Float(AppConstants.shadowOpacity)
         tabBar.layer.shadowOffset = CGSize.zero
-        tabBar.layer.shadowRadius = 5
+        tabBar.layer.shadowRadius = AppConstants.shadowRad
         self.tabBar.layer.borderColor = UIColor.clear.cgColor
         self.tabBar.layer.borderWidth = 0
         self.tabBar.clipsToBounds = false
@@ -47,8 +47,8 @@ class BottomTabBarController: UITabBarController, UITabBarControllerDelegate {
 
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController is AddTransactionVC {
-            let storyboard = UIStoryboard(name: "AddTransaction", bundle: .main)
-            let popupVC = storyboard.instantiateViewController(withIdentifier: "AddTransactionVC") as! AddTransactionVC
+            let storyboard = UIStoryboard(name: NibNames.addTransaction, bundle: .main)
+            let popupVC = storyboard.instantiateViewController(withIdentifier: NibNames.addTransaction + "VC") as! AddTransactionVC
             popupVC.modalPresentationStyle = .overCurrentContext
             popupVC.modalTransitionStyle = .crossDissolve
             tabBarController.present(popupVC, animated: true, completion: nil)

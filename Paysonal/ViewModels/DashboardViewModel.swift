@@ -52,7 +52,7 @@ public class DashboardViewModel: ChartViewDelegate {
         for entry in dataEntries {
             amounts += entry.getTotalValue()
         }
-        return "Total spent this month: \n\(amounts)"
+        return AppStrings.totalSpent + "\(amounts)"
     }
 
     public func getTransaction(_ location: Int) -> Transaction? {

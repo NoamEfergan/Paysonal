@@ -37,8 +37,8 @@ class DashboardVC: UIViewController, ChartViewDelegate {
         self.transactionHistoryTableView.dataSource = self
         self.transactionHistoryTableView.backgroundColor = self.view.backgroundColor
         self.transactionHistoryTableView.register(
-            UINib(nibName: "TransactionHistoryCell", bundle: nil),
-            forCellReuseIdentifier: "TransactionHistoryCell"
+            UINib(nibName: NibNames.transactionHistoryCell, bundle: nil),
+            forCellReuseIdentifier: NibNames.transactionHistoryCell
         )
 
         self.monthLabel.text = viewModel.getDateForLabel()
@@ -59,7 +59,7 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         tableView.headerView(forSection: section)?.backgroundView?.backgroundColor = .secondarySystemBackground
-        return "Transaction History"
+        return AppStrings.transactionHistoryTitle
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,7 +67,7 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionHistoryCell") as? TransactionHistoryCell,
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: NibNames.transactionHistoryCell) as? TransactionHistoryCell,
               let transaction = viewModel.getTransaction(indexPath.row)
         else { return UITableViewCell() }
         cell.customise(transaction: transaction)
