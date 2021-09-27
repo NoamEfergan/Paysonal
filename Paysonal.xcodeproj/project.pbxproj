@@ -29,6 +29,7 @@
 		CAB1689726FEF45A00449D97 /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB1689626FEF45A00449D97 /* AppStrings.swift */; };
 		CAB1689926FEF54600449D97 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB1689826FEF54600449D97 /* AppConstants.swift */; };
 		CAB1689B26FEF79900449D97 /* NibNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB1689A26FEF79900449D97 /* NibNames.swift */; };
+		CAB1689E2701A46800449D97 /* UserTransactionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB1689D2701A46800449D97 /* UserTransactionsManager.swift */; };
 		CAD0D3D526FCAAB4005B0254 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD0D3D426FCAAB4005B0254 /* Transaction.swift */; };
 		CAD0D3D726FCABDE005B0254 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD0D3D626FCABDE005B0254 /* UserPreferences.swift */; };
 		CAD0D3D926FCADDC005B0254 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD0D3D826FCADDC005B0254 /* DashboardViewModel.swift */; };
@@ -60,6 +61,7 @@
 		CAB1689626FEF45A00449D97 /* AppStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
 		CAB1689826FEF54600449D97 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		CAB1689A26FEF79900449D97 /* NibNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibNames.swift; sourceTree = "<group>"; };
+		CAB1689D2701A46800449D97 /* UserTransactionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTransactionsManager.swift; sourceTree = "<group>"; };
 		CAD0D3D426FCAAB4005B0254 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		CAD0D3D626FCABDE005B0254 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		CAD0D3D826FCADDC005B0254 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -93,7 +95,6 @@
 				CA2DCB5A26FDB8C7001A77B8 /* TabItems.swift */,
 				CA0B6E3C26FC88B400B2CEA3 /* Colors.swift */,
 				CAD0D3D426FCAAB4005B0254 /* Transaction.swift */,
-				CAD0D3D626FCABDE005B0254 /* UserPreferences.swift */,
 				CA2DCB5426FCBC6A001A77B8 /* Entry.swift */,
 				CAB1689626FEF45A00449D97 /* AppStrings.swift */,
 				CAB1689826FEF54600449D97 /* AppConstants.swift */,
@@ -133,6 +134,7 @@
 			children = (
 				CA78F7EE26FC5BD800A6C0F8 /* AppDelegate.swift */,
 				CA78F7F026FC5BD800A6C0F8 /* SceneDelegate.swift */,
+				CAB1689C2701A42D00449D97 /* Managers */,
 				CA0B6E3726FC7F5500B2CEA3 /* Extentions */,
 				CA0B6E3026FC77CF00B2CEA3 /* Models */,
 				CA78F80426FC5E8F00A6C0F8 /* ViewModels */,
@@ -175,6 +177,15 @@
 				CA2DCB6426FDEB80001A77B8 /* AddTransactionViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		CAB1689C2701A42D00449D97 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				CAD0D3D626FCABDE005B0254 /* UserPreferences.swift */,
+				CAB1689D2701A46800449D97 /* UserTransactionsManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		DA4B9DADDDF9C35A4E2EB254 /* Frameworks */ = {
@@ -319,6 +330,7 @@
 				CA0B6E3926FC7F6D00B2CEA3 /* UIColorExtension.swift in Sources */,
 				CAD0D3D726FCABDE005B0254 /* UserPreferences.swift in Sources */,
 				CA78F81026FC6AB000A6C0F8 /* SettingsVC.swift in Sources */,
+				CAB1689E2701A46800449D97 /* UserTransactionsManager.swift in Sources */,
 				CA2DCB6526FDEB80001A77B8 /* AddTransactionViewModel.swift in Sources */,
 				CA0B6E3B26FC84E100B2CEA3 /* BottomTabBarController.swift in Sources */,
 			);

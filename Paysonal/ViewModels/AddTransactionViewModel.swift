@@ -13,6 +13,7 @@ protocol AddTransactionService: AnyObject {
     func askForNewCategory()
     func showError()
     func updateMenu(title: String)
+    func updateCategoryButton(withTitle: String)
 }
 
 public class AddTransactionViewModel {
@@ -30,6 +31,13 @@ public class AddTransactionViewModel {
         self.service = delegate
     }
 
+    // MARK: - Private methods
+
+    private func onSelectCategory(withTitle category: String) {
+        self.category = category
+        self.service?.updateCategoryButton(withTitle: category)
+    }
+
     // MARK: - Public methods
 
     public func getOptions() -> [UIMenuElement] {
@@ -37,7 +45,7 @@ public class AddTransactionViewModel {
         let allCategories = UserPreferences.shared?.getAllCategories() ?? []
         for category in allCategories {
             let menuItem = UIAction(title: category, handler: { _ in
-                self.category = category
+                self.onSelectCategory(withTitle: category)
             })
             newItems.append(menuItem)
         }

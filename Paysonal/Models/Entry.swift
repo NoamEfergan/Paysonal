@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class Entry {
+public class Entry {
 
     // MARK: - Variables
 

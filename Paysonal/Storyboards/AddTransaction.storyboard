@@ -64,9 +64,6 @@
                                                             </children>
                                                         </menu>
                                                         <state key="normal" title="Category"/>
-                                                        <connections>
-                                                            <action selector="categoryButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Rnw-nL-5bh"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>

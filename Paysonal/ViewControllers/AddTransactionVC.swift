@@ -48,8 +48,6 @@ class AddTransactionVC: UIViewController {
 
     // MARK: - Actions
 
-    @IBAction func categoryButtonTapped(_ sender: UIButton) {
-    }
     @IBAction func applyTapped(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -108,6 +106,10 @@ extension AddTransactionVC: AddTransactionService {
             options: .displayInline,
             children: viewModel.getOptions()
         )
-        self.categoryButton.titleLabel?.text = title
+        self.categoryButton.setTitle(title, for: .normal)
+    }
+
+    func updateCategoryButton(withTitle: String) {
+        self.categoryButton.setTitle(withTitle, for: .normal)
     }
 }
