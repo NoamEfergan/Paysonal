@@ -14,7 +14,6 @@ public class UserPreferences {
     private(set) static var shared: UserPreferences?
     private let defaultCategories = ["Housing", "Car", "Amenities"]
     private var userCategories: [String] = []
-    private var userName: String?
 
     // MARK: - Init methods
 
@@ -24,8 +23,32 @@ public class UserPreferences {
 
     // MARK: - public methods
 
+    public func isUserRegistered() -> Bool {
+        if let _ = UserDefaults.standard.string(forKey: AppConstants.kUserEmail) {
+            return true
+        }
+        return false
+    }
+
+    public func resetUser() {
+        UserDefaults.standard.removeObject(forKey: AppConstants.kUserEmail)
+        UserDefaults.standard.removeObject(forKey: AppConstants.kUserName)
+    }
+
+    public func setUserEmail(with email: String) {
+        UserDefaults.standard.setValue(email, forKey: AppConstants.kUserEmail)
+    }
+
+    public func getUserEmail() -> String? {
+        return UserDefaults.standard.string(forKey: AppConstants.kUserEmail)
+    }
+
     public func setUsername(with name: String) {
-        self.userName = name
+        UserDefaults.standard.setValue(name, forKey: AppConstants.kUserName)
+    }
+
+    public func getUserName() -> String? {
+        return UserDefaults.standard.string(forKey: AppConstants.kUserName)
     }
 
     public func getDefaultCategories() -> [String] {

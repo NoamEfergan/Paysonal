@@ -50,7 +50,8 @@ class RegisterViewModel {
                 self.service?.showErrorRegistering(msg: error!.localizedDescription)
                 return
             }
-            UserPreferences.shared?.setUsername(with: name ?? email)
+            if let userName = name { UserPreferences.shared?.setUsername(with: userName) }
+            UserPreferences.shared?.setUserEmail(with: email)
             self.service?.hideLoader()
             self.service?.onSuccessRegister()
         }

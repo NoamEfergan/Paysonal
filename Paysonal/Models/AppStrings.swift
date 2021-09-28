@@ -28,6 +28,16 @@ struct AppStrings {
     public static let emailError = "Please enter a valid email"
     public static let passwordError = "Password must be 8 characters long and contain at least 1 number and 1 special character "
 
+    // MARK: - Login
+    public static let welcomeAnonymous = "Welcome to\nPaysonal!"
+    public static let welcomeUser = "Welcome back,\n%@"
+    public static let signInUser = "Enter password to sign in to %@"
+    public static let errorLogin = "Email or password are invalid"
+    public static let resetPasswordAlert = "Are you sure you want to reset your password?"
+    public static let reset = "Reset"
+    public static let resetAlertTitle = "Email sent"
+    public static let resetAlertMsg = "An email was sent to your address"
+
     // MARK: - Segue ID's
     public static let showDashboard: String = "showDashboard"
 }

@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
@@ -28,8 +29,12 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhf-Pd-DvX">
                                                         <rect key="frame" x="0.0" y="0.0" width="171.5" height="50"/>
+                                                        <color key="tintColor" name="TintColor"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="Apply"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Apply">
+                                                            <color key="baseForegroundColor" name="FullButtonTextColor"/>
+                                                            <color key="baseBackgroundColor" name="TintColor"/>
+                                                        </buttonConfiguration>
                                                         <connections>
                                                             <action selector="applyTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Lwp-ET-ICl"/>
                                                         </connections>
@@ -121,6 +126,12 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="FullButtonTextColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TintColor">
+            <color red="0.92045229669999995" green="0.28230938319999999" blue="0.4745023847" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -36,7 +36,6 @@ class AddTransactionVC: UIViewController {
 
     private func initUI() {
         self.shadeBackground.backgroundColor = .black.withAlphaComponent(AppConstants.shadowOpacity)
-        self.applyButton.tintColor = AppColors.tintColor
         self.containerView.layer.cornerRadius = AppConstants.cornerRad
         self.containerView.backgroundColor = .secondarySystemBackground
         self.categoryButton.menu = UIMenu.init(

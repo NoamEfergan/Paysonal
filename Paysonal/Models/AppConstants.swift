@@ -18,4 +18,8 @@ struct AppConstants {
     public static let dashIcon: String = "house.circle"
     public static let settingsIcon: String = "gear.circle"
     public static let addIcon: String = "plus.circle"
+
+    /// UserDefaults keys
+    public static let kUserName: String = "userName"
+    public static let kUserEmail: String = "userEmail"
 }

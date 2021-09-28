@@ -14,7 +14,7 @@ class BottomTabBarController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
-        self.tabBar.tintColor = AppColors.tintColor
+        self.tabBar.tintColor = UIColor(named: "TintColor")
         setItems()
         addShadow()
     }
