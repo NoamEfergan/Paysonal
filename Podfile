@@ -7,5 +7,8 @@ target 'Paysonal' do
 
   # Pods for Paysonal
 pod 'Charts'
-
+pod 'Firebase/Analytics'
+pod 'Firebase/Auth'
+pod 'Firebase/Firestore'
+pod 'JGProgressHUD'
 end

@@ -14,6 +14,7 @@ public class UserPreferences {
     private(set) static var shared: UserPreferences?
     private let defaultCategories = ["Housing", "Car", "Amenities"]
     private var userCategories: [String] = []
+    private var userName: String?
 
     // MARK: - Init methods
 
@@ -22,6 +23,10 @@ public class UserPreferences {
     }
 
     // MARK: - public methods
+
+    public func setUsername(with name: String) {
+        self.userName = name
+    }
 
     public func getDefaultCategories() -> [String] {
         return defaultCategories

@@ -8,12 +8,14 @@
 import UIKit
 
 struct AppConstants {
-    public static var cornerRad: CGFloat = 15
-    public static var cornerRadTabBar: CGFloat = 20
-    public static var shadowOpacity: CGFloat = 0.7
-    public static var shadowRad: CGFloat = 5
+    public static let cornerRad: CGFloat = 15
+    public static let cornerRadTabBar: CGFloat = 20
+    public static let shadowOpacity: CGFloat = 0.7
+    public static let shadowRad: CGFloat = 5
+    public static let minPasswordLength = 8
+    public static let KeyboardToolbar: CGFloat = 45
 
-    public static var dashIcon: String = "house.circle"
-    public static var settingsIcon: String = "gear.circle"
-    public static var addIcon: String = "plus.circle"
+    public static let dashIcon: String = "house.circle"
+    public static let settingsIcon: String = "gear.circle"
+    public static let addIcon: String = "plus.circle"
 }

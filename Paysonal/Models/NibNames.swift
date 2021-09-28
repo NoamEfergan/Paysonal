@@ -8,8 +8,10 @@
 import Foundation
 
 struct NibNames {
-    public static var transactionHistoryCell: String = "TransactionHistoryCell"
-    public static var dashboard: String = "Dashboard"
-    public static var settings: String = "Settings"
-    public static var addTransaction: String = "AddTransaction"
+    public static let transactionHistoryCell: String = "TransactionHistoryCell"
+    public static let dashboard: String = "Dashboard"
+    public static let settings: String = "Settings"
+    public static let addTransaction: String = "AddTransaction"
+    public static let register: String = "Register"
+    public static let login: String = "Login"
 }

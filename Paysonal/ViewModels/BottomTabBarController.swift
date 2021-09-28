@@ -34,6 +34,7 @@ class BottomTabBarController: UITabBarController, UITabBarControllerDelegate {
     private func addShadow() {
         tabBar.layer.shadowColor = UIColor.lightGray.cgColor
         self.tabBar.layer.cornerRadius = AppConstants.cornerRadTabBar
+        self.tabBar.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner] 
         tabBar.layer.shadowOpacity = Float(AppConstants.shadowOpacity)
         tabBar.layer.shadowOffset = CGSize.zero
         tabBar.layer.shadowRadius = AppConstants.shadowRad
