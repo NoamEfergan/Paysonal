@@ -35,6 +35,7 @@ class AddTransactionVC: UIViewController {
     // MARK: - Private methods
 
     private func initUI() {
+        self.amountTextField.addDoneButtonOnKeyboard()
         self.shadeBackground.backgroundColor = .black.withAlphaComponent(AppConstants.shadowOpacity)
         self.containerView.layer.cornerRadius = AppConstants.cornerRad
         self.containerView.backgroundColor = .secondarySystemBackground
@@ -47,7 +48,19 @@ class AddTransactionVC: UIViewController {
 
     // MARK: - Actions
 
+    @IBAction func didPickDate(_ sender: UIDatePicker) {
+        viewModel.setDate(with: sender.date.getStringFromDate())
+    }
+
+    @IBAction func didFinishAddingAmount(_ sender: UITextField) {
+        if let text = sender.text,
+           let amountDouble = Double(text) {
+            viewModel.setAmount(with: amountDouble)
+        }
+    }
+
     @IBAction func applyTapped(_ sender: Any) {
+        guard viewModel.onTapApply() else { return }
         self.dismiss(animated: true)
     }
 
@@ -87,16 +100,8 @@ extension AddTransactionVC: AddTransactionService {
         self.present(alert, animated: true)
     }
 
-    func showError() {
-        let alert = UIAlertController(
-            title: AppStrings.errorTitle,
-            message: AppStrings.categoryExists,
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true)
+    func showError(msg: String) {
+        self.showErrorAlert(msg: msg)
     }
 
     func updateMenu(title: String) {

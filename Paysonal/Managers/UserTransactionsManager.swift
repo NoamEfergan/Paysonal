@@ -28,6 +28,11 @@ public class UserTransactionsManager {
 
     // MARK: - Public methods
 
+    public func addTransaction(_ tx: Transaction) {
+        self.convertTransactionToEntry(tx)
+        self.addTxToFirestore(tx)
+    }
+
     /// Fetch transactions for the current month from Firestory
     public func getTransactionsForCurrentMonth() -> Future<[Entry],Error> {
         return Future { [self] promise in
@@ -39,7 +44,7 @@ public class UserTransactionsManager {
             db.collection(AppConstants.kUsers)
                 .document(userID)
                 .collection(AppConstants.kMonths)
-                .document(getCurrentMonth())
+                .document(Date().getCurrentMonth())
                 .collection(AppConstants.kTransactions)
                 .getDocuments { [weak self] snapShot, error in
                     guard let self = self else {
@@ -60,6 +65,10 @@ public class UserTransactionsManager {
                     promise(.success(self.handleDocuments(documents: snap.documents)))
                 }
         }
+    }
+
+    public func getEntries() -> [Entry] {
+        return dataEntries
     }
 
     // MARK: - Private methods
@@ -92,14 +101,44 @@ public class UserTransactionsManager {
         dataEntries.append(newEntry)
     }
 
-    private func getCurrentMonth() -> String {
-        let now = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "LLLL"
-        return dateFormatter.string(from: now)
+    private func addTxToFirestore(_ tx: Transaction) {
+        guard let month = Date().getMonthFromString(tx.date) else { return }
+        db.collection(AppConstants.kUsers)
+            .document(UserPreferences.shared!.getUserID()!)
+            .collection(AppConstants.kMonths)
+            .document(month).getDocument { [weak self] snapShot, error in
+                guard let self = self else {
+                    fatalError("Failed to capture self,add TX flow")
+                }
+                if error != nil {
+                    return
+                }
+                if snapShot!.exists {
+                    self.setTxInExistingMonth(tx, month: month)
+                } else {
+                    self.setTxInNewMonth(tx, month: month)
+                }
+            }
     }
 
-    public func getEntries() -> [Entry] {
-        return dataEntries
+    private func setTxInExistingMonth(_ tx: Transaction, month: String) {
+        db.collection(AppConstants.kUsers)
+            .document(UserPreferences.shared!.getUserID()!)
+            .collection(AppConstants.kMonths)
+            .document(month)
+            .collection(AppConstants.kTransactions)
+            .document(tx.date)
+            .setData([AppConstants.kAmount: tx.amount!, AppConstants.kCategory: tx.category!])
+    }
+
+    private func setTxInNewMonth(_ tx: Transaction, month: String) {
+        // Create month document
+        self.db.collection(AppConstants.kUsers)
+            .document(UserPreferences.shared!.getUserID()!)
+            .collection(AppConstants.kMonths)
+            .document(month)
+            .setData([:])
+        // Add tx to the month
+        self.setTxInExistingMonth(tx, month: month)
     }
 }

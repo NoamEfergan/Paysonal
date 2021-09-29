@@ -62,8 +62,7 @@ class LoginViewModel {
                 self.service?.onErrorLogin(msg: "No user ID found")
                 return
             }
-            UserPreferences.shared?.setUserEmail(with: email)
-            UserPreferences.shared?.setUserID(id: result.user.uid)
+            UserPreferences.shared?.loginUser(email: email, userID: result.user.uid)
             self.service?.onSuccessLogin()
         }
     }
@@ -71,7 +70,8 @@ class LoginViewModel {
     public func getWelcomeTitle() -> String {
         guard let preferences = UserPreferences.shared else { return AppStrings.welcomeAnonymous }
         guard preferences.isUserRegistered(),
-              let userName = preferences.getUserName() else { return AppStrings.welcomeAnonymous }
+              let userName = preferences.getUserName(),
+              userName != "" else { return AppStrings.welcomeAnonymous }
         return String(format: AppStrings.welcomeUser, userName)
     }
 

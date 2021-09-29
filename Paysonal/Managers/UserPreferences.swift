@@ -6,19 +6,33 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 public class UserPreferences {
 
     // MARK: - Variables
 
     private(set) static var shared: UserPreferences?
-    private let defaultCategories = ["Housing", "Car", "Amenities"]
-    private var userCategories: [String] = []
+    private var categories: [String] = []
 
     // MARK: - Init methods
 
     class func initialise() {
         if shared == nil { shared = UserPreferences() }
+    }
+
+    // MARK: - private methods
+
+    private func setUserID(id: String) {
+        UserDefaults.standard.setValue(id, forKey: AppConstants.kUserId)
+    }
+
+    private func setUserEmail(with email: String) {
+        UserDefaults.standard.setValue(email, forKey: AppConstants.kUserEmail)
+    }
+
+    private func setUsername(with name: String) {
+        UserDefaults.standard.setValue(name, forKey: AppConstants.kUserName)
     }
 
     // MARK: - public methods
@@ -28,10 +42,6 @@ public class UserPreferences {
             return true
         }
         return false
-    }
-
-    public func setUserID(id: String) {
-        UserDefaults.standard.setValue(id, forKey: AppConstants.kUserId)
     }
 
     public func getUserID() -> String? {
@@ -44,39 +54,55 @@ public class UserPreferences {
         UserDefaults.standard.removeObject(forKey: AppConstants.kUserId)
     }
 
-    public func setUserEmail(with email: String) {
-        UserDefaults.standard.setValue(email, forKey: AppConstants.kUserEmail)
-    }
-
     public func getUserEmail() -> String? {
         return UserDefaults.standard.string(forKey: AppConstants.kUserEmail)
-    }
-
-    public func setUsername(with name: String) {
-        UserDefaults.standard.setValue(name, forKey: AppConstants.kUserName)
     }
 
     public func getUserName() -> String? {
         return UserDefaults.standard.string(forKey: AppConstants.kUserName)
     }
 
-    public func getDefaultCategories() -> [String] {
-        return defaultCategories
-    }
-
-    public func getAllCategories() -> [String] {
-        var allCategories = defaultCategories
-        allCategories.append(contentsOf: userCategories)
-        return allCategories
+    public func setCategories(with categories:[String]) {
+        self.categories = categories
     }
 
     public func addNewCategory(newCategory: String) -> Bool {
-        if !defaultCategories.contains(where: {$0.lowercased() == newCategory.lowercased()})
-            && !userCategories.contains(where: {$0.lowercased() == newCategory.lowercased()}) {
-            userCategories.append(newCategory)
+        if !self.categories.contains(where: {$0.lowercased() == newCategory.lowercased()}) {
+            self.categories.append(newCategory)
             return true
         }
         return false
+    }
+
+    public func getCategories() -> [String] {
+        return self.categories
+    }
+
+    public func registerUserToFirebase() {
+        let db = Firestore.firestore()
+        db.collection(AppConstants.kUsers).document(self.getUserID()!).setData([:])
+        db.collection(AppConstants.kUsers)
+            .document(self.getUserID()!)
+            .collection(AppConstants.kMonths)
+            .document(Date().getCurrentMonth())
+            .setData([:])
+        db.collection(AppConstants.kUsers)
+            .document(self.getUserID()!)
+            .collection(AppConstants.kMonths)
+            .document(Date().getCurrentMonth())
+            .collection(AppConstants.kTransactions)
+    }
+
+    public func registerUser(email: String, userID: String, name: String?) {
+        self.setUserID(id: userID)
+        self.setUserEmail(with: email)
+        if name != nil { self.setUsername(with: name!) }
+        self.registerUserToFirebase()
+    }
+
+    public func loginUser(email: String, userID: String ){
+        self.setUserEmail(with: email)
+        self.setUserID(id: userID)
     }
 
 }

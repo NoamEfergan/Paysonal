@@ -11,6 +11,7 @@ struct AppStrings {
 
     // MARK: - Dashboard
     public static let totalSpent = "Total spent this month: \n"
+    public static let nothingToShow = "Nothing to show yet!"
     public static let transactionHistoryTitle = "Transaction History"
     public static let fetchingError = "Could not fetch data!"
 
@@ -20,6 +21,10 @@ struct AppStrings {
     public static let newCategoryAlertBody = "Name your category!"
     public static let errorTitle = "Oopps!"
     public static let categoryExists = "Seems like that name already exists, try another one!"
+    public static let newCategory = "New category"
+    public static let categoryError = "Category can't be empty!"
+    public static let amountError = "Amount can't be empty!"
+    public static let dateError = "Please choose a date"
 
     // MARK: - Register
     public static let nameTitle = "Your name (optional)"

@@ -44,7 +44,7 @@ class DashboardVC: UIViewController, ChartViewDelegate {
             forCellReuseIdentifier: NibNames.transactionHistoryCell
         )
 
-        self.monthLabel.text = viewModel.getDateForLabel()
+        self.monthLabel.text = Date().getCurrentMonth()
         updatePieChartData()
     }
 

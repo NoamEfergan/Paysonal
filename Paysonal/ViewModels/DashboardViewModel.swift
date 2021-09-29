@@ -31,13 +31,6 @@ public class DashboardViewModel: ChartViewDelegate {
 
     // MARK: - Public methods
 
-    public func getDateForLabel() -> String {
-        let now = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "LLLL"
-        return dateFormatter.string(from: now)
-    }
-
     public func getDataForChart() -> PieChartData {
         var pieChartDataEntries: [PieChartDataEntry] = []
         var colors: [NSUIColor] = []
@@ -54,6 +47,9 @@ public class DashboardViewModel: ChartViewDelegate {
         var amounts = 0.0
         for entry in entries {
             amounts += entry.getTotalValue()
+        }
+        if entries.isEmpty {
+            return AppStrings.nothingToShow
         }
         return AppStrings.totalSpent + "\(amounts)"
     }
@@ -92,5 +88,11 @@ public class DashboardViewModel: ChartViewDelegate {
         for entry in entries {
             self.transactions += entry.getTransactions()
         }
+    }
+
+    private func setCategories() {
+        var categories: [String] = []
+        self.entries.forEach({ categories.append($0.category) })
+        UserPreferences.shared?.setCategories(with: categories)
     }
 }

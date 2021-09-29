@@ -41,7 +41,7 @@ class RegisterViewModel {
         return passwordTest.evaluate(with: password)
     }
 
-    public func performRegister(withEmail email: String, password: String, name: String?){
+    public func performRegister(withEmail email: String, password: String, name: String?) {
         self.service?.showLoader()
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
             guard let self = self else { fatalError("Couldn't capture self on register flow") }
@@ -55,9 +55,7 @@ class RegisterViewModel {
                 self.service?.showErrorRegistering(msg: "No user ID found")
                 return
             }
-            if let userName = name { UserPreferences.shared?.setUsername(with: userName) }
-            UserPreferences.shared?.setUserEmail(with: email)
-            UserPreferences.shared?.setUserID(id: result.user.uid)
+            UserPreferences.shared?.registerUser(email: email, userID: result.user.uid, name: name)
             self.service?.hideLoader()
             self.service?.onSuccessRegister()
         }
