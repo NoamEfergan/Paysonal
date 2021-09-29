@@ -7,16 +7,26 @@
 
 import UIKit
 import Charts
+import Combine
+
+protocol DashboardService: AnyObject {
+    func didReceiveEntries()
+    func errorReceivingEntries(msg: String)
+}
 
 public class DashboardViewModel: ChartViewDelegate {
 
     // MARK: - Variables
 
     private var transactions: [Transaction] = []
+    private var entriesObserver: AnyCancellable?
+    private var service: DashboardService?
+    private var entries: [Entry] = []
 
     // MARK: - Init method
-    init() {
-        getAllTransactions()
+    init(delegate: DashboardService) {
+        self.service = delegate
+        self.addObserver()
     }
 
     // MARK: - Public methods
@@ -31,7 +41,6 @@ public class DashboardViewModel: ChartViewDelegate {
     public func getDataForChart() -> PieChartData {
         var pieChartDataEntries: [PieChartDataEntry] = []
         var colors: [NSUIColor] = []
-        guard let entries = UserTransactionsManager.shared?.getEntries() else { return PieChartData(dataSets: nil) }
         for entry in entries {
             pieChartDataEntries.append(PieChartDataEntry(value: entry.getTotalValue(), label: entry.category))
             colors.append(entry.color)
@@ -43,7 +52,6 @@ public class DashboardViewModel: ChartViewDelegate {
 
     public func getCenterText() -> String {
         var amounts = 0.0
-        guard let entries = UserTransactionsManager.shared?.getEntries() else { return "error "}
         for entry in entries {
             amounts += entry.getTotalValue()
         }
@@ -61,9 +69,26 @@ public class DashboardViewModel: ChartViewDelegate {
 
     // MARK: - Private methods
 
+    private func addObserver() {
+        if let userPreferences = UserTransactionsManager.shared {
+        self.entriesObserver = userPreferences.getTransactionsForCurrentMonth()
+            .sink(receiveCompletion: { [weak self] didFinish in
+                switch didFinish {
+                case .finished:
+                    print("finish loading transaction successfully ")
+                case .failure(_):
+                    self?.service?.errorReceivingEntries(msg: AppStrings.fetchingError)
+                }
+            }, receiveValue: { [weak self] entries in
+                self?.entries = entries
+                self?.getAllTransactions()
+                self?.service?.didReceiveEntries()
+            })
+        }
+    }
+
     private func getAllTransactions() {
         self.transactions = []
-        guard let entries = UserTransactionsManager.shared?.getEntries() else { return }
         for entry in entries {
             self.transactions += entry.getTransactions()
         }

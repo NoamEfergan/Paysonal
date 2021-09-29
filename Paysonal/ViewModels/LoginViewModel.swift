@@ -57,7 +57,13 @@ class LoginViewModel {
                 self.service?.onErrorLogin(msg: error!.localizedDescription)
                 return
             }
+            guard let result = authResult else {
+                self.service?.hideLoader()
+                self.service?.onErrorLogin(msg: "No user ID found")
+                return
+            }
             UserPreferences.shared?.setUserEmail(with: email)
+            UserPreferences.shared?.setUserID(id: result.user.uid)
             self.service?.onSuccessLogin()
         }
     }

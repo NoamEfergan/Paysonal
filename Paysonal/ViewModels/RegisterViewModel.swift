@@ -50,8 +50,14 @@ class RegisterViewModel {
                 self.service?.showErrorRegistering(msg: error!.localizedDescription)
                 return
             }
+            guard let result = authResult else {
+                self.service?.hideLoader()
+                self.service?.showErrorRegistering(msg: "No user ID found")
+                return
+            }
             if let userName = name { UserPreferences.shared?.setUsername(with: userName) }
             UserPreferences.shared?.setUserEmail(with: email)
+            UserPreferences.shared?.setUserID(id: result.user.uid)
             self.service?.hideLoader()
             self.service?.onSuccessRegister()
         }

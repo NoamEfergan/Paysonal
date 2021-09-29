@@ -18,12 +18,13 @@ class DashboardVC: UIViewController, ChartViewDelegate {
 
     // MARK: - Variables
     
-    let viewModel = DashboardViewModel()
+    var viewModel: DashboardViewModel!
 
     // MARK: - Lifecycle methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.viewModel = DashboardViewModel(delegate: self)
         self.chartView.delegate = self
         initUI()
     }
@@ -31,8 +32,10 @@ class DashboardVC: UIViewController, ChartViewDelegate {
     // MARK: - Private methods
 
     private func initUI() {
+        self.view.showLoader(message: nil)
         self.view.backgroundColor = .secondarySystemBackground
-
+        self.chartView.transparentCircleColor = .secondarySystemBackground
+        self.chartView.holeColor = .secondarySystemBackground
         self.transactionHistoryTableView.delegate = self
         self.transactionHistoryTableView.dataSource = self
         self.transactionHistoryTableView.backgroundColor = self.view.backgroundColor
@@ -48,8 +51,6 @@ class DashboardVC: UIViewController, ChartViewDelegate {
     private func updatePieChartData() {
         self.chartView.data = viewModel.getDataForChart()
         self.chartView.centerText = viewModel.getCenterText()
-        self.chartView.transparentCircleColor = .secondarySystemBackground
-        self.chartView.holeColor = .secondarySystemBackground
     }
 }
 
@@ -78,4 +79,20 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
+}
+
+// MARK: - Protocol methods
+
+extension DashboardVC: DashboardService {
+
+    func didReceiveEntries() {
+        self.view.hideLoader()
+        self.updatePieChartData()
+        self.transactionHistoryTableView.reloadData()
+    }
+
+    func errorReceivingEntries(msg: String) {
+        self.view.hideLoader()
+        self.showErrorAlert(msg: msg)
+    }
 }

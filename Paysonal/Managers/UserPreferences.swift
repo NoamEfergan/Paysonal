@@ -30,9 +30,18 @@ public class UserPreferences {
         return false
     }
 
+    public func setUserID(id: String) {
+        UserDefaults.standard.setValue(id, forKey: AppConstants.kUserId)
+    }
+
+    public func getUserID() -> String? {
+        return UserDefaults.standard.string(forKey: AppConstants.kUserId)
+    }
+
     public func resetUser() {
         UserDefaults.standard.removeObject(forKey: AppConstants.kUserEmail)
         UserDefaults.standard.removeObject(forKey: AppConstants.kUserName)
+        UserDefaults.standard.removeObject(forKey: AppConstants.kUserId)
     }
 
     public func setUserEmail(with email: String) {

@@ -6,17 +6,15 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import Combine
 
 public class UserTransactionsManager {
 
     // MARK: - Variables
 
     private(set) static var shared: UserTransactionsManager?
-
-    // MARK: - Dummy data
-    private let dummyHousing = Entry(category: "House")
-    private let dummyCar = Entry(category: "Car")
-    private let dummyAmenities = Entry(category: "Aminities")
+    private let db = Firestore.firestore()
     private var dataEntries: [Entry] = []
 
     // MARK: - Init methods
@@ -26,38 +24,82 @@ public class UserTransactionsManager {
     }
 
     init() {
-        createDummyData()
     }
 
-    // Dummy Data
+    // MARK: - Public methods
 
-    public func getEntries() -> [Entry] {
+    /// Fetch transactions for the current month from Firestory
+    public func getTransactionsForCurrentMonth() -> Future<[Entry],Error> {
+        return Future { [self] promise in
+            guard let userID = UserPreferences.shared?.getUserID() else {
+                let error = NSError(domain: "No user ID", code: 1, userInfo: nil)
+                promise(.failure(error))
+                return
+            }
+            db.collection(AppConstants.kUsers)
+                .document(userID)
+                .collection(AppConstants.kMonths)
+                .document(getCurrentMonth())
+                .collection(AppConstants.kTransactions)
+                .getDocuments { [weak self] snapShot, error in
+                    guard let self = self else {
+                        fatalError("Failed to capture self, get transactions for current month flow")
+                    }
+                    if error != nil {
+                        self.dataEntries = []
+                        let error = NSError(domain: error!.localizedDescription, code: 1, userInfo: nil)
+                        promise(.failure(error))
+                        return
+                    }
+                    guard let snap = snapShot else {
+                        self.dataEntries = []
+                        let error = NSError(domain: "No data was received", code: 1, userInfo: nil)
+                        promise(.failure(error))
+                        return
+                    }
+                    promise(.success(self.handleDocuments(documents: snap.documents)))
+                }
+        }
+    }
+
+    // MARK: - Private methods
+
+    /// Takes in the documents from Firestore and converts them to entries
+    /// - Parameter documents: Firestore Document
+    private func handleDocuments(documents: [QueryDocumentSnapshot] ) -> [Entry] {
+        self.dataEntries = []
+        for document in documents {
+            if let amount = document.data()[AppConstants.kAmount] as? Double,
+               let category = document.data()[AppConstants.kCategory] as? String {
+                let transaction = Transaction(amount: amount, date: document.documentID, category: category)
+                convertTransactionToEntry(transaction)
+            }
+        }
         return dataEntries
     }
 
-    private func createDummyData(){
-        let categoryHousing = UserPreferences.shared?.getDefaultCategories().first ?? "nil"
-        let txHousing = [
-            Transaction(amount: 12, date: "20.10.2021", category: categoryHousing),
-            Transaction(amount: 7, date: "18.10.2021", category: categoryHousing),
-            Transaction(amount: 11, date: "12.10.2021", category: categoryHousing)
-        ]
-        dummyHousing.addMultipleTransactions(txHousing)
-        let categoryCar = UserPreferences.shared?.getDefaultCategories()[1] ?? "nil car"
-        let car = [
-            Transaction(amount: 12, date: "20.10.2021", category: categoryCar),
-            Transaction(amount: 2, date: "18.10.2021", category: categoryCar),
-            Transaction(amount: 11, date: "12.10.2021", category: categoryCar)
-        ]
-        dummyCar.addMultipleTransactions(car)
-        let categoryAmenities = UserPreferences.shared?.getDefaultCategories()[2] ?? "nil amenities"
-        let amenities = [
-            Transaction(amount: 12, date: "20.10.2021", category: categoryAmenities),
-            Transaction(amount: 15, date: "18.10.2021", category: categoryAmenities),
-            Transaction(amount: 40, date: "12.10.2021", category: categoryAmenities)
-        ]
-        dummyAmenities.addMultipleTransactions(amenities)
+    /// Converts a transaction into an entry, and adds that entry to the data entries array
+    /// - Parameter tx: Transaction object
+    private func convertTransactionToEntry(_ tx: Transaction) {
+        // Check if the category already exists in the data entries array
+        if self.dataEntries.contains(where: {$0.category == tx.category}) {
+            self.dataEntries.first(where: {$0.category == tx.category})?.addTransaction(tx)
+            return
+        }
+        // If not, create a new entry and add that
+        let newEntry = Entry(category: tx.category)
+        newEntry.addTransaction(tx)
+        dataEntries.append(newEntry)
+    }
 
-        dataEntries = [dummyHousing, dummyCar, dummyAmenities]
+    private func getCurrentMonth() -> String {
+        let now = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "LLLL"
+        return dateFormatter.string(from: now)
+    }
+
+    public func getEntries() -> [Entry] {
+        return dataEntries
     }
 }
