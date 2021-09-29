@@ -26,6 +26,7 @@
 		CA2DCB6526FDEB80001A77B8 /* AddTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2DCB6426FDEB80001A77B8 /* AddTransactionViewModel.swift */; };
 		CA365A2E270339B300600D9F /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA365A2D270339B300600D9F /* UIViewControllerExtension.swift */; };
 		CA365A34270482C700600D9F /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA365A33270482C700600D9F /* DateExtension.swift */; };
+		CA365A362704A84900600D9F /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA365A352704A84900600D9F /* NotificationNameExtension.swift */; };
 		CA5FE4EE270206A200605115 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5FE4ED270206A200605115 /* UIViewExtension.swift */; };
 		CA5FE4F02702EDAA00605115 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5FE4EF2702EDAA00605115 /* UITextFieldExtension.swift */; };
 		CA78F7EF26FC5BD800A6C0F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78F7EE26FC5BD800A6C0F8 /* AppDelegate.swift */; };
@@ -66,6 +67,7 @@
 		CA2DCB6426FDEB80001A77B8 /* AddTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewModel.swift; sourceTree = "<group>"; };
 		CA365A2D270339B300600D9F /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		CA365A33270482C700600D9F /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		CA365A352704A84900600D9F /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		CA5FE4ED270206A200605115 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		CA5FE4EF2702EDAA00605115 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		CA78F7EB26FC5BD800A6C0F8 /* Paysonal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Paysonal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +132,7 @@
 				CA5FE4EF2702EDAA00605115 /* UITextFieldExtension.swift */,
 				CA365A2D270339B300600D9F /* UIViewControllerExtension.swift */,
 				CA365A33270482C700600D9F /* DateExtension.swift */,
+				CA365A352704A84900600D9F /* NotificationNameExtension.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA365A362704A84900600D9F /* NotificationNameExtension.swift in Sources */,
 				CA15A9DB2701E58600BCF49B /* LoginViewModel.swift in Sources */,
 				CA15A9D92701E57D00BCF49B /* LoginVC.swift in Sources */,
 				CAB1689B26FEF79900449D97 /* NibNames.swift in Sources */,

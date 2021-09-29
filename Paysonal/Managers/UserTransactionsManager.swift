@@ -15,7 +15,11 @@ public class UserTransactionsManager {
 
     private(set) static var shared: UserTransactionsManager?
     private let db = Firestore.firestore()
-    private var dataEntries: [Entry] = []
+    private var dataEntries: [Entry] = [] {
+        didSet {
+            NotificationCenter.default.post(name: .newEntry, object: nil)
+        }
+    }
 
     // MARK: - Init methods
 

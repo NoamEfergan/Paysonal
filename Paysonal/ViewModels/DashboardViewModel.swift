@@ -19,6 +19,7 @@ public class DashboardViewModel: ChartViewDelegate {
     // MARK: - Variables
 
     private var transactions: [Transaction] = []
+    // This one is in charge of the initial entries coming from the Firestore
     private var entriesObserver: AnyCancellable?
     private var service: DashboardService?
     private var entries: [Entry] = []
@@ -27,6 +28,11 @@ public class DashboardViewModel: ChartViewDelegate {
     init(delegate: DashboardService) {
         self.service = delegate
         self.addObserver()
+        self.addSubscriber()
+    }
+
+    deinit {
+        self.removeSubscriber()
     }
 
     // MARK: - Public methods
@@ -65,6 +71,23 @@ public class DashboardViewModel: ChartViewDelegate {
 
     // MARK: - Private methods
 
+    private func addSubscriber() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(newEntryReceived),
+            name: .newEntry,
+            object: nil
+        )
+    }
+
+    private func removeSubscriber() {
+        NotificationCenter.default.removeObserver(
+            self,
+            name: .newEntry,
+            object: nil
+        )
+    }
+
     private func addObserver() {
         if let userPreferences = UserTransactionsManager.shared {
         self.entriesObserver = userPreferences.getTransactionsForCurrentMonth()
@@ -94,5 +117,12 @@ public class DashboardViewModel: ChartViewDelegate {
         var categories: [String] = []
         self.entries.forEach({ categories.append($0.category) })
         UserPreferences.shared?.setCategories(with: categories)
+    }
+
+    @objc private func newEntryReceived() {
+        guard let manager = UserTransactionsManager.shared else { return }
+        self.entries = manager.getEntries()
+        self.getAllTransactions()
+        self.service?.didReceiveEntries()
     }
 }
