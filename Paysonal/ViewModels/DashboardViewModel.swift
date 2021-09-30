@@ -41,8 +41,8 @@ public class DashboardViewModel: ChartViewDelegate {
         var pieChartDataEntries: [PieChartDataEntry] = []
         var colors: [NSUIColor] = []
         for entry in entries {
-            pieChartDataEntries.append(PieChartDataEntry(value: entry.getTotalValue(), label: entry.category))
-            colors.append(entry.color)
+            pieChartDataEntries.append(PieChartDataEntry(value: entry.getTotalValue(), label: entry.category.name))
+            colors.append(UIColor.init(hex: entry.category.colorHex))
     }
         let dataSet = PieChartDataSet(entries: pieChartDataEntries, label: nil)
         dataSet.colors = colors

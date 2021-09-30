@@ -13,10 +13,10 @@ public class Transaction {
 
     let amount: Double!
     let date: String!
-    let category: String!
+    let category: Category!
 
     // MARK: - init method
-    init(amount: Double, date: String, category: String) {
+    init(amount: Double, date: String, category: Category) {
         self.amount = amount
         self.date = date
         self.category = category

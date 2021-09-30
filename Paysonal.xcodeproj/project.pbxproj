@@ -27,6 +27,10 @@
 		CA365A2E270339B300600D9F /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA365A2D270339B300600D9F /* UIViewControllerExtension.swift */; };
 		CA365A34270482C700600D9F /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA365A33270482C700600D9F /* DateExtension.swift */; };
 		CA365A362704A84900600D9F /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA365A352704A84900600D9F /* NotificationNameExtension.swift */; };
+		CA365A3827059F4E00600D9F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA365A3727059F4E00600D9F /* Category.swift */; };
+		CA365A3E2705A88800600D9F /* NewCategoryAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA365A3D2705A88800600D9F /* NewCategoryAlertVC.swift */; };
+		CA365A402705A94E00600D9F /* NewCategoryAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA365A3F2705A94E00600D9F /* NewCategoryAlert.storyboard */; };
+		CA365A422705B50100600D9F /* NewCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA365A412705B50100600D9F /* NewCategoryViewModel.swift */; };
 		CA5FE4EE270206A200605115 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5FE4ED270206A200605115 /* UIViewExtension.swift */; };
 		CA5FE4F02702EDAA00605115 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5FE4EF2702EDAA00605115 /* UITextFieldExtension.swift */; };
 		CA78F7EF26FC5BD800A6C0F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78F7EE26FC5BD800A6C0F8 /* AppDelegate.swift */; };
@@ -68,6 +72,10 @@
 		CA365A2D270339B300600D9F /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		CA365A33270482C700600D9F /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		CA365A352704A84900600D9F /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
+		CA365A3727059F4E00600D9F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		CA365A3D2705A88800600D9F /* NewCategoryAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryAlertVC.swift; sourceTree = "<group>"; };
+		CA365A3F2705A94E00600D9F /* NewCategoryAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewCategoryAlert.storyboard; sourceTree = "<group>"; };
+		CA365A412705B50100600D9F /* NewCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewCategoryViewModel.swift; path = ../../../../Desktop/NewCategoryViewModel.swift; sourceTree = "<group>"; };
 		CA5FE4ED270206A200605115 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		CA5FE4EF2702EDAA00605115 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		CA78F7EB26FC5BD800A6C0F8 /* Paysonal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Paysonal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +128,7 @@
 				CAB1689626FEF45A00449D97 /* AppStrings.swift */,
 				CAB1689826FEF54600449D97 /* AppConstants.swift */,
 				CAB1689A26FEF79900449D97 /* NibNames.swift */,
+				CA365A3727059F4E00600D9F /* Category.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -183,6 +192,7 @@
 				CA2DCB5826FDB211001A77B8 /* TransactionHistoryCell.swift */,
 				CA15A9D42701E0D600BCF49B /* RegisterVC.swift */,
 				CA15A9D82701E57D00BCF49B /* LoginVC.swift */,
+				CA365A3D2705A88800600D9F /* NewCategoryAlertVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -196,6 +206,7 @@
 				CA2DCB6026FDD06D001A77B8 /* AddTransaction.storyboard */,
 				CA15A9D22701E0C500BCF49B /* Register.storyboard */,
 				CA15A9DC2701E5D900BCF49B /* Login.storyboard */,
+				CA365A3F2705A94E00600D9F /* NewCategoryAlert.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -208,6 +219,7 @@
 				CA2DCB6426FDEB80001A77B8 /* AddTransactionViewModel.swift */,
 				CA15A9D62701E0E000BCF49B /* RegisterViewModel.swift */,
 				CA15A9DA2701E58600BCF49B /* LoginViewModel.swift */,
+				CA365A412705B50100600D9F /* NewCategoryViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -294,6 +306,7 @@
 				CA78F80E26FC6AA800A6C0F8 /* Settings.storyboard in Resources */,
 				CA2DCB6126FDD06D001A77B8 /* AddTransaction.storyboard in Resources */,
 				CA78F81226FC6E6500A6C0F8 /* Dashboard.storyboard in Resources */,
+				CA365A402705A94E00600D9F /* NewCategoryAlert.storyboard in Resources */,
 				CA2DCB5726FDB0CA001A77B8 /* TransactionHistoryCell.xib in Resources */,
 				CA15A9D12701B85700BCF49B /* GoogleService-Info.plist in Resources */,
 				CA15A9D32701E0C500BCF49B /* Register.storyboard in Resources */,
@@ -369,14 +382,17 @@
 				CA78F7EF26FC5BD800A6C0F8 /* AppDelegate.swift in Sources */,
 				CAD0D3D926FCADDC005B0254 /* DashboardViewModel.swift in Sources */,
 				CA2DCB5B26FDB8C7001A77B8 /* TabItems.swift in Sources */,
+				CA365A422705B50100600D9F /* NewCategoryViewModel.swift in Sources */,
 				CA78F7F126FC5BD800A6C0F8 /* SceneDelegate.swift in Sources */,
 				CA0B6E3926FC7F6D00B2CEA3 /* UIColorExtension.swift in Sources */,
 				CAD0D3D726FCABDE005B0254 /* UserPreferences.swift in Sources */,
 				CA15A9D72701E0E000BCF49B /* RegisterViewModel.swift in Sources */,
+				CA365A3E2705A88800600D9F /* NewCategoryAlertVC.swift in Sources */,
 				CA78F81026FC6AB000A6C0F8 /* SettingsVC.swift in Sources */,
 				CAB1689E2701A46800449D97 /* UserTransactionsManager.swift in Sources */,
 				CA2DCB6526FDEB80001A77B8 /* AddTransactionViewModel.swift in Sources */,
 				CA0B6E3B26FC84E100B2CEA3 /* BottomTabBarController.swift in Sources */,
+				CA365A3827059F4E00600D9F /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

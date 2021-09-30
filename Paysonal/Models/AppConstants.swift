@@ -30,4 +30,5 @@ struct AppConstants {
     public static let kTransactions: String = "Transactions"
     public static let kAmount: String = "Amount"
     public static let kCategory: String = "Category"
+    public static let kColor: String = "ColorHex"
 }

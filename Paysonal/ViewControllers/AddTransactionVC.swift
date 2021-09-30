@@ -18,7 +18,7 @@ class AddTransactionVC: UIViewController {
     @IBOutlet weak var applyButton: UIButton!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var shadeBackground: UIView!
-
+    
     // MARK: - Variables
 
     private var viewModel: AddTransactionViewModel!
@@ -100,18 +100,12 @@ extension AddTransactionVC: UITextFieldDelegate {
 extension AddTransactionVC: AddTransactionService {
 
     func askForNewCategory() {
-        let alert = UIAlertController(title: AppStrings.newCategoryAlertTitle, message: nil, preferredStyle: .alert)
-        alert.addTextField { textField in
-            textField.placeholder = AppStrings.newCategoryAlertBody
-        }
-
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-            if let value = alert.textFields?.first?.text {
-                self.viewModel.setNewCategory(newCategory: value)
-            }
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true)
+        let storyboard = UIStoryboard(name: NibNames.categoryAlert, bundle: .main)
+        let popupVC = storyboard.instantiateViewController(withIdentifier: NibNames.categoryAlert + "VC")
+        as! NewCategoryAlertVC
+        popupVC.modalPresentationStyle = .overCurrentContext
+        popupVC.modalTransitionStyle = .crossDissolve
+        present(popupVC, animated: true, completion: nil)
     }
 
     func showError(msg: String) {

@@ -83,7 +83,9 @@ public class UserTransactionsManager {
         self.dataEntries = []
         for document in documents {
             if let amount = document.data()[AppConstants.kAmount] as? Double,
-               let category = document.data()[AppConstants.kCategory] as? String {
+               let name = document.data()[AppConstants.kCategory] as? String,
+               let colorHex = document.data()[AppConstants.kColor] as? String {
+                let category = Category(name: name, colorHex: colorHex)
                 let transaction = Transaction(amount: amount, date: document.documentID, category: category)
                 let _ = UserPreferences.shared?.addNewCategory(newCategory: category)
                 convertTransactionToEntry(transaction)
@@ -114,8 +116,8 @@ public class UserTransactionsManager {
     /// - Parameter tx: Transaction
     private func addTxToEntries(_ tx: Transaction) {
         // Check if the category already exists in the data entries array
-        if self.dataEntries.contains(where: {$0.category == tx.category}) {
-            self.dataEntries.first(where: {$0.category == tx.category})?.addTransaction(tx)
+        if self.dataEntries.contains(where: {$0.category.name == tx.category.name}) {
+            self.dataEntries.first(where: {$0.category.name == tx.category.name})?.addTransaction(tx)
             return
         }
         // If not, create a new entry and add that
@@ -151,7 +153,11 @@ public class UserTransactionsManager {
             .document(month)
             .collection(AppConstants.kTransactions)
             .document(tx.date)
-            .setData([AppConstants.kAmount: tx.amount!, AppConstants.kCategory: tx.category!])
+            .setData([
+                AppConstants.kAmount: tx.amount!,
+                AppConstants.kCategory: tx.category.name!,
+                AppConstants.kColor: tx.category.colorHex!
+            ])
     }
 
     private func setTxInNewMonth(_ tx: Transaction, month: String) {

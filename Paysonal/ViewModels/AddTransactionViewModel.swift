@@ -20,9 +20,10 @@ public class AddTransactionViewModel {
 
     // MARK: - Variables
 
-    private var category: String?
+    private var category: Category?
     private var amount: Double?
     private var date: String?
+    private var color: String?
 
     private var service:  AddTransactionService?
 
@@ -34,8 +35,14 @@ public class AddTransactionViewModel {
     // MARK: - Private methods
 
     private func onSelectCategory(withTitle category: String) {
-        self.category = category
-        self.service?.updateCategoryButton(withTitle: category)
+        guard let selectedCategory = UserPreferences.shared?.getCategories()
+                .first(where: {$0.name.lowercased() == category.lowercased()})
+        else {
+            self.service?.showError(msg:AppStrings.somethingWentWrong)
+            return
+        }
+        self.category = selectedCategory
+        self.service?.updateCategoryButton(withTitle: selectedCategory.name)
     }
 
     // MARK: - Public methods
@@ -44,8 +51,8 @@ public class AddTransactionViewModel {
         var newItems:[UIMenuElement] = []
         let allCategories = UserPreferences.shared?.getCategories() ?? []
         for category in allCategories {
-            let menuItem = UIAction(title: category, handler: { _ in
-                self.onSelectCategory(withTitle: category)
+            let menuItem = UIAction(title: category.name, handler: { _ in
+                self.onSelectCategory(withTitle: category.name)
             })
             newItems.append(menuItem)
         }
@@ -57,17 +64,17 @@ public class AddTransactionViewModel {
         return newItems
     }
 
-    public func setNewCategory(newCategory: String) {
+    public func setNewCategory(newCategory: Category) {
         guard let added = UserPreferences.shared?.addNewCategory(newCategory: newCategory),
         added else {
             service?.showError(msg: AppStrings.categoryExists)
             return
         }
         self.category = newCategory
-        self.service?.updateMenu(title: newCategory)
+        self.service?.updateMenu(title: newCategory.name)
     }
 
-    public func setCategory(with category: String) {
+    public func setCategory(with category: Category) {
         self.category = category
     }
 
@@ -79,10 +86,15 @@ public class AddTransactionViewModel {
         self.date = date
     }
 
+    public func setColor(hex: String) {
+        self.color = hex
+    }
+
     public func onTapApply() -> Bool{
-        if category == nil || category == "" { self.service?.showError(msg: AppStrings.categoryError); return false }
+        if category == nil || category?.name == "" { self.service?.showError(msg: AppStrings.categoryError); return false }
         if amount == nil { self.service?.showError(msg: AppStrings.amountError); return false}
         if date == nil || date == "" { self.service?.showError(msg: AppStrings.dateError); return false}
+        if color == nil || color == "" { self.service?.showError(msg: AppStrings.colorError )}
         let tx = Transaction(amount: amount!, date: date!, category: category!)
         UserTransactionsManager.shared?.addTransaction(tx)
         return true

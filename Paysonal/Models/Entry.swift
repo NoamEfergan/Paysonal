@@ -13,11 +13,10 @@ public class Entry {
     // MARK: - Variables
 
     private var transactions: [Transaction] = []
-    var category: String!
-    var color: UIColor = UIColor.random
+    var category: Category!
 
     // MARK: - init method
-    init(category: String) {
+    init(category: Category) {
         self.category = category
     }
 

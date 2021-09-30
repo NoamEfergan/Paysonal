@@ -28,7 +28,7 @@ class TransactionHistoryCell: UITableViewCell {
         self.contentView.backgroundColor = .secondarySystemBackground
         self.containerView.layer.cornerRadius = AppConstants.cornerRad
         self.dateLabel.text = transaction.date
-        self.categoryLabel.text = transaction.category
+        self.categoryLabel.text = transaction.category.name
         self.amountLabel.text = transaction.amount.description
     }
 }

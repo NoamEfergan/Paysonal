@@ -13,7 +13,7 @@ public class UserPreferences {
     // MARK: - Variables
 
     private(set) static var shared: UserPreferences?
-    private var categories: [String] = []
+    private var categories: [Category] = []
 
     // MARK: - Init methods
 
@@ -65,15 +65,15 @@ public class UserPreferences {
     /// Add a category to the categories array, checking that it doesn't exist before
     /// - Parameter category: String name of category
     /// - returns Bool specifying weather it was added successfully or not
-    public func addNewCategory(newCategory: String) -> Bool {
-        if !self.categories.contains(where: {$0.lowercased() == newCategory.lowercased()}) {
+    public func addNewCategory(newCategory: Category) -> Bool {
+        if !self.categories.contains(where: {$0.name.lowercased() == newCategory.name.lowercased()}) {
             self.categories.append(newCategory)
             return true
         }
         return false
     }
 
-    public func getCategories() -> [String] {
+    public func getCategories() -> [Category] {
         return self.categories
     }
 

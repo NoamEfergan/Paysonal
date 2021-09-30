@@ -25,6 +25,9 @@ struct AppStrings {
     public static let categoryError = "Category can't be empty!"
     public static let amountError = "Amount can't be empty!"
     public static let dateError = "Please choose a date"
+    public static let color = "Color"
+    public static let colorError = "Please choose a color"
+    public static let somethingWentWrong = "Something went wrong! please try again"
 
     // MARK: - Register
     public static let nameTitle = "Your name (optional)"
@@ -46,4 +49,5 @@ struct AppStrings {
 
     // MARK: - Segue ID's
     public static let showDashboard: String = "showDashboard"
+    public static let showCategoryAlert: String = "showNewCategoryAlert"
 }

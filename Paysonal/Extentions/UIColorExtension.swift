@@ -25,6 +25,16 @@ extension UIColor {
                   alpha: alpha)
     }
 
+    func toHex() -> String {
+        let components = cgColor.components!
+
+        let r = Float(components[0])
+        let g = Float(components[1])
+        let b = Float(components[2])
+
+        return String(format: "%02lX%02lX%02lX", lroundf(r * 255), lroundf(g * 255), lroundf(b * 255))
+    }
+
     static var random: UIColor {
         return UIColor(
             red: .random(in: 0...1),
