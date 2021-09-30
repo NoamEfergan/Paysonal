@@ -24,6 +24,7 @@ public class Entry {
 
     public func addTransaction(_ tx: Transaction) {
         transactions.append(tx)
+        NotificationCenter.default.post(name: .newTransaction, object: nil)
     }
 
     public func addMultipleTransactions( _ txs: [Transaction]) {

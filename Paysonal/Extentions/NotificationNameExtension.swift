@@ -11,4 +11,5 @@ import Foundation
 extension Notification.Name {
     static let newEntry = Notification.Name("newEntry")
     static let newCategory = Notification.Name("newCategory")
+    static let newTransaction = Notification.Name("newTransaction")
 }

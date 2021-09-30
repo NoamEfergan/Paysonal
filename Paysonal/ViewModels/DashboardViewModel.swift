@@ -28,11 +28,11 @@ public class DashboardViewModel: ChartViewDelegate {
     init(delegate: DashboardService) {
         self.service = delegate
         self.addObserver()
-        self.addSubscriber()
+        self.addSubscribers()
     }
 
     deinit {
-        self.removeSubscriber()
+        self.removeSubscribers()
     }
 
     // MARK: - Public methods
@@ -71,19 +71,32 @@ public class DashboardViewModel: ChartViewDelegate {
 
     // MARK: - Private methods
 
-    private func addSubscriber() {
+    private func addSubscribers() {
+        // New entry has been made
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(newEntryReceived),
             name: .newEntry,
             object: nil
         )
+        // New transaction has been made
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(newTransactionReceived),
+            name: .newTransaction,
+            object: nil
+        )
     }
 
-    private func removeSubscriber() {
+    private func removeSubscribers() {
         NotificationCenter.default.removeObserver(
             self,
             name: .newEntry,
+            object: nil
+        )
+        NotificationCenter.default.removeObserver(
+            self,
+            name: .newTransaction,
             object: nil
         )
     }
@@ -111,6 +124,15 @@ public class DashboardViewModel: ChartViewDelegate {
         for entry in entries {
             self.transactions += entry.getTransactions()
         }
+        sortTransactions()
+    }
+
+    private func sortTransactions() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yy"
+        self.transactions = transactions.sorted(by: {
+            dateFormatter.date(from:$0.date)!.compare(dateFormatter.date(from:$1.date)!) == .orderedAscending
+        })
     }
 
 
@@ -118,6 +140,11 @@ public class DashboardViewModel: ChartViewDelegate {
         guard let manager = UserTransactionsManager.shared else { return }
         self.entries = manager.getEntries()
         self.getAllTransactions()
+        self.service?.didReceiveEntries()
+    }
+
+    @objc private func newTransactionReceived() {
+        getAllTransactions()
         self.service?.didReceiveEntries()
     }
 }
