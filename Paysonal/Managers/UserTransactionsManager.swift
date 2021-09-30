@@ -94,6 +94,24 @@ public class UserTransactionsManager {
     /// Converts a transaction into an entry, and adds that entry to the data entries array
     /// - Parameter tx: Transaction object
     private func convertTransactionToEntry(_ tx: Transaction) {
+        // If the array is empty, check if the tx month is the same as the current month
+        if self.dataEntries.isEmpty {
+            guard Date().getMonthFromString(tx.date) == Date().getCurrentMonth() else {
+                return
+            }
+            addTxToEntries(tx)
+            return
+        }
+        // Check that the month of the entry is the same as the month of the array
+        guard let entry = self.dataEntries.first,
+              let firstTx = entry.getTransactions().first,
+              Date().getMonthFromString(firstTx.date) == Date().getMonthFromString(tx.date) else { return }
+        addTxToEntries(tx)
+    }
+
+    /// Take the transaction and add it to the active entries array
+    /// - Parameter tx: Transaction
+    private func addTxToEntries(_ tx: Transaction) {
         // Check if the category already exists in the data entries array
         if self.dataEntries.contains(where: {$0.category == tx.category}) {
             self.dataEntries.first(where: {$0.category == tx.category})?.addTransaction(tx)
