@@ -82,6 +82,8 @@ public class UserPreferences {
         db.collection(AppConstants.kUsers).document(self.getUserID()!).setData([:])
         db.collection(AppConstants.kUsers)
             .document(self.getUserID()!)
+            .collection(AppConstants.kYears)
+            .document(Date().getCurrentYear())
             .collection(AppConstants.kMonths)
             .document(Date().getCurrentMonth())
             .setData([:])

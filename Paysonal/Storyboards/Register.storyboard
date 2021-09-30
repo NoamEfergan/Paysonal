@@ -61,7 +61,7 @@
                                                             <action selector="editngEndPassword:" destination="Y6W-OH-hqX" eventType="editingDidEnd" id="YRK-Ra-s0E"/>
                                                         </connections>
                                                     </textField>
-                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rC1-7Q-u8Z">
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rC1-7Q-u8Z">
                                                         <rect key="frame" x="0.0" y="0.0" width="398" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
                                                         <color key="textColor" red="0.88492107389999997" green="0.35199692849999997" blue="0.15672087670000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

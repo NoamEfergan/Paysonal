@@ -9,12 +9,21 @@ import Foundation
 
 extension Date {
 
-    /// Get the current date name in English, first later capitalised
+    /// Get the current month name in English, first later capitalised
     /// - Returns: String value of the current month
     public func getCurrentMonth() -> String {
         let now = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "LLLL"
+        return dateFormatter.string(from: now)
+    }
+
+    /// Get the current year name in English, first later capitalised
+    /// - Returns: String value of the current year
+    public func getCurrentYear() -> String {
+        let now = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY"
         return dateFormatter.string(from: now)
     }
 
@@ -35,6 +44,16 @@ extension Date {
         guard let date = formater.date(from: dateString) else { return nil}
         let monthFormatter = DateFormatter()
         monthFormatter.dateFormat = "LLLL"
+        return monthFormatter.string(from: date)
+    }
+
+    func getYearFromString(_ dateString: String) -> String? {
+        let formater = DateFormatter()
+        formater.dateStyle = .short
+        formater.dateFormat = "dd.MM.yy"
+        guard let date = formater.date(from: dateString) else { return nil}
+        let monthFormatter = DateFormatter()
+        monthFormatter.dateFormat = "YYYY"
         return monthFormatter.string(from: date)
     }
 

@@ -43,7 +43,7 @@ class AddTransactionVC: UIViewController {
         self.containerView.backgroundColor = .secondarySystemBackground
         self.categoryButton.menu = UIMenu.init(
             title: AppStrings.chooseCategory,
-            options: .displayInline,
+            options: .singleSelection,
             children: viewModel.getOptions()
         )
     }
@@ -116,7 +116,7 @@ extension AddTransactionVC: AddTransactionService {
     func updateMenu(title: String) {
         self.categoryButton.menu = UIMenu.init(
             title: AppStrings.chooseCategory,
-            options: .displayInline,
+            options: .singleSelection,
             children: viewModel.getOptions()
         )
         self.categoryButton.setTitle(title, for: .normal)

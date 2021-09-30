@@ -25,6 +25,7 @@ struct AppConstants {
     public static let kUserId: String = "userID"
 
     /// Firestore keys
+    public static let kYears: String = "years"
     public static let kUsers: String = "users"
     public static let kMonths: String = "months"
     public static let kTransactions: String = "Transactions"

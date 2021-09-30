@@ -72,7 +72,7 @@ public class DashboardViewModel: ChartViewDelegate {
     // MARK: - Private methods
 
     private func addSubscribers() {
-        // New entry has been made
+        // New entry has been made, means new category and new transaction
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(newEntryReceived),

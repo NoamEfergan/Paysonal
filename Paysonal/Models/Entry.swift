@@ -23,8 +23,20 @@ public class Entry {
     // MARK: - Public methods
 
     public func addTransaction(_ tx: Transaction) {
-        transactions.append(tx)
-        NotificationCenter.default.post(name: .newTransaction, object: nil)
+        guard !transactions.isEmpty else {
+            transactions.append(tx)
+            NotificationCenter.default.post(name: .newTransaction, object: nil)
+            return
+        }
+           if let firstTxDateString = transactions.first?.date,
+           let entryYear = Date().getYearFromString(firstTxDateString),
+           let entryMonth = Date().getMonthFromString(firstTxDateString),
+           let newTxYear = Date().getYearFromString(tx.date),
+           let newTxMonth = Date().getMonthFromString(tx.date),
+            entryYear == newTxYear, entryMonth == newTxMonth {
+               transactions.append(tx)
+               NotificationCenter.default.post(name: .newTransaction, object: nil)
+        }
     }
 
     public func addMultipleTransactions( _ txs: [Transaction]) {

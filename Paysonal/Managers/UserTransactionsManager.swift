@@ -47,6 +47,8 @@ public class UserTransactionsManager {
             }
             db.collection(AppConstants.kUsers)
                 .document(userID)
+                .collection(AppConstants.kYears)
+                .document(Date().getCurrentYear())
                 .collection(AppConstants.kMonths)
                 .document(Date().getCurrentMonth())
                 .collection(AppConstants.kTransactions)
@@ -127,9 +129,12 @@ public class UserTransactionsManager {
     }
 
     private func addTxToFirestore(_ tx: Transaction) {
-        guard let month = Date().getMonthFromString(tx.date) else { return }
+        guard let month = Date().getMonthFromString(tx.date),
+        let year = Date().getYearFromString(tx.date) else { return }
         db.collection(AppConstants.kUsers)
             .document(UserPreferences.shared!.getUserID()!)
+            .collection(AppConstants.kYears)
+            .document(year)
             .collection(AppConstants.kMonths)
             .document(month).getDocument { [weak self] snapShot, error in
                 guard let self = self else {
@@ -139,16 +144,18 @@ public class UserTransactionsManager {
                     return
                 }
                 if snapShot!.exists {
-                    self.setTxInExistingMonth(tx, month: month)
+                    self.setTxInExistingMonth(tx,year: year, month: month)
                 } else {
-                    self.setTxInNewMonth(tx, month: month)
+                    self.setTxInNewMonth(tx, year: year, month: month)
                 }
             }
     }
 
-    private func setTxInExistingMonth(_ tx: Transaction, month: String) {
+    private func setTxInExistingMonth(_ tx: Transaction, year: String, month: String) {
         db.collection(AppConstants.kUsers)
             .document(UserPreferences.shared!.getUserID()!)
+            .collection(AppConstants.kYears)
+            .document(year)
             .collection(AppConstants.kMonths)
             .document(month)
             .collection(AppConstants.kTransactions)
@@ -160,7 +167,7 @@ public class UserTransactionsManager {
             ])
     }
 
-    private func setTxInNewMonth(_ tx: Transaction, month: String) {
+    private func setTxInNewMonth(_ tx: Transaction,year: String, month: String) {
         // Create month document
         self.db.collection(AppConstants.kUsers)
             .document(UserPreferences.shared!.getUserID()!)
@@ -168,6 +175,6 @@ public class UserTransactionsManager {
             .document(month)
             .setData([:])
         // Add tx to the month
-        self.setTxInExistingMonth(tx, month: month)
+        self.setTxInExistingMonth(tx, year: year, month: month)
     }
 }
