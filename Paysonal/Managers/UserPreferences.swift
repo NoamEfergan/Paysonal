@@ -62,10 +62,9 @@ public class UserPreferences {
         return UserDefaults.standard.string(forKey: AppConstants.kUserName)
     }
 
-    public func setCategories(with categories:[String]) {
-        self.categories = categories
-    }
-
+    /// Add a category to the categories array, checking that it doesn't exist before
+    /// - Parameter category: String name of category
+    /// - returns Bool specifying weather it was added successfully or not
     public func addNewCategory(newCategory: String) -> Bool {
         if !self.categories.contains(where: {$0.lowercased() == newCategory.lowercased()}) {
             self.categories.append(newCategory)

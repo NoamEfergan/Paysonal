@@ -85,6 +85,7 @@ public class UserTransactionsManager {
             if let amount = document.data()[AppConstants.kAmount] as? Double,
                let category = document.data()[AppConstants.kCategory] as? String {
                 let transaction = Transaction(amount: amount, date: document.documentID, category: category)
+                let _ = UserPreferences.shared?.addNewCategory(newCategory: category)
                 convertTransactionToEntry(transaction)
             }
         }

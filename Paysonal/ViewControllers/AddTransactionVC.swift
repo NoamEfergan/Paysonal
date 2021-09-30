@@ -28,6 +28,8 @@ class AddTransactionVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = AddTransactionViewModel(delegate: self)
+        // Set the initial date as the current day
+        viewModel.setDate(with: Date().getStringFromDate())
         self.amountTextField.delegate = self
         initUI()
     }

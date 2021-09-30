@@ -113,11 +113,6 @@ public class DashboardViewModel: ChartViewDelegate {
         }
     }
 
-    private func setCategories() {
-        var categories: [String] = []
-        self.entries.forEach({ categories.append($0.category) })
-        UserPreferences.shared?.setCategories(with: categories)
-    }
 
     @objc private func newEntryReceived() {
         guard let manager = UserTransactionsManager.shared else { return }
