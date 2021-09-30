@@ -23,16 +23,43 @@ public class AddTransactionViewModel {
     private var category: Category?
     private var amount: Double?
     private var date: String?
-    private var color: String?
 
     private var service:  AddTransactionService?
 
     // MARK: - Init methods
     init(delegate: AddTransactionService) {
         self.service = delegate
+        addSubscriber()
+    }
+
+    deinit {
+        removeSubscriber()
     }
 
     // MARK: - Private methods
+
+    private func removeSubscriber() {
+        NotificationCenter.default.removeObserver(
+            self,
+            name: .newCategory,
+            object: nil
+        )
+    }
+
+    private func addSubscriber() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(newCategoryReceived),
+            name: .newCategory,
+            object: nil
+        )
+    }
+
+    @objc func newCategoryReceived(_ notification: NSNotification) {
+        if let receivedCategory = notification.userInfo?[AppConstants.kCategory] as? Category {
+            self.setNewCategory(newCategory: receivedCategory)
+        }
+    }
 
     private func onSelectCategory(withTitle category: String) {
         guard let selectedCategory = UserPreferences.shared?.getCategories()
@@ -86,15 +113,10 @@ public class AddTransactionViewModel {
         self.date = date
     }
 
-    public func setColor(hex: String) {
-        self.color = hex
-    }
-
     public func onTapApply() -> Bool{
         if category == nil || category?.name == "" { self.service?.showError(msg: AppStrings.categoryError); return false }
         if amount == nil { self.service?.showError(msg: AppStrings.amountError); return false}
-        if date == nil || date == "" { self.service?.showError(msg: AppStrings.dateError); return false}
-        if color == nil || color == "" { self.service?.showError(msg: AppStrings.colorError )}
+        if date.isEmptyOrNil() { self.service?.showError(msg: AppStrings.dateError); return false}
         let tx = Transaction(amount: amount!, date: date!, category: category!)
         UserTransactionsManager.shared?.addTransaction(tx)
         return true

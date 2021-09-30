@@ -68,7 +68,7 @@ class LoginVC: UIViewController, UIPopoverPresentationControllerDelegate {
     @IBAction func loginTapped(_ sender: Any) {
         guard let email = emailTextfield.text,
               let password = passwordTextField.text,
-        email != "", password != "" else {
+        !email.isEmpty, !password.isEmpty else {
                   self.passwordErrorLabel.isHidden = false
                   self.passwordErrorLabel.text = AppStrings.errorLogin
                   return
@@ -78,7 +78,7 @@ class LoginVC: UIViewController, UIPopoverPresentationControllerDelegate {
     }
 
     @IBAction func resetPasswordTapped(_ sender: Any) {
-        guard let email = emailTextfield.text, email != "" else {
+        guard let email = emailTextfield.text, !email.isEmpty else {
             self.showErrorAlert(msg: AppStrings.emailError)
             return
         }

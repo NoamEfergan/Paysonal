@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="68h-PS-zre">
-                                <rect key="frame" x="62.5" y="208.5" width="250" height="250"/>
+                                <rect key="frame" x="52.5" y="198.5" width="270" height="270"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9bv-UB-3B0">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+                                        <rect key="frame" x="10" y="10" width="250" height="250"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name the category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l3M-4D-Ljz">
                                                 <rect key="frame" x="8" y="8" width="234" height="50"/>
@@ -81,12 +81,12 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="250" id="6za-U1-ODz"/>
-                                    <constraint firstItem="9bv-UB-3B0" firstAttribute="top" secondItem="68h-PS-zre" secondAttribute="top" id="HX5-qd-1OL"/>
-                                    <constraint firstItem="9bv-UB-3B0" firstAttribute="leading" secondItem="68h-PS-zre" secondAttribute="leading" id="UDF-BW-j63"/>
-                                    <constraint firstAttribute="bottom" secondItem="9bv-UB-3B0" secondAttribute="bottom" id="Yq7-bT-QEf"/>
-                                    <constraint firstAttribute="trailing" secondItem="9bv-UB-3B0" secondAttribute="trailing" id="kng-Qj-a1Q"/>
-                                    <constraint firstAttribute="width" constant="250" id="laN-fZ-TSi"/>
+                                    <constraint firstAttribute="height" constant="270" id="6za-U1-ODz"/>
+                                    <constraint firstItem="9bv-UB-3B0" firstAttribute="top" secondItem="68h-PS-zre" secondAttribute="top" constant="10" id="HX5-qd-1OL"/>
+                                    <constraint firstItem="9bv-UB-3B0" firstAttribute="leading" secondItem="68h-PS-zre" secondAttribute="leading" constant="10" id="UDF-BW-j63"/>
+                                    <constraint firstAttribute="bottom" secondItem="9bv-UB-3B0" secondAttribute="bottom" constant="10" id="Yq7-bT-QEf"/>
+                                    <constraint firstAttribute="trailing" secondItem="9bv-UB-3B0" secondAttribute="trailing" constant="10" id="kng-Qj-a1Q"/>
+                                    <constraint firstAttribute="width" constant="270" id="laN-fZ-TSi"/>
                                 </constraints>
                             </view>
                         </subviews>

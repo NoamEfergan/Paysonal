@@ -62,8 +62,9 @@ class AddTransactionVC: UIViewController {
     }
 
     @IBAction func applyTapped(_ sender: Any) {
-        guard viewModel.onTapApply() else { return }
-        self.dismiss(animated: true)
+        if viewModel.onTapApply() {
+            self.dismiss(animated: true)
+        }
     }
 
     @IBAction func dismissTapped(_ sender: Any) {
@@ -71,7 +72,7 @@ class AddTransactionVC: UIViewController {
     }
 }
 
-    // MARK: - Textfield methods
+// MARK: - Textfield methods
 extension AddTransactionVC: UITextFieldDelegate {
 
     // Allow only decimal numbers to be entered

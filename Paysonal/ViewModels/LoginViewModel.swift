@@ -71,7 +71,7 @@ class LoginViewModel {
         guard let preferences = UserPreferences.shared else { return AppStrings.welcomeAnonymous }
         guard preferences.isUserRegistered(),
               let userName = preferences.getUserName(),
-              userName != "" else { return AppStrings.welcomeAnonymous }
+              !userName.isEmpty else { return AppStrings.welcomeAnonymous }
         return String(format: AppStrings.welcomeUser, userName)
     }
 

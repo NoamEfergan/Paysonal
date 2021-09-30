@@ -41,6 +41,7 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u2E-Ed-0IY">
                                                         <rect key="frame" x="186.5" y="0.0" width="171.5" height="50"/>
+                                                        <color key="tintColor" name="TintColor"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="gray" title="Dismiss"/>
                                                         <connections>
@@ -65,6 +66,7 @@
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2VD-DY-yN2">
                                                         <rect key="frame" x="295" y="0.0" width="63" height="34"/>
+                                                        <color key="tintColor" name="TintColor"/>
                                                         <menu key="menu" id="RAq-TO-dX0">
                                                             <children>
                                                                 <command title="Item 1" id="Bnv-2T-Bx0"/>
@@ -77,6 +79,7 @@
                                             </stackView>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="e2z-Cf-DlI">
                                                 <rect key="frame" x="8" y="52" width="358" height="557"/>
+                                                <color key="tintColor" name="TintColor"/>
                                                 <connections>
                                                     <action selector="didPickDate:" destination="Y6W-OH-hqX" eventType="valueChanged" id="0J1-nj-sWW"/>
                                                 </connections>
