@@ -100,8 +100,9 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
 
 extension DashboardVC: DashboardService {
 
-    func didReceiveEntries() {
+    func didReceiveEntries(monthTitle: String) {
         self.view.hideLoader()
+        self.monthLabel.text = monthTitle
         self.updatePieChartData()
         self.transactionHistoryTableView.reloadData()
     }
@@ -109,5 +110,13 @@ extension DashboardVC: DashboardService {
     func errorReceivingEntries(msg: String) {
         self.view.hideLoader()
         self.showErrorAlert(msg: msg)
+    }
+
+    func showLoader() {
+        self.view.showLoader(message: nil)
+    }
+
+    func hideLoader() {
+        self.view.hideLoader()
     }
 }

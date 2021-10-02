@@ -38,7 +38,10 @@ public class UserTransactionsManager {
     }
 
     /// Fetch transactions for the current month from Firestory
-    public func getTransactionsForCurrentMonth() -> Future<[Entry],Error> {
+    public func fetchTransactions(
+        year: String = Date().getCurrentYear(),
+        month: String = Date().getCurrentMonth()
+    ) -> Future<[Entry],Error> {
         return Future { [self] promise in
             guard let userID = UserPreferences.shared?.getUserID() else {
                 let error = NSError(domain: "No user ID", code: 1, userInfo: nil)
@@ -48,9 +51,9 @@ public class UserTransactionsManager {
             db.collection(AppConstants.kUsers)
                 .document(userID)
                 .collection(AppConstants.kYears)
-                .document(Date().getCurrentYear())
+                .document(year)
                 .collection(AppConstants.kMonths)
-                .document(Date().getCurrentMonth())
+                .document(month)
                 .collection(AppConstants.kTransactions)
                 .getDocuments { [weak self] snapShot, error in
                     guard let self = self else {
@@ -101,9 +104,6 @@ public class UserTransactionsManager {
     private func convertTransactionToEntry(_ tx: Transaction) {
         // If the array is empty, check if the tx month is the same as the current month
         if self.dataEntries.isEmpty {
-            guard Date().getMonthFromString(tx.date) == Date().getCurrentMonth() else {
-                return
-            }
             addTxToEntries(tx)
             return
         }

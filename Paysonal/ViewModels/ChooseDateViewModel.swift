@@ -70,6 +70,16 @@ class ChooseDateViewModel {
         return (years,months)
     }
 
+    public func setYearAndMonth(yearLocation: Int, monthLocation : Int) {
+        NotificationCenter.default.post(
+            name: .selectedDate,
+            object: nil,
+            userInfo: [
+                AppConstants.kYears: self.years[yearLocation],
+                AppConstants.kMonths: self.months[monthLocation]
+            ])
+    }
+
     // MARK: - Private methods
 
 

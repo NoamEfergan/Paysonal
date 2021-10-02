@@ -36,6 +36,11 @@ class ChooseDateAlertVC: UIViewController {
     // MARK: - Actions
 
     @IBAction func didTapApply(_ sender: UIButton) {
+        self.viewModel.setYearAndMonth(
+            yearLocation: datePicker.selectedRow(inComponent: 0),
+            monthLocation: datePicker.selectedRow(inComponent: 1)
+        )
+        self.dismiss(animated: true, completion: nil)
     }
 
     @IBAction func didTapCancel(_ sender: UIButton) {
