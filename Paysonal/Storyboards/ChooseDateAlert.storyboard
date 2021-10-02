@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Choose Date AlertVC-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="ChooseDateAlertVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="ChooseDateAlertVC" customModule="Paysonal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Cu-QR-g9M">
+                                <rect key="frame" x="57" y="313" width="300" height="270"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xMw-Rt-pDa">
+                                        <rect key="frame" x="10" y="10" width="280" height="250"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="lB9-jG-qvl">
+                                                <rect key="frame" x="0.0" y="0.0" width="280" height="180"/>
+                                                <subviews>
+                                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jxz-b1-tFJ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="180"/>
+                                                    </pickerView>
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No history to show yet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4OD-aC-vsS">
+                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="180"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="h50-Pb-Z53">
+                                                <rect key="frame" x="0.0" y="200" width="280" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OMo-Jj-i9w">
+                                                        <rect key="frame" x="0.0" y="0.0" width="136" height="50"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Apply">
+                                                            <color key="baseForegroundColor" name="FullButtonTextColor"/>
+                                                            <color key="baseBackgroundColor" name="TintColor"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="didTapApply:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="g1e-5c-9uz"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQw-ST-bW9">
+                                                        <rect key="frame" x="144" y="0.0" width="136" height="50"/>
+                                                        <color key="tintColor" name="TintColor"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="tinted" title="Cancel"/>
+                                                        <connections>
+                                                            <action selector="didTapCancel:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="bSM-xk-vmd"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="hju-lo-muT"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="270" id="8Nd-nG-C20"/>
+                                    <constraint firstItem="xMw-Rt-pDa" firstAttribute="leading" secondItem="2Cu-QR-g9M" secondAttribute="leading" constant="10" id="M68-0O-DqJ"/>
+                                    <constraint firstAttribute="width" constant="300" id="Ray-Uo-gMC"/>
+                                    <constraint firstAttribute="trailing" secondItem="xMw-Rt-pDa" secondAttribute="trailing" constant="10" id="Yjz-m7-6dA"/>
+                                    <constraint firstAttribute="bottom" secondItem="xMw-Rt-pDa" secondAttribute="bottom" constant="10" id="lim-Dc-7ye"/>
+                                    <constraint firstItem="xMw-Rt-pDa" firstAttribute="top" secondItem="2Cu-QR-g9M" secondAttribute="top" constant="10" id="zfB-dv-SdO"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2Cu-QR-g9M" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="74b-i9-kpP"/>
+                            <constraint firstItem="2Cu-QR-g9M" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="wPw-5e-Nac"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="containerView" destination="2Cu-QR-g9M" id="4VT-dq-SPU"/>
+                        <outlet property="datePicker" destination="Jxz-b1-tFJ" id="wZX-gO-Djk"/>
+                        <outlet property="noHistoryLabel" destination="4OD-aC-vsS" id="Jfq-Cq-Pzx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-17.39130434782609" y="65.625"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="FullButtonTextColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TintColor">
+            <color red="0.92045229669999995" green="0.28230938319999999" blue="0.4745023847" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

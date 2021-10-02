@@ -52,6 +52,21 @@ class DashboardVC: UIViewController, ChartViewDelegate {
         self.chartView.data = viewModel.getDataForChart()
         self.chartView.centerText = viewModel.getCenterText()
     }
+
+    @objc private func dateSelected(datePicker: UIDatePicker) {
+        
+    }
+
+    // MARK: - Actions
+
+    @IBAction func monthSelectionButtonTapped(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: NibNames.chooseDate, bundle: .main)
+        let popupVC = storyboard.instantiateViewController(withIdentifier: NibNames.chooseDate + "VC")
+        as! ChooseDateAlertVC
+        popupVC.modalPresentationStyle = .overCurrentContext
+        popupVC.modalTransitionStyle = .crossDissolve
+        present(popupVC, animated: true, completion: nil)
+    }
 }
 
 // MARK: - Tableview methods

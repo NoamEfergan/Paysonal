@@ -32,6 +32,9 @@
 		CA365A402705A94E00600D9F /* NewCategoryAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA365A3F2705A94E00600D9F /* NewCategoryAlert.storyboard */; };
 		CA365A422705B50100600D9F /* NewCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA365A412705B50100600D9F /* NewCategoryViewModel.swift */; };
 		CA365A442705CF4C00600D9F /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA365A432705CF4C00600D9F /* StringExtension.swift */; };
+		CA365A462705FC9800600D9F /* ChooseDateAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA365A452705FC9800600D9F /* ChooseDateAlert.storyboard */; };
+		CA365A482705FCA500600D9F /* ChooseDateAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA365A472705FCA500600D9F /* ChooseDateAlertVC.swift */; };
+		CA5F115A2706039100C5A126 /* ChooseDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5F11592706039100C5A126 /* ChooseDateViewModel.swift */; };
 		CA5FE4EE270206A200605115 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5FE4ED270206A200605115 /* UIViewExtension.swift */; };
 		CA5FE4F02702EDAA00605115 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5FE4EF2702EDAA00605115 /* UITextFieldExtension.swift */; };
 		CA78F7EF26FC5BD800A6C0F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78F7EE26FC5BD800A6C0F8 /* AppDelegate.swift */; };
@@ -78,6 +81,9 @@
 		CA365A3F2705A94E00600D9F /* NewCategoryAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewCategoryAlert.storyboard; sourceTree = "<group>"; };
 		CA365A412705B50100600D9F /* NewCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewCategoryViewModel.swift; path = ../../../../Desktop/NewCategoryViewModel.swift; sourceTree = "<group>"; };
 		CA365A432705CF4C00600D9F /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		CA365A452705FC9800600D9F /* ChooseDateAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChooseDateAlert.storyboard; sourceTree = "<group>"; };
+		CA365A472705FCA500600D9F /* ChooseDateAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDateAlertVC.swift; sourceTree = "<group>"; };
+		CA5F11592706039100C5A126 /* ChooseDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDateViewModel.swift; sourceTree = "<group>"; };
 		CA5FE4ED270206A200605115 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		CA5FE4EF2702EDAA00605115 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		CA78F7EB26FC5BD800A6C0F8 /* Paysonal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Paysonal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +202,7 @@
 				CA15A9D42701E0D600BCF49B /* RegisterVC.swift */,
 				CA15A9D82701E57D00BCF49B /* LoginVC.swift */,
 				CA365A3D2705A88800600D9F /* NewCategoryAlertVC.swift */,
+				CA365A472705FCA500600D9F /* ChooseDateAlertVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -210,6 +217,7 @@
 				CA15A9D22701E0C500BCF49B /* Register.storyboard */,
 				CA15A9DC2701E5D900BCF49B /* Login.storyboard */,
 				CA365A3F2705A94E00600D9F /* NewCategoryAlert.storyboard */,
+				CA365A452705FC9800600D9F /* ChooseDateAlert.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -223,6 +231,7 @@
 				CA15A9D62701E0E000BCF49B /* RegisterViewModel.swift */,
 				CA15A9DA2701E58600BCF49B /* LoginViewModel.swift */,
 				CA365A412705B50100600D9F /* NewCategoryViewModel.swift */,
+				CA5F11592706039100C5A126 /* ChooseDateViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -306,6 +315,7 @@
 			files = (
 				CA78F7FB26FC5BDD00A6C0F8 /* LaunchScreen.storyboard in Resources */,
 				CA78F7F826FC5BDD00A6C0F8 /* Assets.xcassets in Resources */,
+				CA365A462705FC9800600D9F /* ChooseDateAlert.storyboard in Resources */,
 				CA78F80E26FC6AA800A6C0F8 /* Settings.storyboard in Resources */,
 				CA2DCB6126FDD06D001A77B8 /* AddTransaction.storyboard in Resources */,
 				CA78F81226FC6E6500A6C0F8 /* Dashboard.storyboard in Resources */,
@@ -368,6 +378,7 @@
 			files = (
 				CA365A362704A84900600D9F /* NotificationNameExtension.swift in Sources */,
 				CA365A442705CF4C00600D9F /* StringExtension.swift in Sources */,
+				CA365A482705FCA500600D9F /* ChooseDateAlertVC.swift in Sources */,
 				CA15A9DB2701E58600BCF49B /* LoginViewModel.swift in Sources */,
 				CA15A9D92701E57D00BCF49B /* LoginVC.swift in Sources */,
 				CAB1689B26FEF79900449D97 /* NibNames.swift in Sources */,
@@ -384,6 +395,7 @@
 				CAB1689726FEF45A00449D97 /* AppStrings.swift in Sources */,
 				CA15A9D52701E0D600BCF49B /* RegisterVC.swift in Sources */,
 				CA78F7EF26FC5BD800A6C0F8 /* AppDelegate.swift in Sources */,
+				CA5F115A2706039100C5A126 /* ChooseDateViewModel.swift in Sources */,
 				CAD0D3D926FCADDC005B0254 /* DashboardViewModel.swift in Sources */,
 				CA2DCB5B26FDB8C7001A77B8 /* TabItems.swift in Sources */,
 				CA365A422705B50100600D9F /* NewCategoryViewModel.swift in Sources */,

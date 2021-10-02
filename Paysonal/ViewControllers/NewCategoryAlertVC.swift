@@ -27,7 +27,7 @@ class NewCategoryAlertVC: UIViewController {
         super.viewDidLoad()
         self.viewModel = NewCategoryViewModel(delegate: self)
         self.view.backgroundColor = .clear
-        addDropShadow()
+        self.containerView.addDropShadow()
         self.categoryNameTextField.addDoneButtonOnKeyboard()
     }
 
@@ -59,19 +59,7 @@ class NewCategoryAlertVC: UIViewController {
     @IBAction func didTapCancel(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
-    // MARK: - Private methods
 
-    private func addDropShadow() {
-        containerView.backgroundColor = .secondarySystemBackground
-        containerView.layer.shadowColor = UIColor.lightGray.cgColor
-        containerView.layer.cornerRadius = AppConstants.cornerRadTabBar
-        containerView.layer.shadowOpacity = Float(AppConstants.shadowOpacity)
-        containerView.layer.shadowOffset = CGSize.zero
-        containerView.layer.shadowRadius = AppConstants.shadowRad
-        containerView.layer.borderColor = UIColor.clear.cgColor
-        containerView.layer.borderWidth = 0
-        containerView.clipsToBounds = false
-    }
 }
 
 // MARK: - Color picker methods

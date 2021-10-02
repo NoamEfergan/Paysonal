@@ -128,9 +128,32 @@ public class UserTransactionsManager {
         dataEntries.append(newEntry)
     }
 
-    private func addTxToFirestore(_ tx: Transaction) {
+//    private func addTxToFirestore(_ tx: Transaction) {
+//        guard let month = Date().getMonthFromString(tx.date),
+//              let year = Date().getYearFromString(tx.date) else { return }
+//        db.collection(AppConstants.kUsers)
+//            .document(UserPreferences.shared!.getUserID()!)
+//            .collection(AppConstants.kYears)
+//            .document(year)
+//            .collection(AppConstants.kMonths)
+//            .document(month).getDocument { [weak self] snapShot, error in
+//                guard let self = self else {
+//                    fatalError("Failed to capture self,add TX flow")
+//                }
+//                if error != nil {
+//                    return
+//                }
+//                if snapShot!.exists {
+//                    self.setTxInExistingMonth(tx,year: year, month: month)
+//                } else {
+//                    self.setTxInNewMonth(tx, year: year, month: month)
+//                }
+//            }
+//    }
+
+    private func setTxInExistingYear(_ tx: Transaction) {
         guard let month = Date().getMonthFromString(tx.date),
-        let year = Date().getYearFromString(tx.date) else { return }
+              let year = Date().getYearFromString(tx.date) else { return }
         db.collection(AppConstants.kUsers)
             .document(UserPreferences.shared!.getUserID()!)
             .collection(AppConstants.kYears)
@@ -151,6 +174,36 @@ public class UserTransactionsManager {
             }
     }
 
+    private func setTxInNewYear(_ tx: Transaction) {
+        guard let year = Date().getYearFromString(tx.date) else { return }
+        self.db.collection(AppConstants.kUsers)
+            .document(UserPreferences.shared!.getUserID()!)
+            .collection(AppConstants.kYears)
+            .document(year)
+        // Have to a field to the document or it doesn't "exist"
+            .setData(["created": FieldValue.serverTimestamp()]) { _ in
+                // Add tx to the year
+                self.setTxInExistingYear(tx)
+            }
+    }
+
+    private func addTxToFirestore(_ tx: Transaction) {
+        guard let year = Date().getYearFromString(tx.date) else { return }
+        db.collection(AppConstants.kUsers)
+            .document(UserPreferences.shared!.getUserID()!)
+            .collection(AppConstants.kYears)
+            .document(year).getDocument(completion: {[weak self] snapShot, error in
+                guard let self = self, error == nil else {
+                    fatalError("Failed to capture self,add TX flow")
+                }
+                if snapShot!.exists {
+                    self.setTxInExistingYear(tx)
+                } else {
+                    self.setTxInNewYear(tx)
+                }
+            })
+    }
+
     private func setTxInExistingMonth(_ tx: Transaction, year: String, month: String) {
         db.collection(AppConstants.kUsers)
             .document(UserPreferences.shared!.getUserID()!)
@@ -164,17 +217,21 @@ public class UserTransactionsManager {
                 AppConstants.kAmount: tx.amount!,
                 AppConstants.kCategory: tx.category.name!,
                 AppConstants.kColor: tx.category.colorHex!
-            ])
+            ], merge: true)
     }
 
     private func setTxInNewMonth(_ tx: Transaction,year: String, month: String) {
         // Create month document
         self.db.collection(AppConstants.kUsers)
             .document(UserPreferences.shared!.getUserID()!)
+            .collection(AppConstants.kYears)
+            .document(year)
             .collection(AppConstants.kMonths)
             .document(month)
-            .setData([:])
-        // Add tx to the month
-        self.setTxInExistingMonth(tx, year: year, month: month)
+        // Have to a field to the document or it doesn't "exist"
+            .setData(["created": FieldValue.serverTimestamp()]) { _ in
+                // Add tx to the month
+                self.setTxInExistingMonth(tx, year: year, month: month)
+            }
     }
 }

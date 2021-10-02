@@ -26,4 +26,16 @@ extension UIView {
             }
         }
     }
+
+    func addDropShadow() {
+        self.backgroundColor = .secondarySystemBackground
+        self.layer.shadowColor = UIColor.lightGray.cgColor
+        self.layer.cornerRadius = AppConstants.cornerRadTabBar
+        self.layer.shadowOpacity = Float(AppConstants.shadowOpacity)
+        self.layer.shadowOffset = CGSize.zero
+        self.layer.shadowRadius = AppConstants.shadowRad
+        self.layer.borderColor = UIColor.clear.cgColor
+        self.layer.borderWidth = 0
+        self.clipsToBounds = false
+    }
 }

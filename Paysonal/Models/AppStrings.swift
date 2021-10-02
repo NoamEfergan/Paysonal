@@ -47,6 +47,10 @@ struct AppStrings {
     public static let resetAlertTitle = "Email sent"
     public static let resetAlertMsg = "An email was sent to your address"
 
+    // MARK: - Choose Date
+
+    public static let errorLoading = "There was an error loading your transaction history"
+
     // MARK: - Segue ID's
     public static let showDashboard: String = "showDashboard"
     public static let showCategoryAlert: String = "showNewCategoryAlert"
