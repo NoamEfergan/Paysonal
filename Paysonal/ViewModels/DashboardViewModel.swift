@@ -71,7 +71,31 @@ public class DashboardViewModel: ChartViewDelegate {
         return transactions.count
     }
 
+    public func removeTransaction(at location: Int) {
+        let transactionToBeRemoved = transactions[location]
+        guard let txMonth = Date().getMonthFromString(transactionToBeRemoved.date),
+              let txYear = Date().getYearFromString(transactionToBeRemoved.date) else {
+                  self.service?.errorReceivingEntries(msg: AppStrings.somethingWentWrong)
+                  return
+              }
+        self.removeTransactionFromEntries(tx: transactionToBeRemoved)
+        UserTransactionsManager.shared?.removeTransaction(
+            year: txYear,
+            month: txMonth,
+            txDate: transactionToBeRemoved.date
+        )
+        self.service?.didReceiveEntries(monthTitle: self.getRelevantMonthForDisplay())
+    }
+
     // MARK: - Private methods
+
+    private func removeTransactionFromEntries(tx: Transaction) {
+        for entry in entries {
+            for transaction in entry.getTransactions() {
+                if transaction == tx { entry.removeTransaction(tx: tx) }
+            }
+        }
+    }
 
     private func getAllTransactions() {
         self.transactions = []

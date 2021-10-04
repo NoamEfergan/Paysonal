@@ -39,6 +39,10 @@ public class Entry {
         }
     }
 
+    public func removeTransaction(tx: Transaction ) {
+        self.transactions.removeAll(where: {$0 == tx})
+    }
+
     public func addMultipleTransactions( _ txs: [Transaction]) {
         transactions += txs
     }

@@ -16,6 +16,8 @@ class TransactionHistoryCell: UITableViewCell {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
 
+    public var didTapDelete:(()-> Void)?
+
     // MARK: - Init methods
 
     override func awakeFromNib() {
@@ -31,4 +33,11 @@ class TransactionHistoryCell: UITableViewCell {
         self.categoryLabel.text = transaction.category.name
         self.amountLabel.text = transaction.amount.description
     }
+
+    // MARK: - Actions
+
+    @IBAction func deleteButtonWasTapped(_ sender: UIButton) {
+        didTapDelete?()
+    }
+
 }

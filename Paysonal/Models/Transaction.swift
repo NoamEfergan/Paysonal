@@ -7,7 +7,12 @@
 
 import Foundation
 
-public class Transaction {
+public class Transaction: Equatable {
+
+    public static func == (lhs: Transaction, rhs: Transaction) -> Bool {
+        return (lhs.category == rhs.category && lhs.amount == rhs.amount && lhs.date == rhs.date )
+    }
+
 
     // MARK: - Variables
 

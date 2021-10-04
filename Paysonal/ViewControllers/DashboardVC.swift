@@ -53,8 +53,13 @@ class DashboardVC: UIViewController, ChartViewDelegate {
         self.chartView.centerText = viewModel.getCenterText()
     }
 
-    @objc private func dateSelected(datePicker: UIDatePicker) {
-        
+    private func didTapDeleteCell(location: Int) {
+        let cancelAction = UIAlertAction(
+            title: AppStrings.delete,
+            style: .destructive) { _ in
+                self.viewModel.removeTransaction(at: location)
+            }
+        self.showActionAlert(msg: AppStrings.verifyDelete, action: cancelAction)
     }
 
     // MARK: - Actions
@@ -87,6 +92,7 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
               let transaction = viewModel.getTransaction(indexPath.row)
         else { return UITableViewCell() }
         cell.customise(transaction: transaction)
+        cell.didTapDelete = { self.didTapDeleteCell(location: indexPath.row) }
         return cell
     }
 

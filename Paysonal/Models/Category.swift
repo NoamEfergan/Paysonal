@@ -7,7 +7,12 @@
 
 import Foundation
 
-public class Category {
+public class Category: Equatable {
+
+    public static func == (lhs: Category, rhs: Category) -> Bool {
+        return lhs.name == rhs.name && lhs.colorHex == rhs.colorHex
+    }
+
 
     // MARK: - Variables
 

@@ -14,12 +14,15 @@ struct AppStrings {
     public static let nothingToShow = "Nothing to show yet!"
     public static let transactionHistoryTitle = "Transaction History"
     public static let fetchingError = "Could not fetch data!"
+    public static let delete = "Delete"
+    public static let verifyDelete = "Are you sure you want to delete this transaction? this cannot be undone"
 
     // MARK: - Category
     public static let chooseCategory = "Choose a category"
     public static let newCategoryAlertTitle = "Enter name of the category"
     public static let newCategoryAlertBody = "Name your category!"
     public static let errorTitle = "Oopps!"
+    public static let alertTitle = "Heads up!"
     public static let categoryExists = "Seems like that name already exists, try another one!"
     public static let newCategory = "New category"
     public static let categoryError = "Category can't be empty!"

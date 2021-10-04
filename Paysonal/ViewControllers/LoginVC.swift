@@ -82,7 +82,7 @@ class LoginVC: UIViewController, UIPopoverPresentationControllerDelegate {
             self.showErrorAlert(msg: AppStrings.emailError)
             return
         }
-        self.showErrorActionAlert(msg: AppStrings.resetPasswordAlert, action: UIAlertAction(
+        self.showActionAlert(msg: AppStrings.resetPasswordAlert, action: UIAlertAction(
             title: AppStrings.reset, style: .default, handler: { _ in
                 UserPreferences.shared?.resetUser()
                 self.viewModel?.performResetPassword(email: email)

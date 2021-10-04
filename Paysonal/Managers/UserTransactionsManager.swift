@@ -36,6 +36,17 @@ public class UserTransactionsManager {
         self.convertTransactionToEntry(tx)
         self.addTxToFirestore(tx)
     }
+    public func removeTransaction(year: String, month: String, txDate: String) {
+        db.collection(AppConstants.kUsers)
+            .document(UserPreferences.shared!.getUserID()!)
+            .collection(AppConstants.kYears)
+            .document(year)
+            .collection(AppConstants.kMonths)
+            .document(month)
+            .collection(AppConstants.kTransactions)
+            .document(txDate)
+            .delete()
+    }
 
     /// Fetch transactions for the current month from Firestory
     public func fetchTransactions(
