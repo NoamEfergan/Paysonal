@@ -37,7 +37,7 @@ class ChooseDateViewModel {
 
     public func fetchYears() {
         self.service.showLoader()
-        self.yearsObserver = UserPreferences.shared?.getYearsWithTransactions()
+        self.yearsObserver = UserTransactionsManager.shared?.getYearsWithTransactions()
             .sink(receiveCompletion: { didFinish in
                 self.service.hideLoader()
                 switch didFinish {
@@ -94,7 +94,7 @@ class ChooseDateViewModel {
         dispatchQueue.async {
             for year in years {
                 dispatchGroup.enter()
-                self.monthsObserver = UserPreferences.shared?.getMonthsWithTransactions(year: year)
+                self.monthsObserver = UserTransactionsManager.shared?.getMonthsWithTransactions(year: year)
                     .sink(receiveCompletion: { didFinish in
                         switch didFinish {
                         case .finished:

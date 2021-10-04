@@ -83,16 +83,7 @@ public class UserPreferences {
         db.collection(AppConstants.kUsers).document(self.getUserID()!).setData([:])
         db.collection(AppConstants.kUsers)
             .document(self.getUserID()!)
-            .collection(AppConstants.kYears)
-            .document(Date().getCurrentYear())
-            .collection(AppConstants.kMonths)
-            .document(Date().getCurrentMonth())
-            .setData([:])
-        db.collection(AppConstants.kUsers)
-            .document(self.getUserID()!)
-            .collection(AppConstants.kMonths)
-            .document(Date().getCurrentMonth())
-            .collection(AppConstants.kTransactions)
+            .setData([AppConstants.kUserName: self.getUserName() ?? ""])
     }
 
     public func registerUser(email: String, userID: String, name: String?) {
@@ -105,68 +96,6 @@ public class UserPreferences {
     public func loginUser(email: String, userID: String ) {
         self.setUserEmail(with: email)
         self.setUserID(id: userID)
-    }
-
-    public func getYearsWithTransactions() -> Future<[String], Error> {
-        return Future { promise in
-            guard let userID = self.getUserID() else {
-                let error = NSError(domain: "No userID", code: 1, userInfo: nil)
-                promise(.failure(error))
-                return
-            }
-            self.db
-                .collection(AppConstants.kUsers)
-                .document(userID)
-                .collection(AppConstants.kYears)
-                .getDocuments { snapShot, error in
-                    if error != nil {
-                        let error = NSError(domain: error!.localizedDescription, code: 1, userInfo: nil)
-                        promise(.failure(error))
-                        return
-                    }
-                    guard let snap = snapShot else {
-                        let error = NSError(domain: "No data was received", code: 1, userInfo: nil)
-                        promise(.failure(error))
-                        return
-                    }
-                    print("finish loading years")
-                    var years: [String] = []
-                    snap.documents.forEach({ years.append($0.documentID) })
-                    promise(.success(years))
-                }
-        }
-    }
-
-    public func getMonthsWithTransactions(year: String) -> Future<[String], Error> {
-        return Future { promise in
-            guard let userID = self.getUserID() else {
-                let error = NSError(domain: "No userID", code: 1, userInfo: nil)
-                promise(.failure(error))
-                return
-            }
-            self.db
-                .collection(AppConstants.kUsers)
-                .document(userID)
-                .collection(AppConstants.kYears)
-                .document(year)
-                .collection(AppConstants.kMonths)
-                .getDocuments { snapShot, error in
-                    if error != nil {
-                        let error = NSError(domain: error!.localizedDescription, code: 1, userInfo: nil)
-                        promise(.failure(error))
-                        return
-                    }
-                    guard let snap = snapShot else {
-                        let error = NSError(domain: "No data was received", code: 1, userInfo: nil)
-                        promise(.failure(error))
-                        return
-                    }
-                    print("finish loading months")
-                    var months: [String] = []
-                    snap.documents.forEach({ months.append($0.documentID) })
-                    promise(.success(months))
-                }
-        }
     }
 
 }
