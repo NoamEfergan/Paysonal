@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>416711130071-05tpme8v15327vnagsofq1r4rffos2gk.apps.googleusercontent.com</string>
+	<string>416711130071-fbph8u7ardegnb05ad38i726k72o96gc.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.416711130071-05tpme8v15327vnagsofq1r4rffos2gk</string>
+	<string>com.googleusercontent.apps.416711130071-fbph8u7ardegnb05ad38i726k72o96gc</string>
 	<key>API_KEY</key>
 	<string>AIzaSyD-cftgKOjuru4sYaRv-LPpmbf0WZyyi-Y</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>NoamEfergan.Paysonal</string>
+	<string>net.Paysonal.paysonal</string>
 	<key>PROJECT_ID</key>
 	<string>paysonal-f1a03</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:416711130071:ios:ffff39cac7875b2f3fe992</string>
+	<string>1:416711130071:ios:14d6734fecf43f933fe992</string>
 </dict>
 </plist>

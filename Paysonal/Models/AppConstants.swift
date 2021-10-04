@@ -32,4 +32,8 @@ struct AppConstants {
     public static let kAmount: String = "Amount"
     public static let kCategory: String = "Category"
     public static let kColor: String = "ColorHex"
+
+    /// URLs
+    public static let privacy: String = "https://paysonal.flycricket.io/privacy.html"
+    public static let termsAndConditions: String = "https://paysonal.flycricket.io/terms.html"
 }

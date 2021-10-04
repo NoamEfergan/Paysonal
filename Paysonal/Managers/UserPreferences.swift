@@ -33,8 +33,22 @@ public class UserPreferences {
         UserDefaults.standard.setValue(email, forKey: AppConstants.kUserEmail)
     }
 
-    private func setUsername(with name: String) {
-        UserDefaults.standard.setValue(name, forKey: AppConstants.kUserName)
+    private func getUsernameFromFirestore() {
+        if UserDefaults.standard.string(forKey: AppConstants.kUserName) == nil {
+            db.collection(AppConstants.kUsers)
+                .document(self.getUserID()!)
+                .getDocument(completion: { snapShot, error in
+                    if error != nil {
+                        self.categories = []
+                        return
+                    }
+                    if let data = snapShot?.data(),
+                       let name: String = data[AppConstants.kUserName] as? String {
+                        self.setUsername(with: name)
+                    }
+                }
+                )
+        }
     }
 
     private func handleSnapshotToCategories(colors: [String], names: [String]) {
@@ -52,6 +66,13 @@ public class UserPreferences {
             return true
         }
         return false
+    }
+
+    public func setUsername(with name: String) {
+        UserDefaults.standard.setValue(name, forKey: AppConstants.kUserName)
+        db.collection(AppConstants.kUsers)
+            .document(self.getUserID()!)
+            .setData([AppConstants.kUserName: name], merge: true)
     }
 
     public func getUserID() -> String? {
@@ -136,6 +157,7 @@ public class UserPreferences {
         self.setUserEmail(with: email)
         self.setUserID(id: userID)
         self.getCategoriesFromFirestore()
+        self.getUsernameFromFirestore()
     }
 
 }

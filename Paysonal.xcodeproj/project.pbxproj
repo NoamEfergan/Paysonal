@@ -10,7 +10,6 @@
 		2EBEB68353A51E5B21FBCE64 /* Pods_Paysonal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA8396DA5F30127BDB8C52E /* Pods_Paysonal.framework */; };
 		CA0B6E3926FC7F6D00B2CEA3 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0B6E3826FC7F6D00B2CEA3 /* UIColorExtension.swift */; };
 		CA0B6E3B26FC84E100B2CEA3 /* BottomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0B6E3A26FC84E100B2CEA3 /* BottomTabBarController.swift */; };
-		CA15A9D12701B85700BCF49B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA15A9D02701B85700BCF49B /* GoogleService-Info.plist */; };
 		CA15A9D32701E0C500BCF49B /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA15A9D22701E0C500BCF49B /* Register.storyboard */; };
 		CA15A9D52701E0D600BCF49B /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA15A9D42701E0D600BCF49B /* RegisterVC.swift */; };
 		CA15A9D72701E0E000BCF49B /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA15A9D62701E0E000BCF49B /* RegisterViewModel.swift */; };
@@ -35,6 +34,8 @@
 		CA365A462705FC9800600D9F /* ChooseDateAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA365A452705FC9800600D9F /* ChooseDateAlert.storyboard */; };
 		CA365A482705FCA500600D9F /* ChooseDateAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA365A472705FCA500600D9F /* ChooseDateAlertVC.swift */; };
 		CA5F115A2706039100C5A126 /* ChooseDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5F11592706039100C5A126 /* ChooseDateViewModel.swift */; };
+		CA5F115C270B11C500C5A126 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5F115B270B11C500C5A126 /* SettingsViewModel.swift */; };
+		CA5F115E270B2D3F00C5A126 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA5F115D270B2D3F00C5A126 /* GoogleService-Info.plist */; };
 		CA5FE4EE270206A200605115 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5FE4ED270206A200605115 /* UIViewExtension.swift */; };
 		CA5FE4F02702EDAA00605115 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5FE4EF2702EDAA00605115 /* UITextFieldExtension.swift */; };
 		CA78F7EF26FC5BD800A6C0F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78F7EE26FC5BD800A6C0F8 /* AppDelegate.swift */; };
@@ -59,7 +60,6 @@
 		1FC917A6C75A2E07C38D71F5 /* Pods-Paysonal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Paysonal.release.xcconfig"; path = "Target Support Files/Pods-Paysonal/Pods-Paysonal.release.xcconfig"; sourceTree = "<group>"; };
 		CA0B6E3826FC7F6D00B2CEA3 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		CA0B6E3A26FC84E100B2CEA3 /* BottomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTabBarController.swift; sourceTree = "<group>"; };
-		CA15A9D02701B85700BCF49B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CA15A9D22701E0C500BCF49B /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		CA15A9D42701E0D600BCF49B /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegisterVC.swift; path = ../../../../Desktop/RegisterVC.swift; sourceTree = "<group>"; };
 		CA15A9D62701E0E000BCF49B /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
@@ -84,6 +84,8 @@
 		CA365A452705FC9800600D9F /* ChooseDateAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChooseDateAlert.storyboard; sourceTree = "<group>"; };
 		CA365A472705FCA500600D9F /* ChooseDateAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDateAlertVC.swift; sourceTree = "<group>"; };
 		CA5F11592706039100C5A126 /* ChooseDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDateViewModel.swift; sourceTree = "<group>"; };
+		CA5F115B270B11C500C5A126 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		CA5F115D270B2D3F00C5A126 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CA5FE4ED270206A200605115 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		CA5FE4EF2702EDAA00605115 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		CA78F7EB26FC5BD800A6C0F8 /* Paysonal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Paysonal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,7 +188,7 @@
 				CA78F80326FC5E7E00A6C0F8 /* Storyboards */,
 				CA78F7F726FC5BDD00A6C0F8 /* Assets.xcassets */,
 				CA78F7F926FC5BDD00A6C0F8 /* LaunchScreen.storyboard */,
-				CA15A9D02701B85700BCF49B /* GoogleService-Info.plist */,
+				CA5F115D270B2D3F00C5A126 /* GoogleService-Info.plist */,
 				CA78F7FC26FC5BDD00A6C0F8 /* Info.plist */,
 			);
 			path = Paysonal;
@@ -232,6 +234,7 @@
 				CA15A9DA2701E58600BCF49B /* LoginViewModel.swift */,
 				CA365A412705B50100600D9F /* NewCategoryViewModel.swift */,
 				CA5F11592706039100C5A126 /* ChooseDateViewModel.swift */,
+				CA5F115B270B11C500C5A126 /* SettingsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -321,7 +324,7 @@
 				CA78F81226FC6E6500A6C0F8 /* Dashboard.storyboard in Resources */,
 				CA365A402705A94E00600D9F /* NewCategoryAlert.storyboard in Resources */,
 				CA2DCB5726FDB0CA001A77B8 /* TransactionHistoryCell.xib in Resources */,
-				CA15A9D12701B85700BCF49B /* GoogleService-Info.plist in Resources */,
+				CA5F115E270B2D3F00C5A126 /* GoogleService-Info.plist in Resources */,
 				CA15A9D32701E0C500BCF49B /* Register.storyboard in Resources */,
 				CA15A9DD2701E5D900BCF49B /* Login.storyboard in Resources */,
 			);
@@ -401,6 +404,7 @@
 				CA365A422705B50100600D9F /* NewCategoryViewModel.swift in Sources */,
 				CA78F7F126FC5BD800A6C0F8 /* SceneDelegate.swift in Sources */,
 				CA0B6E3926FC7F6D00B2CEA3 /* UIColorExtension.swift in Sources */,
+				CA5F115C270B11C500C5A126 /* SettingsViewModel.swift in Sources */,
 				CAD0D3D726FCABDE005B0254 /* UserPreferences.swift in Sources */,
 				CA15A9D72701E0E000BCF49B /* RegisterViewModel.swift in Sources */,
 				CA365A3E2705A88800600D9F /* NewCategoryAlertVC.swift in Sources */,
@@ -550,12 +554,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4J7W4CYA5S;
+				DEVELOPMENT_TEAM = DN9UYF2744;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Paysonal/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Login;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -563,11 +568,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.Paysonal;
+				PRODUCT_BUNDLE_IDENTIFIER = net.Paysonal.paysonal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -579,12 +584,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4J7W4CYA5S;
+				DEVELOPMENT_TEAM = DN9UYF2744;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Paysonal/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Login;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -592,11 +598,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.Paysonal;
+				PRODUCT_BUNDLE_IDENTIFIER = net.Paysonal.paysonal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

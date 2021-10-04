@@ -54,7 +54,15 @@ struct AppStrings {
 
     public static let errorLoading = "There was an error loading your transaction history"
 
+    // MARK: - Settings
+    public static let nameChange = "Are you sure you want to change your name?"
+    public static let cancel = "Cancel"
+    public static let confirm = "Confirm"
+    public static let logoutTitle = "Logout"
+    public static let logoutMsg = "Are you sure you want to log out?"
+
     // MARK: - Segue ID's
     public static let showDashboard: String = "showDashboard"
     public static let showCategoryAlert: String = "showNewCategoryAlert"
+    public static let showLogin: String = "showLogin"
 }
