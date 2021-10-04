@@ -201,29 +201,6 @@ public class UserTransactionsManager {
         dataEntries.append(newEntry)
     }
 
-//    private func addTxToFirestore(_ tx: Transaction) {
-//        guard let month = Date().getMonthFromString(tx.date),
-//              let year = Date().getYearFromString(tx.date) else { return }
-//        db.collection(AppConstants.kUsers)
-//            .document(UserPreferences.shared!.getUserID()!)
-//            .collection(AppConstants.kYears)
-//            .document(year)
-//            .collection(AppConstants.kMonths)
-//            .document(month).getDocument { [weak self] snapShot, error in
-//                guard let self = self else {
-//                    fatalError("Failed to capture self,add TX flow")
-//                }
-//                if error != nil {
-//                    return
-//                }
-//                if snapShot!.exists {
-//                    self.setTxInExistingMonth(tx,year: year, month: month)
-//                } else {
-//                    self.setTxInNewMonth(tx, year: year, month: month)
-//                }
-//            }
-//    }
-
     private func setTxInExistingYear(_ tx: Transaction) {
         guard let month = Date().getMonthFromString(tx.date),
               let year = Date().getYearFromString(tx.date) else { return }
