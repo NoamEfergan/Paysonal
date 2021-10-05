@@ -60,6 +60,8 @@ class SettingsVC: UITableViewController {
         case 2:
             UIApplication.shared.open(URL(string: AppConstants.termsAndConditions)!)
         case 3:
+            UIApplication.shared.open(URL(string: "mailto:" + AppStrings.contactEmail)!)
+        case 4:
             self.showLogoutAlert()
         default:
             return

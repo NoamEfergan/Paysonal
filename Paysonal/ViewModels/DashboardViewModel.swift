@@ -185,7 +185,7 @@ public class DashboardViewModel: ChartViewDelegate {
 
     @objc private func newEntryReceived() {
         guard let manager = UserTransactionsManager.shared else { return }
-        self.entries = manager.getEntries()
+        self.entries = manager.getEntries().filter({!$0.getTransactions().isEmpty})
         self.getAllTransactions()
         self.service?.didReceiveEntries(monthTitle: Date().getCurrentMonth())
     }

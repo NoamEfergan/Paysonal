@@ -60,6 +60,7 @@ struct AppStrings {
     public static let confirm = "Confirm"
     public static let logoutTitle = "Logout"
     public static let logoutMsg = "Are you sure you want to log out?"
+    public static let contactEmail = "info@Paysonal.net"
 
     // MARK: - Segue ID's
     public static let showDashboard: String = "showDashboard"
