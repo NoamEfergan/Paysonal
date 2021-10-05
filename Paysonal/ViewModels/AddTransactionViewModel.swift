@@ -113,12 +113,13 @@ public class AddTransactionViewModel {
         self.date = date
     }
 
-    public func onTapApply() -> Bool{
+    public func onTapApply() -> Bool {
         if category == nil || category?.name == "" { self.service?.showError(msg: AppStrings.categoryError); return false }
         if amount == nil { self.service?.showError(msg: AppStrings.amountError); return false}
         if date.isEmptyOrNil() { self.service?.showError(msg: AppStrings.dateError); return false}
         let tx = Transaction(amount: amount!, date: date!, category: category!)
         UserTransactionsManager.shared?.addTransaction(tx)
+        removeSubscriber()
         return true
     }
 }
