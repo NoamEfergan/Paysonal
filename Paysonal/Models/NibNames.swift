@@ -16,4 +16,5 @@ struct NibNames {
     public static let login: String = "Login"
     public static let categoryAlert: String = "NewCategoryAlert"
     public static let chooseDate: String = "ChooseDateAlert"
+    public static let editCategory: String = "EditCategoryAlert"
 }

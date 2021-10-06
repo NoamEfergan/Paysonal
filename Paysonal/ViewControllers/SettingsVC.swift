@@ -48,29 +48,52 @@ class SettingsVC: UITableViewController {
                 }))
     }
 
+    private func showEditCategoriesAlert() {
+        let storyboard = UIStoryboard(name: NibNames.editCategory, bundle: .main)
+        let popupVC = storyboard.instantiateViewController(withIdentifier: NibNames.editCategory + "VC")
+        as! EditCategoryAlertVC
+        popupVC.modalPresentationStyle = .overCurrentContext
+        popupVC.modalTransitionStyle = .crossDissolve
+        present(popupVC, animated: true, completion: nil)
+    }
+
     // MARK: - Tableview methods
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        switch indexPath.row {
-        case 0 :
-            self.showNewNameAlert()
+        switch indexPath.section {
+            // User Preferences
+        case 0:
+            switch indexPath.row {
+            case 0:
+                self.showNewNameAlert()
+            case 1:
+                showEditCategoriesAlert()
+            default:
+                return
+            }
+            // General settings
         case 1:
-            UIApplication.shared.open(URL(string: AppConstants.privacy)!)
+            switch indexPath.row {
+            case 0:
+                UIApplication.shared.open(URL(string: AppConstants.termsAndConditions)!)
+            case 1:
+                UIApplication.shared.open(URL(string: AppConstants.privacy)!)
+            case 2:
+                UIApplication.shared.open(URL(string: "mailto:" + AppStrings.contactEmail)!)
+            default:
+                return
+            }
+            // Logout
         case 2:
-            UIApplication.shared.open(URL(string: AppConstants.termsAndConditions)!)
-        case 3:
-            UIApplication.shared.open(URL(string: "mailto:" + AppStrings.contactEmail)!)
-        case 4:
             self.showLogoutAlert()
         default:
             return
         }
     }
-
 }
 
-    // MARK: - Protocol methods
+// MARK: - Protocol methods
 
 extension SettingsVC: SettingsService {
     

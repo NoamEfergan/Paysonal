@@ -25,6 +25,18 @@ public class UserPreferences {
 
     // MARK: - private methods
 
+    private func setCategoriesInFirestore() {
+        var colorsArray: [String] = []
+        var namesArray: [String] = []
+        self.categories.forEach({
+            colorsArray.append($0.colorHex)
+            namesArray.append($0.name)
+        })
+        db.collection(AppConstants.kUsers)
+            .document(self.getUserID()!)
+            .setData([AppConstants.kColor: colorsArray, AppConstants.kCategory: namesArray] ,merge: true)
+    }
+
     private func setUserID(id: String) {
         UserDefaults.standard.setValue(id, forKey: AppConstants.kUserId)
     }
@@ -106,20 +118,24 @@ public class UserPreferences {
         return false
     }
 
-    public func getCategories() -> [Category] {
-        return self.categories
+    public func removeCategory(_ cat: Category) {
+        self.categories.removeAll(where: {$0 == cat})
+        setCategoriesInFirestore()
     }
 
-    public func setCategoriesInFirestore() {
-        var colorsArray: [String] = []
-        var namesArray: [String] = []
-        self.categories.forEach({
-            colorsArray.append($0.colorHex)
-            namesArray.append($0.name)
-        })
-        db.collection(AppConstants.kUsers)
-            .document(self.getUserID()!)
-            .setData([AppConstants.kColor: colorsArray, AppConstants.kCategory: namesArray] ,merge: true)
+    public func editCategory(categoryToBeEdited: Category, newName: String?, newColor: String?) -> Bool {
+        guard let index = self.categories.firstIndex(where: {
+            $0.name == categoryToBeEdited.name && $0.colorHex == categoryToBeEdited.colorHex
+        }),
+              let txManager = UserTransactionsManager.shared else { return false}
+        let oldCategory = self.categories[index]
+        let newCategory = Category(name: newName ?? oldCategory.name, colorHex: newColor ?? oldCategory.colorHex)
+        self.categories[index] = newCategory
+        return txManager.editCategoryInEntries(oldCategory: oldCategory, newCategory: newCategory)
+    }
+
+    public func getCategories() -> [Category] {
+        return self.categories
     }
 
     public func registerUserToFirebase() {

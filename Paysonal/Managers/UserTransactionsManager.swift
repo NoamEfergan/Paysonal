@@ -153,6 +153,31 @@ public class UserTransactionsManager {
         }
     }
 
+
+    /// Changes the category in the Entries array
+    /// - Parameters:
+    ///   - oldCategory: The category that will change
+    ///   - newCategory: the new Category object to replace it
+    /// - Returns: A bool indicating wether this was successful or not
+    public func editCategoryInEntries(oldCategory: Category, newCategory: Category) -> Bool {
+        // Get the index of the entry with the relevant category
+        guard let index = self.dataEntries.firstIndex(where: {
+            $0.category.name == oldCategory.name && $0.category.colorHex == oldCategory.colorHex
+        }) else { return false }
+        let oldEntry = self.dataEntries[index]
+        let newEnty = Entry(category: newCategory)
+        let oldTransactions = oldEntry.getTransactions()
+        // Generate a new transactions array, using the existing transactions in the old entry, just changing the category
+        var newTransactions: [Transaction] = []
+        for transaction in oldTransactions {
+            let newTransaction = Transaction(amount: transaction.amount, date: transaction.date, category: newCategory)
+            newTransactions.append(newTransaction)
+        }
+        newEnty.addMultipleTransactions(newTransactions)
+        self.dataEntries[index] = newEnty
+        return true
+    }
+
     // MARK: - Private methods
 
     /// Takes in the documents from Firestore and converts them to entries
