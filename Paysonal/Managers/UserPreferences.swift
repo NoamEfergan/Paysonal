@@ -131,6 +131,7 @@ public class UserPreferences {
         let oldCategory = self.categories[index]
         let newCategory = Category(name: newName ?? oldCategory.name, colorHex: newColor ?? oldCategory.colorHex)
         self.categories[index] = newCategory
+        self.setCategoriesInFirestore()
         return txManager.editCategoryInEntries(oldCategory: oldCategory, newCategory: newCategory)
     }
 

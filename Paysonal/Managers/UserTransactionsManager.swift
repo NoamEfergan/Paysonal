@@ -175,6 +175,16 @@ public class UserTransactionsManager {
         }
         newEnty.addMultipleTransactions(newTransactions)
         self.dataEntries[index] = newEnty
+        // get the month and the year from the first Transaction, in order to edit the category in the relevant collection
+        if let firstTx = newTransactions.first,
+           let txMonth = Date().getMonthFromString(firstTx.date),
+           let txYear = Date().getYearFromString(firstTx.date) {
+            editCategoriesInTransactionsInFirestore(
+                oldCat: oldCategory,
+                newCat: newCategory,
+                month: txMonth,
+                year: txYear)
+        }
         return true
     }
 
@@ -308,5 +318,44 @@ public class UserTransactionsManager {
                 // Add tx to the month
                 self.setTxInExistingMonth(tx, year: year, month: month)
             }
+    }
+
+    private func editCategoriesInTransactionsInFirestore(
+        oldCat: Category,
+        newCat: Category,
+        month: String,
+        year: String
+    ) {
+        db.collection(AppConstants.kUsers)
+            .document(UserPreferences.shared!.getUserID()!)
+            .collection(AppConstants.kYears)
+            .document(year)
+            .collection(AppConstants.kMonths)
+            .document(month)
+            .collection(AppConstants.kTransactions)
+            .getDocuments { snapShot, _ in
+                guard let snap = snapShot else { return }
+                for document in snap.documents {
+                    if document.get(AppConstants.kCategory) as? String == oldCat.name {
+                        self.editCategoryInDocument(
+                            year: year,
+                            month: month,
+                            documentID: document.documentID,
+                            category: newCat)
+                    }
+                }
+            }
+    }
+
+    private func editCategoryInDocument(year: String, month: String, documentID: String, category: Category) {
+        db.collection(AppConstants.kUsers)
+            .document(UserPreferences.shared!.getUserID()!)
+            .collection(AppConstants.kYears)
+            .document(year)
+            .collection(AppConstants.kMonths)
+            .document(month)
+            .collection(AppConstants.kTransactions)
+            .document(documentID)
+            .setData([AppConstants.kCategory: category.name!,AppConstants.kColor: category.colorHex!], merge: true)
     }
 }
