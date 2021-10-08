@@ -33,6 +33,9 @@
 		CA365A442705CF4C00600D9F /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA365A432705CF4C00600D9F /* StringExtension.swift */; };
 		CA365A462705FC9800600D9F /* ChooseDateAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA365A452705FC9800600D9F /* ChooseDateAlert.storyboard */; };
 		CA365A482705FCA500600D9F /* ChooseDateAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA365A472705FCA500600D9F /* ChooseDateAlertVC.swift */; };
+		CA387AE5270C7045000F7492 /* EditCategoryAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA387AE4270C7045000F7492 /* EditCategoryAlert.storyboard */; };
+		CA387AE7270C7397000F7492 /* EditCategoryAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA387AE6270C7397000F7492 /* EditCategoryAlertVC.swift */; };
+		CA387AE9270C73B2000F7492 /* EditCategoryAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA387AE8270C73B2000F7492 /* EditCategoryAlertViewModel.swift */; };
 		CA5F115A2706039100C5A126 /* ChooseDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5F11592706039100C5A126 /* ChooseDateViewModel.swift */; };
 		CA5F115C270B11C500C5A126 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5F115B270B11C500C5A126 /* SettingsViewModel.swift */; };
 		CA5F115E270B2D3F00C5A126 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA5F115D270B2D3F00C5A126 /* GoogleService-Info.plist */; };
@@ -83,6 +86,9 @@
 		CA365A432705CF4C00600D9F /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		CA365A452705FC9800600D9F /* ChooseDateAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChooseDateAlert.storyboard; sourceTree = "<group>"; };
 		CA365A472705FCA500600D9F /* ChooseDateAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDateAlertVC.swift; sourceTree = "<group>"; };
+		CA387AE4270C7045000F7492 /* EditCategoryAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditCategoryAlert.storyboard; sourceTree = "<group>"; };
+		CA387AE6270C7397000F7492 /* EditCategoryAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategoryAlertVC.swift; sourceTree = "<group>"; };
+		CA387AE8270C73B2000F7492 /* EditCategoryAlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategoryAlertViewModel.swift; sourceTree = "<group>"; };
 		CA5F11592706039100C5A126 /* ChooseDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDateViewModel.swift; sourceTree = "<group>"; };
 		CA5F115B270B11C500C5A126 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		CA5F115D270B2D3F00C5A126 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -205,6 +211,7 @@
 				CA15A9D82701E57D00BCF49B /* LoginVC.swift */,
 				CA365A3D2705A88800600D9F /* NewCategoryAlertVC.swift */,
 				CA365A472705FCA500600D9F /* ChooseDateAlertVC.swift */,
+				CA387AE6270C7397000F7492 /* EditCategoryAlertVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -220,6 +227,7 @@
 				CA15A9DC2701E5D900BCF49B /* Login.storyboard */,
 				CA365A3F2705A94E00600D9F /* NewCategoryAlert.storyboard */,
 				CA365A452705FC9800600D9F /* ChooseDateAlert.storyboard */,
+				CA387AE4270C7045000F7492 /* EditCategoryAlert.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -235,6 +243,7 @@
 				CA365A412705B50100600D9F /* NewCategoryViewModel.swift */,
 				CA5F11592706039100C5A126 /* ChooseDateViewModel.swift */,
 				CA5F115B270B11C500C5A126 /* SettingsViewModel.swift */,
+				CA387AE8270C73B2000F7492 /* EditCategoryAlertViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -319,6 +328,7 @@
 				CA78F7FB26FC5BDD00A6C0F8 /* LaunchScreen.storyboard in Resources */,
 				CA78F7F826FC5BDD00A6C0F8 /* Assets.xcassets in Resources */,
 				CA365A462705FC9800600D9F /* ChooseDateAlert.storyboard in Resources */,
+				CA387AE5270C7045000F7492 /* EditCategoryAlert.storyboard in Resources */,
 				CA78F80E26FC6AA800A6C0F8 /* Settings.storyboard in Resources */,
 				CA2DCB6126FDD06D001A77B8 /* AddTransaction.storyboard in Resources */,
 				CA78F81226FC6E6500A6C0F8 /* Dashboard.storyboard in Resources */,
@@ -399,9 +409,11 @@
 				CA15A9D52701E0D600BCF49B /* RegisterVC.swift in Sources */,
 				CA78F7EF26FC5BD800A6C0F8 /* AppDelegate.swift in Sources */,
 				CA5F115A2706039100C5A126 /* ChooseDateViewModel.swift in Sources */,
+				CA387AE9270C73B2000F7492 /* EditCategoryAlertViewModel.swift in Sources */,
 				CAD0D3D926FCADDC005B0254 /* DashboardViewModel.swift in Sources */,
 				CA2DCB5B26FDB8C7001A77B8 /* TabItems.swift in Sources */,
 				CA365A422705B50100600D9F /* NewCategoryViewModel.swift in Sources */,
+				CA387AE7270C7397000F7492 /* EditCategoryAlertVC.swift in Sources */,
 				CA78F7F126FC5BD800A6C0F8 /* SceneDelegate.swift in Sources */,
 				CA0B6E3926FC7F6D00B2CEA3 /* UIColorExtension.swift in Sources */,
 				CA5F115C270B11C500C5A126 /* SettingsViewModel.swift in Sources */,

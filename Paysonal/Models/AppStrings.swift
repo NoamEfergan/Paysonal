@@ -15,7 +15,7 @@ struct AppStrings {
     public static let transactionHistoryTitle = "Transaction History"
     public static let fetchingError = "Could not fetch data!"
     public static let delete = "Delete"
-    public static let verifyDelete = "Are you sure you want to delete this transaction? this cannot be undone"
+    public static let verifyDeleteTx = "Are you sure you want to delete this transaction? this cannot be undone"
 
     // MARK: - Category
     public static let chooseCategory = "Choose a category"
@@ -55,12 +55,16 @@ struct AppStrings {
     public static let errorLoading = "There was an error loading your transaction history"
 
     // MARK: - Settings
-    public static let nameChange = "Are you sure you want to change your name?"
+    public static let nameChange = "What would you like us to call you?"
     public static let cancel = "Cancel"
     public static let confirm = "Confirm"
     public static let logoutTitle = "Logout"
     public static let logoutMsg = "Are you sure you want to log out?"
     public static let contactEmail = "info@Paysonal.net"
+
+    // MARK: - Edit categories
+    public static let emptyCatErr = "Category cannot be empty!"
+    public static let verifyDeleteCat = "Are you sure you want to delete this category?\nThis will not delete transactions"
 
     // MARK: - Segue ID's
     public static let showDashboard: String = "showDashboard"

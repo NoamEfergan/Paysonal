@@ -153,6 +153,41 @@ public class UserTransactionsManager {
         }
     }
 
+
+    /// Changes the category in the Entries array
+    /// - Parameters:
+    ///   - oldCategory: The category that will change
+    ///   - newCategory: the new Category object to replace it
+    /// - Returns: A bool indicating wether this was successful or not
+    public func editCategoryInEntries(oldCategory: Category, newCategory: Category) -> Bool {
+        // Get the index of the entry with the relevant category
+        guard let index = self.dataEntries.firstIndex(where: {
+            $0.category.name == oldCategory.name && $0.category.colorHex == oldCategory.colorHex
+        }) else { return false }
+        let oldEntry = self.dataEntries[index]
+        let newEnty = Entry(category: newCategory)
+        let oldTransactions = oldEntry.getTransactions()
+        // Generate a new transactions array, using the existing transactions in the old entry, just changing the category
+        var newTransactions: [Transaction] = []
+        for transaction in oldTransactions {
+            let newTransaction = Transaction(amount: transaction.amount, date: transaction.date, category: newCategory)
+            newTransactions.append(newTransaction)
+        }
+        newEnty.addMultipleTransactions(newTransactions)
+        self.dataEntries[index] = newEnty
+        // get the month and the year from the first Transaction, in order to edit the category in the relevant collection
+        if let firstTx = newTransactions.first,
+           let txMonth = Date().getMonthFromString(firstTx.date),
+           let txYear = Date().getYearFromString(firstTx.date) {
+            editCategoriesInTransactionsInFirestore(
+                oldCat: oldCategory,
+                newCat: newCategory,
+                month: txMonth,
+                year: txYear)
+        }
+        return true
+    }
+
     // MARK: - Private methods
 
     /// Takes in the documents from Firestore and converts them to entries
@@ -283,5 +318,44 @@ public class UserTransactionsManager {
                 // Add tx to the month
                 self.setTxInExistingMonth(tx, year: year, month: month)
             }
+    }
+
+    private func editCategoriesInTransactionsInFirestore(
+        oldCat: Category,
+        newCat: Category,
+        month: String,
+        year: String
+    ) {
+        db.collection(AppConstants.kUsers)
+            .document(UserPreferences.shared!.getUserID()!)
+            .collection(AppConstants.kYears)
+            .document(year)
+            .collection(AppConstants.kMonths)
+            .document(month)
+            .collection(AppConstants.kTransactions)
+            .getDocuments { snapShot, _ in
+                guard let snap = snapShot else { return }
+                for document in snap.documents {
+                    if document.get(AppConstants.kCategory) as? String == oldCat.name {
+                        self.editCategoryInDocument(
+                            year: year,
+                            month: month,
+                            documentID: document.documentID,
+                            category: newCat)
+                    }
+                }
+            }
+    }
+
+    private func editCategoryInDocument(year: String, month: String, documentID: String, category: Category) {
+        db.collection(AppConstants.kUsers)
+            .document(UserPreferences.shared!.getUserID()!)
+            .collection(AppConstants.kYears)
+            .document(year)
+            .collection(AppConstants.kMonths)
+            .document(month)
+            .collection(AppConstants.kTransactions)
+            .document(documentID)
+            .setData([AppConstants.kCategory: category.name!,AppConstants.kColor: category.colorHex!], merge: true)
     }
 }

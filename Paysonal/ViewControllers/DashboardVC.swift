@@ -59,7 +59,7 @@ class DashboardVC: UIViewController, ChartViewDelegate {
             style: .destructive) { _ in
                 self.viewModel.removeTransaction(at: location)
             }
-        self.showActionAlert(msg: AppStrings.verifyDelete, action: cancelAction)
+        self.showActionAlert(msg: AppStrings.verifyDeleteTx, action: cancelAction)
     }
 
     // MARK: - Actions

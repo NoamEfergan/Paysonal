@@ -14,6 +14,8 @@ struct AppConstants {
     public static let shadowRad: CGFloat = 5
     public static let minPasswordLength = 8
     public static let KeyboardToolbar: CGFloat = 45
+    public static let tintColorName: String = "TintColor"
+    public static let textColor: String = "FullButtonTextColor"
 
     public static let dashIcon: String = "house.circle"
     public static let settingsIcon: String = "gear.circle"

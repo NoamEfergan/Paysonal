@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--EditCategoryAlertVC-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="EditCategoryAlertVC" title="EditCategoryAlertVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="EditCategoryAlertVC" customModule="Paysonal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SNl-uY-DjZ">
+                                <rect key="frame" x="20" y="206" width="335" height="255"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="lui-It-UkX" userLabel="mainStack">
+                                        <rect key="frame" x="15" y="15" width="305" height="225"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5di-nU-qXB" userLabel="ChooseCategoryStack">
+                                                <rect key="frame" x="0.0" y="0.0" width="305" height="30"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2s1-Lw-W6Y" userLabel="Choose Category">
+                                                        <rect key="frame" x="0.0" y="0.0" width="130" height="30"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I9I-NL-IBb">
+                                                        <rect key="frame" x="130" y="0.0" width="175" height="30"/>
+                                                        <menu key="menu" id="Efj-Yf-Il0">
+                                                            <children>
+                                                                <command title="Item 1" id="4jd-lJ-3JJ"/>
+                                                                <command title="Item 2" id="Q7v-Vg-QkJ"/>
+                                                            </children>
+                                                        </menu>
+                                                        <state key="normal" title="Category">
+                                                            <color key="titleColor" name="TintColor"/>
+                                                        </state>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="DCc-Wj-1CV">
+                                                <rect key="frame" x="0.0" y="50" width="305" height="36"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="z9l-LD-5F9"/>
+                                                </constraints>
+                                                <segments>
+                                                    <segment title="Edit"/>
+                                                    <segment title="Delete"/>
+                                                </segments>
+                                                <color key="selectedSegmentTintColor" name="TintColor"/>
+                                                <connections>
+                                                    <action selector="didChangeEditOrDelete:" destination="Y6W-OH-hqX" eventType="valueChanged" id="JUa-YY-OEW"/>
+                                                </connections>
+                                            </segmentedControl>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vER-2e-lbe" userLabel="editFieldsStack">
+                                                <rect key="frame" x="0.0" y="105" width="305" height="50"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="new name" textAlignment="center" minimumFontSize="9" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="jgM-nw-XIw">
+                                                        <rect key="frame" x="0.0" y="0.0" width="148.5" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="fQj-Ie-nQQ"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="didSelectName:" destination="Y6W-OH-hqX" eventType="editingDidEnd" id="ctE-03-PNp"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Wd-bU-O9h">
+                                                        <rect key="frame" x="156.5" y="0.0" width="148.5" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="Akw-g1-aOH"/>
+                                                        </constraints>
+                                                        <color key="tintColor" name="TintColor"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="tinted" title="Choose color"/>
+                                                        <connections>
+                                                            <action selector="onTapChooseColor:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="pBt-d3-ilt"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="Oyh-lL-TCc"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xMx-LU-3ec" userLabel="applyCancelStack">
+                                                <rect key="frame" x="0.0" y="175" width="305" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6MK-Df-cKX">
+                                                        <rect key="frame" x="0.0" y="0.0" width="148.5" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="TBj-8K-ejy"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Apply">
+                                                            <color key="baseForegroundColor" name="FullButtonTextColor"/>
+                                                            <color key="baseBackgroundColor" name="TintColor"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="onTapApply:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="3Q3-RC-7Lt"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iaf-KC-bO6">
+                                                        <rect key="frame" x="156.5" y="0.0" width="148.5" height="50"/>
+                                                        <color key="tintColor" name="TintColor"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="gray" title="Cancel"/>
+                                                        <connections>
+                                                            <action selector="onTapCancel:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="tvD-1E-rDV"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="lui-It-UkX" secondAttribute="trailing" constant="15" id="CRv-DZ-Ibb"/>
+                                    <constraint firstItem="lui-It-UkX" firstAttribute="top" secondItem="SNl-uY-DjZ" secondAttribute="top" constant="15" id="J7v-1Q-EAJ"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="500" id="JZi-um-y72"/>
+                                    <constraint firstItem="lui-It-UkX" firstAttribute="leading" secondItem="SNl-uY-DjZ" secondAttribute="leading" constant="15" id="ONc-PZ-ApX"/>
+                                    <constraint firstAttribute="bottom" secondItem="lui-It-UkX" secondAttribute="bottom" constant="15" id="wqj-AX-QfD"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="SNl-uY-DjZ" secondAttribute="trailing" constant="20" id="8bP-62-M1p"/>
+                            <constraint firstItem="SNl-uY-DjZ" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="XyL-rm-nyp"/>
+                            <constraint firstItem="SNl-uY-DjZ" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="bfP-Mc-fJw"/>
+                            <constraint firstItem="SNl-uY-DjZ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="dDM-Kg-DdD"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="chooseCategoryButton" destination="I9I-NL-IBb" id="EZq-qT-cxW"/>
+                        <outlet property="colorButton" destination="6Wd-bU-O9h" id="6kK-pG-6ea"/>
+                        <outlet property="containerView" destination="SNl-uY-DjZ" id="fm5-iL-ljH"/>
+                        <outlet property="editDeleteSelecter" destination="DCc-Wj-1CV" id="GAU-9H-9QS"/>
+                        <outlet property="editStackView" destination="vER-2e-lbe" id="s6R-YR-Mic"/>
+                        <outlet property="nameTextField" destination="jgM-nw-XIw" id="MTN-Wo-NSc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-16" y="66"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="FullButtonTextColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TintColor">
+            <color red="0.92000001668930054" green="0.28200000524520874" blue="0.47499999403953552" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
