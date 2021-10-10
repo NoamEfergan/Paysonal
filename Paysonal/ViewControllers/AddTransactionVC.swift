@@ -18,7 +18,11 @@ class AddTransactionVC: UIViewController {
     @IBOutlet weak var applyButton: UIButton!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var shadeBackground: UIView!
-    
+    @IBOutlet weak var transactionOrFundsSelector: UISegmentedControl!
+    @IBOutlet weak var AddTransactionView: UIView!
+    @IBOutlet weak var addFundsView: UIView!
+    @IBOutlet weak var addFundsAmountTextField: UITextField!
+    @IBOutlet weak var addFundsSourceButton: UIButton!
     // MARK: - Variables
 
     private var viewModel: AddTransactionViewModel!
@@ -38,6 +42,10 @@ class AddTransactionVC: UIViewController {
 
     private func initUI() {
         self.amountTextField.addDoneButtonOnKeyboard()
+        self.transactionOrFundsSelector.setTitleTextAttributes(
+            [NSAttributedString.Key.foregroundColor: UIColor(named: AppConstants.textColor)!]
+            , for: .selected
+        )
         self.shadeBackground.backgroundColor = .black.withAlphaComponent(AppConstants.shadowOpacity)
         self.containerView.layer.cornerRadius = AppConstants.cornerRad
         self.containerView.backgroundColor = .secondarySystemBackground
@@ -69,6 +77,16 @@ class AddTransactionVC: UIViewController {
 
     @IBAction func dismissTapped(_ sender: Any) {
         self.dismiss(animated: true)
+    }
+
+    @IBAction func changeTransactionOrFunds(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            AddTransactionView.isHidden = false
+            addFundsView.isHidden = true
+        } else {
+            AddTransactionView.isHidden = true
+            addFundsView.isHidden = false
+        }
     }
 }
 
