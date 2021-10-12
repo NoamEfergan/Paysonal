@@ -22,10 +22,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="az3-mx-lUe">
-                                        <rect key="frame" x="20" y="227.5" width="335" height="212"/>
+                                        <rect key="frame" x="20" y="85" width="335" height="497"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="kp7-pZ-73o" userLabel="MainStackView">
-                                                <rect key="frame" x="15" y="15" width="305" height="182"/>
+                                                <rect key="frame" x="15" y="15" width="305" height="467"/>
                                                 <subviews>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1ki-bQ-Hfd">
                                                         <rect key="frame" x="0.0" y="0.0" width="305" height="36"/>
@@ -41,8 +41,8 @@
                                                             <action selector="changeTransactionOrFunds:" destination="Y6W-OH-hqX" eventType="valueChanged" id="oTT-OM-Cdp"/>
                                                         </connections>
                                                     </segmentedControl>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y6r-gv-Tml" userLabel="AddFundsView">
-                                                        <rect key="frame" x="0.0" y="46" width="305" height="75"/>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y6r-gv-Tml" userLabel="AddFundsView">
+                                                        <rect key="frame" x="0.0" y="40.5" width="305" height="75"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="wtr-rG-lRl">
                                                                 <rect key="frame" x="0.0" y="15" width="305" height="45"/>
@@ -65,9 +65,7 @@
                                                                             </children>
                                                                         </menu>
                                                                         <state key="normal" title="Source"/>
-                                                                        <buttonConfiguration key="configuration" style="filled" title="Source">
-                                                                            <color key="baseForegroundColor" name="FullButtonTextColor"/>
-                                                                        </buttonConfiguration>
+                                                                        <buttonConfiguration key="configuration" style="plain" title="Source"/>
                                                                     </button>
                                                                 </subviews>
                                                                 <constraints>
@@ -83,8 +81,8 @@
                                                             <constraint firstItem="wtr-rG-lRl" firstAttribute="leading" secondItem="Y6r-gv-Tml" secondAttribute="leading" id="xeE-5h-qci"/>
                                                         </constraints>
                                                     </view>
-                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WeN-Uj-uq5" userLabel="AddTransactionView">
-                                                        <rect key="frame" x="0.0" y="126.5" width="305" height="0.0"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WeN-Uj-uq5" userLabel="AddTransactionView">
+                                                        <rect key="frame" x="0.0" y="46" width="305" height="360"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Rua-N3-Nug" userLabel="categoryStack">
                                                                 <rect key="frame" x="0.0" y="0.0" width="305" height="34"/>
@@ -125,11 +123,12 @@
                                                             <constraint firstItem="e2z-Cf-DlI" firstAttribute="leading" secondItem="WeN-Uj-uq5" secondAttribute="leading" id="eHx-Mi-stW"/>
                                                             <constraint firstAttribute="trailing" secondItem="e2z-Cf-DlI" secondAttribute="trailing" id="ehs-mD-4nn"/>
                                                             <constraint firstItem="Rua-N3-Nug" firstAttribute="top" secondItem="WeN-Uj-uq5" secondAttribute="top" id="gF0-qx-VWl"/>
+                                                            <constraint firstAttribute="height" constant="360" id="gKA-sA-KIO"/>
                                                             <constraint firstItem="Rua-N3-Nug" firstAttribute="leading" secondItem="WeN-Uj-uq5" secondAttribute="leading" id="tw1-UC-tVm"/>
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="4Bk-W8-QtG" userLabel="applyDimissButtons">
-                                                        <rect key="frame" x="0.0" y="132" width="305" height="50"/>
+                                                        <rect key="frame" x="0.0" y="417" width="305" height="50"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhf-Pd-DvX">
                                                                 <rect key="frame" x="0.0" y="0.0" width="145" height="50"/>
@@ -215,7 +214,7 @@
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TintColor">
-            <color red="0.92045229669999995" green="0.28230938319999999" blue="0.4745023847" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.92000001668930054" green="0.28200000524520874" blue="0.47499999403953552" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

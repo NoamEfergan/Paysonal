@@ -16,6 +16,7 @@ public class UserPreferences {
     private(set) static var shared: UserPreferences?
     private let db = Firestore.firestore()
     private var categories: [Category] = []
+    private var sourcesOfIncome: [String] = []
 
     // MARK: - Init methods
 
@@ -24,6 +25,12 @@ public class UserPreferences {
     }
 
     // MARK: - private methods
+
+    private func setSourcesOfIncomeInFirestore() {
+        db.collection(AppConstants.kUsers)
+            .document(self.getUserID()!)
+            .setData([AppConstants.kSources: sourcesOfIncome] ,merge: true)
+    }
 
     private func setCategoriesInFirestore() {
         var colorsArray: [String] = []
@@ -118,6 +125,15 @@ public class UserPreferences {
         return false
     }
 
+    public func addNewSource(newSource: String ) -> Bool {
+        if !self.sourcesOfIncome.contains(newSource) {
+            self.sourcesOfIncome.append(newSource)
+            self.setSourcesOfIncomeInFirestore()
+            return true
+        }
+        return false
+    }
+
     public func removeCategory(_ cat: Category) {
         self.categories.removeAll(where: {$0 == cat})
         setCategoriesInFirestore()
@@ -139,11 +155,30 @@ public class UserPreferences {
         return self.categories
     }
 
+    public func getSources() -> [String] {
+        return self.sourcesOfIncome
+    }
+
     public func registerUserToFirebase() {
         db.collection(AppConstants.kUsers).document(self.getUserID()!).setData([:])
         db.collection(AppConstants.kUsers)
             .document(self.getUserID()!)
             .setData([AppConstants.kUserName: self.getUserName() ?? ""])
+    }
+
+    public func getSourcesOfIncomeFromFirestore() {
+        db.collection(AppConstants.kUsers)
+            .document(self.getUserID()!)
+            .getDocument(completion: { snapShot, error in
+                if error != nil {
+                    self.sourcesOfIncome = []
+                    return
+                }
+                if let data = snapShot?.data(),
+                   let sourcesFromFirestore = data[AppConstants.kSources] as? [String] {
+                    self.sourcesOfIncome = sourcesFromFirestore
+                }
+            })
     }
 
     public func getCategoriesFromFirestore() {
@@ -174,6 +209,7 @@ public class UserPreferences {
         self.setUserEmail(with: email)
         self.setUserID(id: userID)
         self.getCategoriesFromFirestore()
+        self.getSourcesOfIncomeFromFirestore()
         self.getUsernameFromFirestore()
     }
 

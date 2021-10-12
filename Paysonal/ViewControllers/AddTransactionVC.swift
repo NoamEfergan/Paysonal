@@ -52,7 +52,13 @@ class AddTransactionVC: UIViewController {
         self.categoryButton.menu = UIMenu.init(
             title: AppStrings.chooseCategory,
             options: .singleSelection,
-            children: viewModel.getOptions()
+            children: viewModel.getOptionsForCategories()
+        )
+
+        self.addFundsSourceButton.menu = UIMenu.init(
+            title: AppStrings.chooseSource,
+            options: .singleSelection,
+            children: viewModel.getOptionsForSourcesOfIncome()
         )
     }
 
@@ -70,8 +76,13 @@ class AddTransactionVC: UIViewController {
     }
 
     @IBAction func applyTapped(_ sender: Any) {
-        if viewModel.onTapApply() {
-            self.dismiss(animated: true)
+        if transactionOrFundsSelector.selectedSegmentIndex == 0 {
+            if viewModel.onTapApplyTransaction() {
+                self.dismiss(animated: true)
+            }
+        }
+        else {
+            self.viewModel.onTapApplyFunds()
         }
     }
 
@@ -118,6 +129,28 @@ extension AddTransactionVC: UITextFieldDelegate {
 
 extension AddTransactionVC: AddTransactionService {
 
+    func askForNewSource() {
+        let alert = UIAlertController(title: AppStrings.newSource, message: AppStrings.sourceRequest, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        alert.addTextField { textField in
+            textField.addDoneButtonOnKeyboard()
+        }
+        alert.addAction(UIAlertAction(title: AppStrings.confirm, style: .default, handler: { _ in
+            if let textField = alert.textFields?.first,
+               !textField.text.isEmptyOrNil() {
+                if !self.viewModel.setSourceOfIncome(with: textField.text!) {
+                    alert.dismiss(animated: true, completion: nil)
+                    self.showError(msg: AppStrings.sourceExists)
+                }
+            } else {
+                self.showError(msg: AppStrings.somethingWentWrong)
+            }
+        }))
+        self.present(alert, animated: true)
+    }
+
     func askForNewCategory() {
         let storyboard = UIStoryboard(name: NibNames.categoryAlert, bundle: .main)
         let popupVC = storyboard.instantiateViewController(withIdentifier: NibNames.categoryAlert + "VC")
@@ -131,11 +164,21 @@ extension AddTransactionVC: AddTransactionService {
         self.showErrorAlert(msg: msg)
     }
 
-    func updateMenu(title: String) {
+
+    func didSetSource(title: String) {
+        self.addFundsSourceButton.menu = UIMenu.init(
+            title: title,
+            options: .singleSelection,
+            children: viewModel.getOptionsForSourcesOfIncome()
+        )
+        self.addFundsSourceButton.setTitle(title, for: .normal)
+    }
+
+    func didSetCategory(title: String) {
         self.categoryButton.menu = UIMenu.init(
             title: AppStrings.chooseCategory,
             options: .singleSelection,
-            children: viewModel.getOptions()
+            children: viewModel.getOptionsForCategories()
         )
         self.categoryButton.setTitle(title, for: .normal)
     }

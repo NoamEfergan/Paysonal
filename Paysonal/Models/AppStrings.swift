@@ -18,19 +18,23 @@ struct AppStrings {
     public static let verifyDeleteTx = "Are you sure you want to delete this transaction? this cannot be undone"
 
     // MARK: - Category
-    public static let chooseCategory = "Choose a category"
+    public static let chooseCategory = "Select a category"
+    public static let chooseSource = "Select a source of income"
     public static let newCategoryAlertTitle = "Enter name of the category"
     public static let newCategoryAlertBody = "Name your category!"
     public static let errorTitle = "Oopps!"
     public static let alertTitle = "Heads up!"
     public static let categoryExists = "Seems like that name already exists, try another one!"
     public static let newCategory = "New category"
+    public static let newSource = "New source"
     public static let categoryError = "Category can't be empty!"
     public static let amountError = "Amount can't be empty!"
     public static let dateError = "Please choose a date"
     public static let color = "Color"
     public static let colorError = "Please choose a color"
     public static let somethingWentWrong = "Something went wrong! please try again"
+    public static let sourceRequest = "Please enter the name of your new source of income"
+    public static let sourceExists = "This source of income already exists!"
 
     // MARK: - Register
     public static let nameTitle = "Your name (optional)"
