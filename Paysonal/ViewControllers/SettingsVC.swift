@@ -13,6 +13,7 @@ class SettingsVC: UITableViewController {
 
     @IBOutlet var mainTableView: UITableView!
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var userCurrencyLabel: UILabel!
 
     // MARK: - Variables
 
@@ -25,7 +26,34 @@ class SettingsVC: UITableViewController {
         initUI()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        addSubscriber()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        removeSubscriber()
+    }
+
     // MARK: - Private methods
+
+    private func addSubscriber() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didReceiveNewCurrency),
+            name: .newCurrency,
+            object: nil
+        )
+    }
+
+    private func removeSubscriber() {
+        NotificationCenter.default.removeObserver(self, name: .newCurrency, object: nil)
+    }
+
+    @objc private func didReceiveNewCurrency() {
+        userCurrencyLabel.text = UserPreferences.shared?.getUserSelectedCurrency() ?? "$"
+    }
 
     private func initUI() {
         self.userNameLabel.text = UserPreferences.shared?.getUserName()
@@ -69,6 +97,8 @@ class SettingsVC: UITableViewController {
                 self.showNewNameAlert()
             case 1:
                 showEditCategoriesAlert()
+            case 2:
+                self.performSegue(withIdentifier: AppStrings.showCurrencies, sender: nil)
             default:
                 return
             }

@@ -50,7 +50,7 @@ class DashboardVC: UIViewController, ChartViewDelegate {
 
     private func updatePieChartData() {
         self.chartView.data = viewModel.getDataForChart()
-        self.chartView.centerText = viewModel.getCenterText()
+        self.chartView.centerAttributedText = viewModel.getCenterText()
     }
 
     private func didTapDeleteCell(location: Int) {

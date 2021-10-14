@@ -10,7 +10,7 @@ import Foundation
 struct AppStrings {
 
     // MARK: - Dashboard
-    public static let totalSpent = "Total spent this month: \n"
+    public static let balanceLabel = "Monthly balance: \n"
     public static let nothingToShow = "Nothing to show yet!"
     public static let transactionHistoryTitle = "Transaction History"
     public static let fetchingError = "Could not fetch data!"
@@ -76,4 +76,5 @@ struct AppStrings {
     public static let showDashboard: String = "showDashboard"
     public static let showCategoryAlert: String = "showNewCategoryAlert"
     public static let showLogin: String = "showLogin"
+    public static let showCurrencies: String = "showCurrencies"
 }
