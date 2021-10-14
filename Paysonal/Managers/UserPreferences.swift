@@ -125,13 +125,14 @@ public class UserPreferences {
         return false
     }
 
-    public func addNewSource(newSource: String ) -> Bool {
-        if !self.sourcesOfIncome.contains(newSource) {
-            self.sourcesOfIncome.append(newSource)
-            self.setSourcesOfIncomeInFirestore()
-            return true
-        }
-        return false
+    public func addNewSourceOfIncome(key: String) {
+        self.sourcesOfIncome.append(key)
+    }
+
+    public func addNewIncome(source: String, amount: Double) {
+        let sourceOfIncome = SourceOfIncome(name: source, date: Date().getStringFromDate(), amount: amount)
+        UserTransactionsManager.shared?.addSourceOfIncome(sourceOfIncome)
+        setSourcesOfIncomeInFirestore()
     }
 
     public func removeCategory(_ cat: Category) {

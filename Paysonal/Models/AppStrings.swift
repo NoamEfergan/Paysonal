@@ -35,6 +35,8 @@ struct AppStrings {
     public static let somethingWentWrong = "Something went wrong! please try again"
     public static let sourceRequest = "Please enter the name of your new source of income"
     public static let sourceExists = "This source of income already exists!"
+    public static let sourceError = "Source of income can't be empty!"
+    public static let fundsAmountError = "Amount of funds can't be empty!"
 
     // MARK: - Register
     public static let nameTitle = "Your name (optional)"

@@ -54,6 +54,9 @@
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
                                                                         </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="didFinishAddingAmountFunds:" destination="Y6W-OH-hqX" eventType="editingDidEnd" id="SvP-b5-vxH"/>
+                                                                        </connections>
                                                                     </textField>
                                                                     <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWN-2u-AcF">
                                                                         <rect key="frame" x="165" y="0.0" width="140" height="45"/>

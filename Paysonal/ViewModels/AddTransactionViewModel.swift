@@ -99,14 +99,13 @@ public class AddTransactionViewModel {
         return newItems
     }
 
-    public func setSourceOfIncome(with source: String) -> Bool{
+    public func addNewSourceOfIncome(with source: String) -> Bool {
         guard let preferences = UserPreferences.shared else { return false}
-        if preferences.addNewSource(newSource: source) {
-            self.selectedSource = source
-            return true
-        } else {
-            return false
-        }
+        let allSources = preferences.getSources()
+        if allSources.contains(source) { return false }
+        preferences.addNewSourceOfIncome(key: source)
+        self.selectedSource = source
+        return true
     }
 
     public func getOptionsForCategories() -> [UIMenuElement] {
@@ -144,6 +143,10 @@ public class AddTransactionViewModel {
         self.amount = amount
     }
 
+    public func setFundsAmount(with amount: Double) {
+        self.fundsAmount = amount
+    }
+
     public func setDate(with date: String) {
         self.date = date
     }
@@ -158,7 +161,17 @@ public class AddTransactionViewModel {
         return true
     }
 
-    public func onTapApplyFunds() {
-
+    public func onTapApplyFunds() -> Bool{
+        if self.selectedSource.isEmptyOrNil() {
+            self.service?.showError(msg: AppStrings.sourceError)
+            return false
+        }
+        if self.fundsAmount == nil || self.fundsAmount == 0 {
+            self.service?.showError(msg: AppStrings.fundsAmountError)
+            return false
+        }
+        guard let preferences = UserPreferences.shared else { return false }
+        preferences.addNewIncome(source: self.selectedSource!, amount: self.fundsAmount!)
+        return true
     }
 }

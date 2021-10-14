@@ -15,6 +15,11 @@ public class UserTransactionsManager {
 
     private(set) static var shared: UserTransactionsManager?
     private let db = Firestore.firestore()
+    private(set) var sourcesOfIncome: [SourceOfIncome] = [] {
+        didSet {
+            NotificationCenter.default.post(name: .newIncome, object: nil)
+        }
+    }
     private var dataEntries: [Entry] = [] {
         didSet {
             NotificationCenter.default.post(name: .newEntry, object: nil)
@@ -31,6 +36,11 @@ public class UserTransactionsManager {
     }
 
     // MARK: - Public methods
+
+    public func addSourceOfIncome(_ source: SourceOfIncome ) {
+        sourcesOfIncome.append(source)
+        self.addIncomeToFiresore(source)
+    }
 
     public func addTransaction(_ tx: Transaction) {
         self.convertTransactionToEntry(tx)
@@ -52,20 +62,23 @@ public class UserTransactionsManager {
     public func fetchTransactions(
         year: String = Date().getCurrentYear(),
         month: String = Date().getCurrentMonth()
-    ) -> Future<[Entry],Error> {
+    ) -> Future<([Entry],[SourceOfIncome]),Error> {
+        var entries: [Entry] = []
+        var sources: [SourceOfIncome] = []
         return Future { [self] promise in
             guard let userID = UserPreferences.shared?.getUserID() else {
                 let error = NSError(domain: "No user ID", code: 1, userInfo: nil)
                 promise(.failure(error))
                 return
             }
-            db.collection(AppConstants.kUsers)
+            let ref = db.collection(AppConstants.kUsers)
                 .document(userID)
                 .collection(AppConstants.kYears)
                 .document(year)
                 .collection(AppConstants.kMonths)
                 .document(month)
-                .collection(AppConstants.kTransactions)
+            // Fetch Transactions
+            ref.collection(AppConstants.kTransactions)
                 .getDocuments { [weak self] snapShot, error in
                     guard let self = self else {
                         fatalError("Failed to capture self, get transactions for current month flow")
@@ -82,7 +95,23 @@ public class UserTransactionsManager {
                         promise(.failure(error))
                         return
                     }
-                    promise(.success(self.handleDocuments(documents: snap.documents)))
+                    entries = self.handleDocuments(documents: snap.documents)
+
+                    // Fetch incomes
+                    ref.collection(AppConstants.kSources)
+                        .getDocuments{ [weak self] snapShot, error in
+                            guard let self = self else {
+                                fatalError("Failed to capture self, get income for current month flow")
+                            }
+                            if error != nil {
+                                self.sourcesOfIncome = []
+                                let error = NSError(domain: error!.localizedDescription, code: 1, userInfo: nil)
+                                promise(.failure(error))
+                                return
+                            }
+                            sources = handleIncome(documents: snapShot!.documents)
+                            promise(.success((entries,sources)))
+                        }
                 }
         }
     }
@@ -190,6 +219,21 @@ public class UserTransactionsManager {
 
     // MARK: - Private methods
 
+    /// Takes in the documents from Firestore and converts them to sources of income
+    /// - Parameter documents: Firestore Document
+    private func handleIncome(documents: [QueryDocumentSnapshot]) -> [SourceOfIncome] {
+        self.sourcesOfIncome = []
+        for document in documents {
+            if let amount = document.data()[AppConstants.kAmount] as? Double,
+               let name = document.data()[AppConstants.kName] as? String,
+               let date = document.data()[AppConstants.kDate] as? String {
+                let source = SourceOfIncome(name: name, date: date, amount: amount)
+                self.sourcesOfIncome.append(source)
+            }
+        }
+        return sourcesOfIncome
+    }
+
     /// Takes in the documents from Firestore and converts them to entries
     /// - Parameter documents: Firestore Document
     private func handleDocuments(documents: [QueryDocumentSnapshot] ) -> [Entry] {
@@ -236,6 +280,116 @@ public class UserTransactionsManager {
         dataEntries.append(newEntry)
     }
 
+    // MARK: - Adding income to firestore
+
+    private func addIncomeToFiresore(_ tx: SourceOfIncome) {
+        guard let year = Date().getYearFromString(tx.date) else { return }
+        db.collection(AppConstants.kUsers)
+            .document(UserPreferences.shared!.getUserID()!)
+            .collection(AppConstants.kYears)
+            .document(year).getDocument(completion: {[weak self] snapShot, error in
+                guard let self = self, error == nil else {
+                    fatalError("Failed to capture self,add TX flow")
+                }
+                if snapShot!.exists {
+                    self.setIncomeInExistingYear(tx)
+                } else {
+                    self.setIncomeInNewYear(tx)
+                }
+            })
+    }
+
+    private func setIncomeInNewYear(_ tx: SourceOfIncome) {
+        guard let year = Date().getYearFromString(tx.date) else { return }
+        self.db.collection(AppConstants.kUsers)
+            .document(UserPreferences.shared!.getUserID()!)
+            .collection(AppConstants.kYears)
+            .document(year)
+        // Have to a field to the document or it doesn't "exist"
+            .setData(["created": FieldValue.serverTimestamp()]) { _ in
+                // Add to the year
+                self.setIncomeInExistingYear(tx)
+            }
+    }
+
+    private func setIncomeInExistingYear(_ tx: SourceOfIncome) {
+        guard let month = Date().getMonthFromString(tx.date),
+              let year = Date().getYearFromString(tx.date) else { return }
+        db.collection(AppConstants.kUsers)
+            .document(UserPreferences.shared!.getUserID()!)
+            .collection(AppConstants.kYears)
+            .document(year)
+            .collection(AppConstants.kMonths)
+            .document(month).getDocument { [weak self] snapShot, error in
+                guard let self = self else {
+                    fatalError("Failed to capture self,add TX flow")
+                }
+                if error != nil {
+                    return
+                }
+                if snapShot!.exists {
+                    self.setIncomeInExistingMonth(tx)
+                } else {
+                    self.setIncomeInNewMonth(tx)
+                }
+            }
+
+    }
+
+    private func setIncomeInNewMonth(_ tx: SourceOfIncome ) {
+        guard let month = Date().getMonthFromString(tx.date),
+              let year = Date().getYearFromString(tx.date) else { return }
+        // Create month document
+        self.db.collection(AppConstants.kUsers)
+            .document(UserPreferences.shared!.getUserID()!)
+            .collection(AppConstants.kYears)
+            .document(year)
+            .collection(AppConstants.kMonths)
+            .document(month)
+        // Have to a field to the document or it doesn't "exist"
+            .setData(["created": FieldValue.serverTimestamp()]) { _ in
+                // Add tx to the month
+                self.setIncomeInExistingMonth(tx)
+            }
+    }
+
+    private func setIncomeInExistingMonth(_ tx: SourceOfIncome) {
+        guard let month = Date().getMonthFromString(tx.date),
+              let year = Date().getYearFromString(tx.date) else { return }
+        db.collection(AppConstants.kUsers)
+            .document(UserPreferences.shared!.getUserID()!)
+            .collection(AppConstants.kYears)
+            .document(year)
+            .collection(AppConstants.kMonths)
+            .document(month)
+            .collection(AppConstants.kSources)
+            .document(tx.date)
+            .setData([
+                AppConstants.kAmount: tx.amount,
+                AppConstants.kName: tx.name,
+                AppConstants.kDate: tx.date
+            ], merge: true)
+    }
+
+    // MARK: - Adding transaction to firestore
+
+    private func addTxToFirestore(_ tx: Transaction) {
+        guard let year = Date().getYearFromString(tx.date) else { return }
+        db.collection(AppConstants.kUsers)
+            .document(UserPreferences.shared!.getUserID()!)
+            .collection(AppConstants.kYears)
+            .document(year).getDocument(completion: {[weak self] snapShot, error in
+                guard let self = self, error == nil else {
+                    fatalError("Failed to capture self,add TX flow")
+                }
+                if snapShot!.exists {
+                    self.setTxInExistingYear(tx)
+                } else {
+                    self.setTxInNewYear(tx)
+                }
+            })
+    }
+
     private func setTxInExistingYear(_ tx: Transaction) {
         guard let month = Date().getMonthFromString(tx.date),
               let year = Date().getYearFromString(tx.date) else { return }
@@ -272,23 +426,6 @@ public class UserTransactionsManager {
             }
     }
 
-    private func addTxToFirestore(_ tx: Transaction) {
-        guard let year = Date().getYearFromString(tx.date) else { return }
-        db.collection(AppConstants.kUsers)
-            .document(UserPreferences.shared!.getUserID()!)
-            .collection(AppConstants.kYears)
-            .document(year).getDocument(completion: {[weak self] snapShot, error in
-                guard let self = self, error == nil else {
-                    fatalError("Failed to capture self,add TX flow")
-                }
-                if snapShot!.exists {
-                    self.setTxInExistingYear(tx)
-                } else {
-                    self.setTxInNewYear(tx)
-                }
-            })
-    }
-
     private func setTxInExistingMonth(_ tx: Transaction, year: String, month: String) {
         db.collection(AppConstants.kUsers)
             .document(UserPreferences.shared!.getUserID()!)
@@ -319,6 +456,8 @@ public class UserTransactionsManager {
                 self.setTxInExistingMonth(tx, year: year, month: month)
             }
     }
+
+    //  MARK: - Adding categories to Firestore
 
     private func editCategoriesInTransactionsInFirestore(
         oldCat: Category,

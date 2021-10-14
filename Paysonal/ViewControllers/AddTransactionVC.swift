@@ -42,6 +42,7 @@ class AddTransactionVC: UIViewController {
 
     private func initUI() {
         self.amountTextField.addDoneButtonOnKeyboard()
+        self.addFundsAmountTextField.delegate = self
         self.transactionOrFundsSelector.setTitleTextAttributes(
             [NSAttributedString.Key.foregroundColor: UIColor(named: AppConstants.textColor)!]
             , for: .selected
@@ -75,6 +76,13 @@ class AddTransactionVC: UIViewController {
         }
     }
 
+    @IBAction func didFinishAddingAmountFunds(_ sender: UITextField) {
+        if let text = sender.text,
+           let amountDouble = Double(text) {
+            viewModel.setFundsAmount(with: amountDouble)
+        }
+    }
+
     @IBAction func applyTapped(_ sender: Any) {
         if transactionOrFundsSelector.selectedSegmentIndex == 0 {
             if viewModel.onTapApplyTransaction() {
@@ -82,7 +90,9 @@ class AddTransactionVC: UIViewController {
             }
         }
         else {
-            self.viewModel.onTapApplyFunds()
+            if viewModel.onTapApplyFunds(){
+                self.dismiss(animated: true)
+            }
         }
     }
 
@@ -140,7 +150,7 @@ extension AddTransactionVC: AddTransactionService {
         alert.addAction(UIAlertAction(title: AppStrings.confirm, style: .default, handler: { _ in
             if let textField = alert.textFields?.first,
                !textField.text.isEmptyOrNil() {
-                if !self.viewModel.setSourceOfIncome(with: textField.text!) {
+                if !self.viewModel.addNewSourceOfIncome(with: textField.text!) {
                     alert.dismiss(animated: true, completion: nil)
                     self.showError(msg: AppStrings.sourceExists)
                 }
