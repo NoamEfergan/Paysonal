@@ -65,7 +65,7 @@
 		CA0B6E3826FC7F6D00B2CEA3 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		CA0B6E3A26FC84E100B2CEA3 /* BottomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTabBarController.swift; sourceTree = "<group>"; };
 		CA15A9D22701E0C500BCF49B /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
-		CA15A9D42701E0D600BCF49B /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegisterVC.swift; path = ../../../../Desktop/RegisterVC.swift; sourceTree = "<group>"; };
+		CA15A9D42701E0D600BCF49B /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		CA15A9D62701E0E000BCF49B /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		CA15A9D82701E57D00BCF49B /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		CA15A9DA2701E58600BCF49B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -83,7 +83,7 @@
 		CA365A3727059F4E00600D9F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		CA365A3D2705A88800600D9F /* NewCategoryAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryAlertVC.swift; sourceTree = "<group>"; };
 		CA365A3F2705A94E00600D9F /* NewCategoryAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewCategoryAlert.storyboard; sourceTree = "<group>"; };
-		CA365A412705B50100600D9F /* NewCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewCategoryViewModel.swift; path = ../../../../Desktop/NewCategoryViewModel.swift; sourceTree = "<group>"; };
+		CA365A412705B50100600D9F /* NewCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryViewModel.swift; sourceTree = "<group>"; };
 		CA365A432705CF4C00600D9F /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		CA365A452705FC9800600D9F /* ChooseDateAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChooseDateAlert.storyboard; sourceTree = "<group>"; };
 		CA365A472705FCA500600D9F /* ChooseDateAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDateAlertVC.swift; sourceTree = "<group>"; };
