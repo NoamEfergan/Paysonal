@@ -56,20 +56,54 @@ public class DashboardViewModel: ChartViewDelegate {
         return PieChartData(dataSet: dataSet)
     }
 
-    public func getCenterText() -> String {
+    public func getCenterText() -> NSAttributedString {
         var amounts = 0.0
         for entry in entries {
             amounts += entry.getTotalValue()
         }
         if entries.isEmpty {
-            return AppStrings.nothingToShow
+            return NSAttributedString(string: AppStrings.nothingToShow)
         }
+        var incomeAmounts = 0.0
+        for income in incomes {
+            incomeAmounts += income.amount
+        }
+        amounts = incomeAmounts - amounts
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         formatter.maximumFractionDigits = 2
         formatter.currencySymbol = UserPreferences.shared?.getUserSelectedCurrency() ?? "$"
         let amountsString = formatter.string(from: NSNumber(value: amounts)) ?? "--"
-        return AppStrings.totalSpent + amountsString
+
+        let fullString = AppStrings.balanceLabel + amountsString
+        let rangeRed = (fullString as NSString).range(of: amountsString)
+        let rangeNormal = (fullString as NSString).range(of: AppStrings.balanceLabel)
+
+        let mutableAttributedString = NSMutableAttributedString.init(string: fullString)
+
+        mutableAttributedString.addAttribute(
+            NSAttributedString.Key.foregroundColor,
+            value: amounts > 0 ? UIColor.systemGreen : UIColor.systemRed,
+            range: rangeRed)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        mutableAttributedString.addAttribute(
+            .paragraphStyle,
+            value: paragraphStyle,
+            range: rangeRed
+        )
+
+        mutableAttributedString.addAttribute(
+            NSAttributedString.Key.foregroundColor,
+            value: UIColor.label,
+            range: rangeNormal)
+        mutableAttributedString.addAttribute(
+            .paragraphStyle,
+            value: paragraphStyle,
+            range: rangeNormal
+        )
+
+        return mutableAttributedString
     }
 
     public func removeTransaction(at location: Int) {
