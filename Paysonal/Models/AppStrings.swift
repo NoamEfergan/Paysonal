@@ -76,4 +76,5 @@ struct AppStrings {
     public static let showDashboard: String = "showDashboard"
     public static let showCategoryAlert: String = "showNewCategoryAlert"
     public static let showLogin: String = "showLogin"
+    public static let showCurrencies: String = "showCurrencies"
 }

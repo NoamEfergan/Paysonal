@@ -14,4 +14,5 @@ extension Notification.Name {
     static let newTransaction = Notification.Name("newTransaction")
     static let selectedDate = Notification.Name("selectedDate")
     static let newIncome = Notification.Name("NewIncome")
+    static let newCurrency = Notification.Name("NewCurrency")
 }

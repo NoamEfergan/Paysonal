@@ -57,6 +57,9 @@
 		CAD0D3D726FCABDE005B0254 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD0D3D626FCABDE005B0254 /* UserPreferences.swift */; };
 		CAD0D3D926FCADDC005B0254 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD0D3D826FCADDC005B0254 /* DashboardViewModel.swift */; };
 		CAE2D98E27180AAB00FCF37A /* SourceOfIncome.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2D98D27180AAB00FCF37A /* SourceOfIncome.swift */; };
+		CAE2D9902718268600FCF37A /* CurrencySymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2D98F2718268600FCF37A /* CurrencySymbols.swift */; };
+		CAE2D9932718452800FCF37A /* CurrencySymbolVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2D9912718452800FCF37A /* CurrencySymbolVC.swift */; };
+		CAE2D996271846B200FCF37A /* CurrencySymbol.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAE2D995271846B200FCF37A /* CurrencySymbol.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +116,9 @@
 		CAD0D3D626FCABDE005B0254 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		CAD0D3D826FCADDC005B0254 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		CAE2D98D27180AAB00FCF37A /* SourceOfIncome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceOfIncome.swift; sourceTree = "<group>"; };
+		CAE2D98F2718268600FCF37A /* CurrencySymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySymbols.swift; sourceTree = "<group>"; };
+		CAE2D9912718452800FCF37A /* CurrencySymbolVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySymbolVC.swift; sourceTree = "<group>"; };
+		CAE2D995271846B200FCF37A /* CurrencySymbol.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CurrencySymbol.storyboard; sourceTree = "<group>"; };
 		DBA8396DA5F30127BDB8C52E /* Pods_Paysonal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Paysonal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -140,14 +146,15 @@
 		CA0B6E3026FC77CF00B2CEA3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CAB1689826FEF54600449D97 /* AppConstants.swift */,
+				CAB1689626FEF45A00449D97 /* AppStrings.swift */,
+				CA365A3727059F4E00600D9F /* Category.swift */,
+				CAE2D98F2718268600FCF37A /* CurrencySymbols.swift */,
+				CA2DCB5426FCBC6A001A77B8 /* Entry.swift */,
+				CAB1689A26FEF79900449D97 /* NibNames.swift */,
+				CAE2D98D27180AAB00FCF37A /* SourceOfIncome.swift */,
 				CA2DCB5A26FDB8C7001A77B8 /* TabItems.swift */,
 				CAD0D3D426FCAAB4005B0254 /* Transaction.swift */,
-				CA2DCB5426FCBC6A001A77B8 /* Entry.swift */,
-				CAB1689626FEF45A00449D97 /* AppStrings.swift */,
-				CAB1689826FEF54600449D97 /* AppConstants.swift */,
-				CAB1689A26FEF79900449D97 /* NibNames.swift */,
-				CA365A3727059F4E00600D9F /* Category.swift */,
-				CAE2D98D27180AAB00FCF37A /* SourceOfIncome.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -155,13 +162,13 @@
 		CA0B6E3726FC7F5500B2CEA3 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
-				CA0B6E3826FC7F6D00B2CEA3 /* UIColorExtension.swift */,
-				CA5FE4ED270206A200605115 /* UIViewExtension.swift */,
-				CA5FE4EF2702EDAA00605115 /* UITextFieldExtension.swift */,
-				CA365A2D270339B300600D9F /* UIViewControllerExtension.swift */,
 				CA365A33270482C700600D9F /* DateExtension.swift */,
 				CA365A352704A84900600D9F /* NotificationNameExtension.swift */,
 				CA365A432705CF4C00600D9F /* StringExtension.swift */,
+				CA0B6E3826FC7F6D00B2CEA3 /* UIColorExtension.swift */,
+				CA5FE4EF2702EDAA00605115 /* UITextFieldExtension.swift */,
+				CA365A2D270339B300600D9F /* UIViewControllerExtension.swift */,
+				CA5FE4ED270206A200605115 /* UIViewExtension.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -206,15 +213,16 @@
 		CA78F80226FC5E7200A6C0F8 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				CA78F7F226FC5BD800A6C0F8 /* DashboardVC.swift */,
-				CA78F80F26FC6AB000A6C0F8 /* SettingsVC.swift */,
 				CA2DCB5C26FDCF5C001A77B8 /* AddTransactionVC.swift */,
-				CA2DCB5826FDB211001A77B8 /* TransactionHistoryCell.swift */,
-				CA15A9D42701E0D600BCF49B /* RegisterVC.swift */,
+				CA365A472705FCA500600D9F /* ChooseDateAlertVC.swift */,
+				CAE2D9912718452800FCF37A /* CurrencySymbolVC.swift */,
+				CA78F7F226FC5BD800A6C0F8 /* DashboardVC.swift */,
+				CA387AE6270C7397000F7492 /* EditCategoryAlertVC.swift */,
 				CA15A9D82701E57D00BCF49B /* LoginVC.swift */,
 				CA365A3D2705A88800600D9F /* NewCategoryAlertVC.swift */,
-				CA365A472705FCA500600D9F /* ChooseDateAlertVC.swift */,
-				CA387AE6270C7397000F7492 /* EditCategoryAlertVC.swift */,
+				CA15A9D42701E0D600BCF49B /* RegisterVC.swift */,
+				CA78F80F26FC6AB000A6C0F8 /* SettingsVC.swift */,
+				CA2DCB5826FDB211001A77B8 /* TransactionHistoryCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -222,15 +230,16 @@
 		CA78F80326FC5E7E00A6C0F8 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				CA78F80D26FC6AA800A6C0F8 /* Settings.storyboard */,
-				CA78F81126FC6E6500A6C0F8 /* Dashboard.storyboard */,
-				CA2DCB5626FDB0CA001A77B8 /* TransactionHistoryCell.xib */,
 				CA2DCB6026FDD06D001A77B8 /* AddTransaction.storyboard */,
-				CA15A9D22701E0C500BCF49B /* Register.storyboard */,
+				CA365A452705FC9800600D9F /* ChooseDateAlert.storyboard */,
+				CA78F81126FC6E6500A6C0F8 /* Dashboard.storyboard */,
+				CA387AE4270C7045000F7492 /* EditCategoryAlert.storyboard */,
 				CA15A9DC2701E5D900BCF49B /* Login.storyboard */,
 				CA365A3F2705A94E00600D9F /* NewCategoryAlert.storyboard */,
-				CA365A452705FC9800600D9F /* ChooseDateAlert.storyboard */,
-				CA387AE4270C7045000F7492 /* EditCategoryAlert.storyboard */,
+				CA15A9D22701E0C500BCF49B /* Register.storyboard */,
+				CA78F80D26FC6AA800A6C0F8 /* Settings.storyboard */,
+				CA2DCB5626FDB0CA001A77B8 /* TransactionHistoryCell.xib */,
+				CAE2D995271846B200FCF37A /* CurrencySymbol.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -238,15 +247,15 @@
 		CA78F80426FC5E8F00A6C0F8 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				CA0B6E3A26FC84E100B2CEA3 /* BottomTabBarController.swift */,
-				CAD0D3D826FCADDC005B0254 /* DashboardViewModel.swift */,
 				CA2DCB6426FDEB80001A77B8 /* AddTransactionViewModel.swift */,
-				CA15A9D62701E0E000BCF49B /* RegisterViewModel.swift */,
+				CA0B6E3A26FC84E100B2CEA3 /* BottomTabBarController.swift */,
+				CA5F11592706039100C5A126 /* ChooseDateViewModel.swift */,
+				CAD0D3D826FCADDC005B0254 /* DashboardViewModel.swift */,
+				CA387AE8270C73B2000F7492 /* EditCategoryAlertViewModel.swift */,
 				CA15A9DA2701E58600BCF49B /* LoginViewModel.swift */,
 				CA365A412705B50100600D9F /* NewCategoryViewModel.swift */,
-				CA5F11592706039100C5A126 /* ChooseDateViewModel.swift */,
+				CA15A9D62701E0E000BCF49B /* RegisterViewModel.swift */,
 				CA5F115B270B11C500C5A126 /* SettingsViewModel.swift */,
-				CA387AE8270C73B2000F7492 /* EditCategoryAlertViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -339,6 +348,7 @@
 				CA2DCB5726FDB0CA001A77B8 /* TransactionHistoryCell.xib in Resources */,
 				CA5F115E270B2D3F00C5A126 /* GoogleService-Info.plist in Resources */,
 				CA15A9D32701E0C500BCF49B /* Register.storyboard in Resources */,
+				CAE2D996271846B200FCF37A /* CurrencySymbol.storyboard in Resources */,
 				CA15A9DD2701E5D900BCF49B /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -400,6 +410,7 @@
 				CAB1689B26FEF79900449D97 /* NibNames.swift in Sources */,
 				CA2DCB5526FCBC6A001A77B8 /* Entry.swift in Sources */,
 				CAB1689926FEF54600449D97 /* AppConstants.swift in Sources */,
+				CAE2D9902718268600FCF37A /* CurrencySymbols.swift in Sources */,
 				CA365A34270482C700600D9F /* DateExtension.swift in Sources */,
 				CA2DCB5926FDB211001A77B8 /* TransactionHistoryCell.swift in Sources */,
 				CA5FE4EE270206A200605115 /* UIViewExtension.swift in Sources */,
@@ -425,6 +436,7 @@
 				CA365A3E2705A88800600D9F /* NewCategoryAlertVC.swift in Sources */,
 				CAE2D98E27180AAB00FCF37A /* SourceOfIncome.swift in Sources */,
 				CA78F81026FC6AB000A6C0F8 /* SettingsVC.swift in Sources */,
+				CAE2D9932718452800FCF37A /* CurrencySymbolVC.swift in Sources */,
 				CAB1689E2701A46800449D97 /* UserTransactionsManager.swift in Sources */,
 				CA2DCB6526FDEB80001A77B8 /* AddTransactionViewModel.swift in Sources */,
 				CA0B6E3B26FC84E100B2CEA3 /* BottomTabBarController.swift in Sources */,

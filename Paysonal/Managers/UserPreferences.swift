@@ -78,7 +78,17 @@ public class UserPreferences {
         }
     }
 
-    // MARK: - public methods
+    // MARK: - User methods
+
+    public func setUserSelectedCurrency(_ symbol: String) {
+        UserDefaults.standard.set(symbol, forKey: AppConstants.kCurrency)
+        NotificationCenter.default.post(name: .newCurrency, object: nil)
+    }
+
+    public func getUserSelectedCurrency() -> String {
+        if let userSymbol = UserDefaults.standard.string(forKey: AppConstants.kCurrency) { return userSymbol }
+        else { return "$"}
+    }
 
     public func isUserRegistered() -> Bool {
         if let _ = UserDefaults.standard.string(forKey: AppConstants.kUserEmail) {
@@ -113,6 +123,31 @@ public class UserPreferences {
         return UserDefaults.standard.string(forKey: AppConstants.kUserName)
     }
 
+    public func registerUserToFirebase() {
+        db.collection(AppConstants.kUsers).document(self.getUserID()!).setData([:])
+        db.collection(AppConstants.kUsers)
+            .document(self.getUserID()!)
+            .setData([AppConstants.kUserName: self.getUserName() ?? ""])
+    }
+
+    public func registerUser(email: String, userID: String, name: String?) {
+        self.setUserID(id: userID)
+        self.setUserEmail(with: email)
+        if name != nil { self.setUsername(with: name!) }
+        self.registerUserToFirebase()
+    }
+
+    public func loginUser(email: String, userID: String ) {
+        self.setUserEmail(with: email)
+        self.setUserID(id: userID)
+        self.getCategoriesFromFirestore()
+        self.getSourcesOfIncomeFromFirestore()
+        self.getUsernameFromFirestore()
+    }
+
+
+    // MARK: - Category methods
+
     /// Add a category to the categories array, checking that it doesn't exist before
     /// - Parameter category: String name of category
     /// - returns Bool specifying weather it was added successfully or not
@@ -123,21 +158,6 @@ public class UserPreferences {
             return true
         }
         return false
-    }
-
-    public func addNewSourceOfIncome(key: String) {
-        self.sourcesOfIncome.append(key)
-    }
-
-    public func addNewIncome(source: String, amount: Double) {
-        let sourceOfIncome = SourceOfIncome(name: source, date: Date().getStringFromDate(), amount: amount)
-        UserTransactionsManager.shared?.addSourceOfIncome(sourceOfIncome)
-        setSourcesOfIncomeInFirestore()
-    }
-
-    public func removeCategory(_ cat: Category) {
-        self.categories.removeAll(where: {$0 == cat})
-        setCategoriesInFirestore()
     }
 
     public func editCategory(categoryToBeEdited: Category, newName: String?, newColor: String?) -> Bool {
@@ -154,32 +174,6 @@ public class UserPreferences {
 
     public func getCategories() -> [Category] {
         return self.categories
-    }
-
-    public func getSources() -> [String] {
-        return self.sourcesOfIncome
-    }
-
-    public func registerUserToFirebase() {
-        db.collection(AppConstants.kUsers).document(self.getUserID()!).setData([:])
-        db.collection(AppConstants.kUsers)
-            .document(self.getUserID()!)
-            .setData([AppConstants.kUserName: self.getUserName() ?? ""])
-    }
-
-    public func getSourcesOfIncomeFromFirestore() {
-        db.collection(AppConstants.kUsers)
-            .document(self.getUserID()!)
-            .getDocument(completion: { snapShot, error in
-                if error != nil {
-                    self.sourcesOfIncome = []
-                    return
-                }
-                if let data = snapShot?.data(),
-                   let sourcesFromFirestore = data[AppConstants.kSources] as? [String] {
-                    self.sourcesOfIncome = sourcesFromFirestore
-                }
-            })
     }
 
     public func getCategoriesFromFirestore() {
@@ -199,19 +193,39 @@ public class UserPreferences {
             )
     }
 
-    public func registerUser(email: String, userID: String, name: String?) {
-        self.setUserID(id: userID)
-        self.setUserEmail(with: email)
-        if name != nil { self.setUsername(with: name!) }
-        self.registerUserToFirebase()
+    // MARK: - Income methods
+
+    public func addNewSourceOfIncome(key: String) {
+        self.sourcesOfIncome.append(key)
     }
 
-    public func loginUser(email: String, userID: String ) {
-        self.setUserEmail(with: email)
-        self.setUserID(id: userID)
-        self.getCategoriesFromFirestore()
-        self.getSourcesOfIncomeFromFirestore()
-        self.getUsernameFromFirestore()
+    public func addNewIncome(source: String, amount: Double) {
+        let sourceOfIncome = SourceOfIncome(name: source, date: Date().getStringFromDate(), amount: amount)
+        UserTransactionsManager.shared?.addSourceOfIncome(sourceOfIncome)
+        setSourcesOfIncomeInFirestore()
     }
 
+    public func removeCategory(_ cat: Category) {
+        self.categories.removeAll(where: {$0 == cat})
+        setCategoriesInFirestore()
+    }
+
+    public func getSources() -> [String] {
+        return self.sourcesOfIncome
+    }
+
+    public func getSourcesOfIncomeFromFirestore() {
+        db.collection(AppConstants.kUsers)
+            .document(self.getUserID()!)
+            .getDocument(completion: { snapShot, error in
+                if error != nil {
+                    self.sourcesOfIncome = []
+                    return
+                }
+                if let data = snapShot?.data(),
+                   let sourcesFromFirestore = data[AppConstants.kSources] as? [String] {
+                    self.sourcesOfIncome = sourcesFromFirestore
+                }
+            })
+    }
 }

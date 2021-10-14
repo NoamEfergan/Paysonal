@@ -67,7 +67,7 @@ public class DashboardViewModel: ChartViewDelegate {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         formatter.maximumFractionDigits = 2
-        formatter.currencySymbol = "$"
+        formatter.currencySymbol = UserPreferences.shared?.getUserSelectedCurrency() ?? "$"
         let amountsString = formatter.string(from: NSNumber(value: amounts)) ?? "--"
         return AppStrings.totalSpent + amountsString
     }
@@ -158,6 +158,13 @@ public class DashboardViewModel: ChartViewDelegate {
             name: .newIncome,
             object: nil
             )
+        // User selected a new currency
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(newIncomeReceived),
+            name: .newCurrency,
+            object: nil
+            )
     }
 
     private func removeSubscribers() {
@@ -181,6 +188,11 @@ public class DashboardViewModel: ChartViewDelegate {
             name: .newIncome,
             object: nil
         )
+        NotificationCenter.default.removeObserver(
+            self,
+            name: .newCurrency,
+            object: nil
+        )
     }
 
     private func addObserver() {
@@ -200,6 +212,12 @@ public class DashboardViewModel: ChartViewDelegate {
                 self?.service?.didReceiveEntries(monthTitle: self!.getRelevantMonthForDisplay())
             })
         }
+    }
+
+    // MARK: - Objective C methods
+
+    @objc private func newCurrencyReceived() {
+        self.service?.didReceiveEntries(monthTitle: getRelevantMonthForDisplay())
     }
 
     @objc private func newIncomeReceived() {
