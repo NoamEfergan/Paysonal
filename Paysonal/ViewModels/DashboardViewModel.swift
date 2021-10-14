@@ -20,11 +20,16 @@ public class DashboardViewModel: ChartViewDelegate {
 
     // MARK: - Variables
 
-    private var transactions: [Transaction] = []
+    private(set) var transactions: [Transaction] = [] {
+        didSet {
+            self.service?.didReceiveEntries(monthTitle: getRelevantMonthForDisplay())
+        }
+    }
     // This one is in charge of the initial entries coming from the Firestore
     private var entriesObserver: AnyCancellable?
     private var service: DashboardService?
     private var entries: [Entry] = []
+    private var incomes: [SourceOfIncome] = []
 
     // MARK: - Init method
     init(delegate: DashboardService) {
@@ -59,16 +64,12 @@ public class DashboardViewModel: ChartViewDelegate {
         if entries.isEmpty {
             return AppStrings.nothingToShow
         }
-        return AppStrings.totalSpent + "\(amounts)"
-    }
-
-    public func getTransaction(_ location: Int) -> Transaction? {
-        guard !(location > transactions.count) else { return nil }
-        return transactions[location]
-    }
-
-    public func getNumberOfCells() -> Int {
-        return transactions.count
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.maximumFractionDigits = 2
+        formatter.currencySymbol = "$"
+        let amountsString = formatter.string(from: NSNumber(value: amounts)) ?? "--"
+        return AppStrings.totalSpent + amountsString
     }
 
     public func removeTransaction(at location: Int) {
@@ -101,6 +102,11 @@ public class DashboardViewModel: ChartViewDelegate {
         self.transactions = []
         for entry in entries {
             self.transactions += entry.getTransactions()
+        }
+        for income in incomes {
+            let category = Category(name: income.name, colorHex: AppConstants.kSources)
+            let tx = Transaction(amount: income.amount, date: income.date, category: category)
+            self.transactions.append(tx)
         }
         sortTransactions()
     }
@@ -145,6 +151,13 @@ public class DashboardViewModel: ChartViewDelegate {
             name: .selectedDate,
             object: nil
             )
+        // New source of income was received
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(newIncomeReceived),
+            name: .newIncome,
+            object: nil
+            )
     }
 
     private func removeSubscribers() {
@@ -163,6 +176,11 @@ public class DashboardViewModel: ChartViewDelegate {
             name: .selectedDate,
             object: nil
         )
+        NotificationCenter.default.removeObserver(
+            self,
+            name: .newIncome,
+            object: nil
+        )
     }
 
     private func addObserver() {
@@ -175,12 +193,19 @@ public class DashboardViewModel: ChartViewDelegate {
                 case .failure(_):
                     self?.service?.errorReceivingEntries(msg: AppStrings.fetchingError)
                 }
-            }, receiveValue: { [weak self] entries in
-                self?.entries = entries
+            }, receiveValue: { [weak self] data in
+                self?.entries = data.0
+                self?.incomes = data.1
                 self?.getAllTransactions()
                 self?.service?.didReceiveEntries(monthTitle: self!.getRelevantMonthForDisplay())
             })
         }
+    }
+
+    @objc private func newIncomeReceived() {
+        guard let manager = UserTransactionsManager.shared else { return }
+        self.incomes = manager.sourcesOfIncome
+        getAllTransactions()
     }
 
     @objc private func newEntryReceived() {
@@ -212,8 +237,9 @@ public class DashboardViewModel: ChartViewDelegate {
                 case .failure(_):
                     self?.service?.errorReceivingEntries(msg: AppStrings.fetchingError)
                 }
-            }, receiveValue: { [weak self] entries in
-                self?.entries = entries
+            }, receiveValue: { [weak self] data in
+                self?.entries = data.0
+                self?.incomes = data.1
                 self?.getAllTransactions()
                 self?.service?.didReceiveEntries(monthTitle: month)
             })

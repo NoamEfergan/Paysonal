@@ -11,8 +11,10 @@ import UIKit
 
 protocol AddTransactionService: AnyObject {
     func askForNewCategory()
+    func didSetSource(title: String)
+    func askForNewSource()
     func showError(msg: String)
-    func updateMenu(title: String)
+    func didSetCategory(title: String)
     func updateCategoryButton(withTitle: String)
 }
 
@@ -23,6 +25,11 @@ public class AddTransactionViewModel {
     private var category: Category?
     private var amount: Double?
     private var date: String?
+
+    private var selectedSource: String? { didSet {
+        self.service?.didSetSource(title: selectedSource ?? "")
+    }}
+    private var fundsAmount: Double?
 
     private var service:  AddTransactionService?
 
@@ -72,9 +79,36 @@ public class AddTransactionViewModel {
         self.service?.updateCategoryButton(withTitle: selectedCategory.name)
     }
 
+
     // MARK: - Public methods
 
-    public func getOptions() -> [UIMenuElement] {
+    public func getOptionsForSourcesOfIncome() -> [UIMenuElement] {
+        var newItems:[UIMenuElement] = []
+        let allSources = UserPreferences.shared?.getSources() ?? []
+        for source in allSources {
+            let menuItem = UIAction(title: source, handler: { _ in
+                self.selectedSource = source
+            })
+            newItems.append(menuItem)
+        }
+
+        let otherCategory = UIAction(title: AppStrings.newSource, handler: {_ in
+            self.service?.askForNewSource()
+        })
+        newItems.append(otherCategory)
+        return newItems
+    }
+
+    public func addNewSourceOfIncome(with source: String) -> Bool {
+        guard let preferences = UserPreferences.shared else { return false}
+        let allSources = preferences.getSources()
+        if allSources.contains(source) { return false }
+        preferences.addNewSourceOfIncome(key: source)
+        self.selectedSource = source
+        return true
+    }
+
+    public func getOptionsForCategories() -> [UIMenuElement] {
         var newItems:[UIMenuElement] = []
         let allCategories = UserPreferences.shared?.getCategories() ?? []
         for category in allCategories {
@@ -98,7 +132,7 @@ public class AddTransactionViewModel {
             return
         }
         self.category = newCategory
-        self.service?.updateMenu(title: newCategory.name)
+        self.service?.didSetCategory(title: newCategory.name)
     }
 
     public func setCategory(with category: Category) {
@@ -109,17 +143,35 @@ public class AddTransactionViewModel {
         self.amount = amount
     }
 
+    public func setFundsAmount(with amount: Double) {
+        self.fundsAmount = amount
+    }
+
     public func setDate(with date: String) {
         self.date = date
     }
 
-    public func onTapApply() -> Bool {
+    public func onTapApplyTransaction() -> Bool {
         if category == nil || category?.name == "" { self.service?.showError(msg: AppStrings.categoryError); return false }
         if amount == nil { self.service?.showError(msg: AppStrings.amountError); return false}
         if date.isEmptyOrNil() { self.service?.showError(msg: AppStrings.dateError); return false}
         let tx = Transaction(amount: amount!, date: date!, category: category!)
         UserTransactionsManager.shared?.addTransaction(tx)
         removeSubscriber()
+        return true
+    }
+
+    public func onTapApplyFunds() -> Bool{
+        if self.selectedSource.isEmptyOrNil() {
+            self.service?.showError(msg: AppStrings.sourceError)
+            return false
+        }
+        if self.fundsAmount == nil || self.fundsAmount == 0 {
+            self.service?.showError(msg: AppStrings.fundsAmountError)
+            return false
+        }
+        guard let preferences = UserPreferences.shared else { return false }
+        preferences.addNewIncome(source: self.selectedSource!, amount: self.fundsAmount!)
         return true
     }
 }

@@ -31,7 +31,14 @@ class TransactionHistoryCell: UITableViewCell {
         self.containerView.layer.cornerRadius = AppConstants.cornerRad
         self.dateLabel.text = transaction.date
         self.categoryLabel.text = transaction.category.name
-        self.amountLabel.text = transaction.amount.description
+
+        if transaction.category.colorHex == AppConstants.kSources {
+            self.amountLabel.text = "+" + transaction.amount.description
+            self.amountLabel.textColor = .systemGreen
+        } else {
+            self.amountLabel.text = "-" + transaction.amount.description
+            self.amountLabel.textColor = .systemRed
+        }
     }
 
     // MARK: - Actions

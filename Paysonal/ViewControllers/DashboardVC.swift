@@ -84,13 +84,13 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.getNumberOfCells()
+        viewModel.transactions.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: NibNames.transactionHistoryCell) as? TransactionHistoryCell,
-              let transaction = viewModel.getTransaction(indexPath.row)
-        else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: NibNames.transactionHistoryCell)
+                as? TransactionHistoryCell else { return UITableViewCell() }
+        let transaction = viewModel.transactions[indexPath.row]
         cell.customise(transaction: transaction)
         cell.didTapDelete = { self.didTapDeleteCell(location: indexPath.row) }
         return cell

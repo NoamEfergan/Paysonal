@@ -56,6 +56,7 @@
 		CAD0D3D526FCAAB4005B0254 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD0D3D426FCAAB4005B0254 /* Transaction.swift */; };
 		CAD0D3D726FCABDE005B0254 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD0D3D626FCABDE005B0254 /* UserPreferences.swift */; };
 		CAD0D3D926FCADDC005B0254 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD0D3D826FCADDC005B0254 /* DashboardViewModel.swift */; };
+		CAE2D98E27180AAB00FCF37A /* SourceOfIncome.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2D98D27180AAB00FCF37A /* SourceOfIncome.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +112,7 @@
 		CAD0D3D426FCAAB4005B0254 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		CAD0D3D626FCABDE005B0254 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		CAD0D3D826FCADDC005B0254 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		CAE2D98D27180AAB00FCF37A /* SourceOfIncome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceOfIncome.swift; sourceTree = "<group>"; };
 		DBA8396DA5F30127BDB8C52E /* Pods_Paysonal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Paysonal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -145,6 +147,7 @@
 				CAB1689826FEF54600449D97 /* AppConstants.swift */,
 				CAB1689A26FEF79900449D97 /* NibNames.swift */,
 				CA365A3727059F4E00600D9F /* Category.swift */,
+				CAE2D98D27180AAB00FCF37A /* SourceOfIncome.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				CAD0D3D726FCABDE005B0254 /* UserPreferences.swift in Sources */,
 				CA15A9D72701E0E000BCF49B /* RegisterViewModel.swift in Sources */,
 				CA365A3E2705A88800600D9F /* NewCategoryAlertVC.swift in Sources */,
+				CAE2D98E27180AAB00FCF37A /* SourceOfIncome.swift in Sources */,
 				CA78F81026FC6AB000A6C0F8 /* SettingsVC.swift in Sources */,
 				CAB1689E2701A46800449D97 /* UserTransactionsManager.swift in Sources */,
 				CA2DCB6526FDEB80001A77B8 /* AddTransactionViewModel.swift in Sources */,
@@ -566,7 +570,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_TEAM = DN9UYF2744;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Paysonal/Info.plist;
@@ -597,7 +601,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_TEAM = DN9UYF2744;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Paysonal/Info.plist;
