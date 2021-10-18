@@ -11,4 +11,6 @@ pod 'Firebase/Analytics'
 pod 'Firebase/Auth'
 pod 'Firebase/Firestore'
 pod 'JGProgressHUD'
+pod 'CryptoSwift', '~> 1.4.1'
+pod 'KeychainAccess'
 end

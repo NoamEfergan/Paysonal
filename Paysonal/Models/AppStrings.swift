@@ -72,6 +72,18 @@ struct AppStrings {
     public static let emptyCatErr = "Category cannot be empty!"
     public static let verifyDeleteCat = "Are you sure you want to delete this category?\nThis will not delete transactions"
 
+    // MARK: - Biometrics
+    public static let login_fingerprint = "Log in with fingerprint"
+    public static let login_faceID = "Log in with FaceID"
+    public static let finger_not_registered = "Fingerprint is not registered"
+    public static let faceID_not_registered = "FaceID is not registered"
+    public static let enterPassFinger = "Enter your password to use fingerprint"
+    public static let enterPassFaceID = "Enter your password to use FaceID"
+    public static let register_fingerprint = "Your Fingerprint is not registered on your device.\nPlease register your Fingerprint by going into your device’s settings"
+    public static let register_faceID = "Your Face ID is not registered on your device.\nPlease register your Face ID by going into your device’s settings"
+    public static let biometrics_off = "Login with biometrics is off"
+    public static let biometrics_on = "Login with biometrics is on"
+
     // MARK: - Segue ID's
     public static let showDashboard: String = "showDashboard"
     public static let showCategoryAlert: String = "showNewCategoryAlert"

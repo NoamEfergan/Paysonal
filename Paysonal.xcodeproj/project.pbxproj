@@ -60,6 +60,8 @@
 		CAE2D9902718268600FCF37A /* CurrencySymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2D98F2718268600FCF37A /* CurrencySymbols.swift */; };
 		CAE2D9932718452800FCF37A /* CurrencySymbolVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2D9912718452800FCF37A /* CurrencySymbolVC.swift */; };
 		CAE2D996271846B200FCF37A /* CurrencySymbol.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAE2D995271846B200FCF37A /* CurrencySymbol.storyboard */; };
+		CAE2D998271D472200FCF37A /* BiometricManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2D997271D472200FCF37A /* BiometricManager.swift */; };
+		CAE2D99A271D60D000FCF37A /* SecureStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2D999271D60D000FCF37A /* SecureStorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +121,8 @@
 		CAE2D98F2718268600FCF37A /* CurrencySymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySymbols.swift; sourceTree = "<group>"; };
 		CAE2D9912718452800FCF37A /* CurrencySymbolVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySymbolVC.swift; sourceTree = "<group>"; };
 		CAE2D995271846B200FCF37A /* CurrencySymbol.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CurrencySymbol.storyboard; sourceTree = "<group>"; };
+		CAE2D997271D472200FCF37A /* BiometricManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricManager.swift; sourceTree = "<group>"; };
+		CAE2D999271D60D000FCF37A /* SecureStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorageManager.swift; sourceTree = "<group>"; };
 		DBA8396DA5F30127BDB8C52E /* Pods_Paysonal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Paysonal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -265,6 +269,8 @@
 			children = (
 				CAD0D3D626FCABDE005B0254 /* UserPreferences.swift */,
 				CAB1689D2701A46800449D97 /* UserTransactionsManager.swift */,
+				CAE2D997271D472200FCF37A /* BiometricManager.swift */,
+				CAE2D999271D60D000FCF37A /* SecureStorageManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -420,6 +426,7 @@
 				CA78F7F326FC5BD800A6C0F8 /* DashboardVC.swift in Sources */,
 				CA5FE4F02702EDAA00605115 /* UITextFieldExtension.swift in Sources */,
 				CAB1689726FEF45A00449D97 /* AppStrings.swift in Sources */,
+				CAE2D998271D472200FCF37A /* BiometricManager.swift in Sources */,
 				CA15A9D52701E0D600BCF49B /* RegisterVC.swift in Sources */,
 				CA78F7EF26FC5BD800A6C0F8 /* AppDelegate.swift in Sources */,
 				CA5F115A2706039100C5A126 /* ChooseDateViewModel.swift in Sources */,
@@ -440,6 +447,7 @@
 				CAB1689E2701A46800449D97 /* UserTransactionsManager.swift in Sources */,
 				CA2DCB6526FDEB80001A77B8 /* AddTransactionViewModel.swift in Sources */,
 				CA0B6E3B26FC84E100B2CEA3 /* BottomTabBarController.swift in Sources */,
+				CAE2D99A271D60D000FCF37A /* SecureStorageManager.swift in Sources */,
 				CA365A3827059F4E00600D9F /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -582,7 +590,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DN9UYF2744;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Paysonal/Info.plist;
@@ -596,7 +604,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.Paysonal.paysonal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -613,7 +621,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DN9UYF2744;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Paysonal/Info.plist;
@@ -627,7 +635,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.Paysonal.paysonal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -61,6 +61,9 @@ class LoginVC: UIViewController, UIPopoverPresentationControllerDelegate {
         self.anotherAccountButton.isHidden = false
         self.registerButton.isHidden = true
         self.resetPasswordButton.isHidden = false
+        if BiometricManager.shared.isBiometricRegistered() && UserPreferences.shared!.isBiometricsEnabled {
+            viewModel?.performLoginWithBiometrics(email: UserPreferences.shared?.getUserEmail() ?? "")
+        }
     }
 
     // MARK: - Actions
@@ -138,5 +141,9 @@ extension LoginVC: LoginService {
 
     func onErrorLogin(msg: String) {
         self.showErrorAlert(msg: msg)
+    }
+
+    func focusOnPassword() {
+        self.passwordTextField.becomeFirstResponder()
     }
 }

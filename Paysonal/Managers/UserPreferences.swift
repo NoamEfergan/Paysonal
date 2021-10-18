@@ -17,6 +17,7 @@ public class UserPreferences {
     private let db = Firestore.firestore()
     private var categories: [Category] = []
     private var sourcesOfIncome: [String] = []
+    private(set) var isBiometricsEnabled: Bool = false
 
     // MARK: - Init methods
 
@@ -79,6 +80,11 @@ public class UserPreferences {
     }
 
     // MARK: - User methods
+
+    public func setUserBiometrics(isOn: Bool ) {
+        UserDefaults.standard.set(isOn, forKey: AppConstants.kBiometrics)
+        self.isBiometricsEnabled = isOn
+    }
 
     public func setUserSelectedCurrency(_ symbol: String) {
         UserDefaults.standard.set(symbol, forKey: AppConstants.kCurrency)
