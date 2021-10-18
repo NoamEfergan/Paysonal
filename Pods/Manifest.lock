@@ -347,6 +347,7 @@ PODS:
   - Charts (3.6.0):
     - Charts/Core (= 3.6.0)
   - Charts/Core (3.6.0)
+  - CryptoSwift (1.4.1)
   - Firebase/Analytics (8.6.0):
     - Firebase/Core
   - Firebase/Auth (8.6.0):
@@ -472,6 +473,7 @@ PODS:
   - gRPC-Core/Interface (1.28.2)
   - GTMSessionFetcher/Core (1.6.1)
   - JGProgressHUD (2.2)
+  - KeychainAccess (4.2.2)
   - leveldb-library (1.22.1)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
@@ -482,16 +484,19 @@ PODS:
 
 DEPENDENCIES:
   - Charts
+  - CryptoSwift (~> 1.4.1)
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Firestore
   - JGProgressHUD
+  - KeychainAccess
 
 SPEC REPOS:
   trunk:
     - abseil
     - BoringSSL-GRPC
     - Charts
+    - CryptoSwift
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -506,6 +511,7 @@ SPEC REPOS:
     - gRPC-Core
     - GTMSessionFetcher
     - JGProgressHUD
+    - KeychainAccess
     - leveldb-library
     - nanopb
     - PromisesObjC
@@ -514,6 +520,7 @@ SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
+  CryptoSwift: 0bc800a7e6a24c4fc9ebeab97d44b0d5f73a78bd
   Firebase: 21ac9f28b09a8bdfc005f34c984fca84e7e8786d
   FirebaseAnalytics: 8f32ae54ad42754f503354782575c4ddfc1425c3
   FirebaseAuth: 223adeeb2262b417532e89bf06a960e3a0a1e9e4
@@ -528,10 +535,11 @@ SPEC CHECKSUMS:
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   GTMSessionFetcher: 36689134877faeb055b27dfa4ccc9ceaa42e029e
   JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
+  KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
 
-PODFILE CHECKSUM: ec890f25133c6a12a9009784367082fb66787a8d
+PODFILE CHECKSUM: 9f160ba7e8e694f7a6ffa3db7de8199bcebceb41
 
 COCOAPODS: 1.10.1

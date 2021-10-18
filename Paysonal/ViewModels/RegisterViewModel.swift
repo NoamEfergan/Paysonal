@@ -55,6 +55,7 @@ class RegisterViewModel {
                 self.service?.showErrorRegistering(msg: "No user ID found")
                 return
             }
+            SecureStorageManager.storeHashedPassword(hashedPassword: password)
             UserPreferences.shared?.registerUser(email: email, userID: result.user.uid, name: name)
             self.service?.hideLoader()
             self.service?.onSuccessRegister()

@@ -13,8 +13,10 @@ class SettingsVC: UITableViewController {
 
     @IBOutlet var mainTableView: UITableView!
     @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var userCurrencyLabel: UILabel!
-
+    @IBOutlet weak var loginWithBiometricsLabel: UILabel!
+    @IBOutlet weak var biometricsCell: UITableViewCell!
+    @IBOutlet weak var coinCell: UITableViewCell!
+    
     // MARK: - Variables
 
     private var viewModel: SettingsViewModel!
@@ -52,11 +54,39 @@ class SettingsVC: UITableViewController {
     }
 
     @objc private func didReceiveNewCurrency() {
-        userCurrencyLabel.text = UserPreferences.shared?.getUserSelectedCurrency() ?? "$"
+        addCoinButton()
     }
 
     private func initUI() {
         self.userNameLabel.text = UserPreferences.shared?.getUserName()
+        self.loginWithBiometricsLabel.text = UserPreferences.shared!.isBiometricsEnabled
+        ? AppStrings.biometrics_on
+        : AppStrings.biometrics_off
+        addBiometricsButton()
+        addCoinButton()
+    }
+
+    private func addCoinButton() {
+        let button = UIButton(type:.roundedRect)
+        let selectedCurrency = UserPreferences.shared?.getUserSelectedCurrency() ?? "$"
+        let symbol = CurrencySymbols(rawValue: selectedCurrency) ?? .dollar
+        button.setImage(UIImage(systemName: symbol.getSFSymbol())!, for: .normal)
+        button.tintColor = UIColor(named: "TintColor")
+        button.sizeToFit()
+        button.addTarget(nil, action: #selector(goToCurrencySelections), for: .touchUpInside)
+        coinCell.accessoryView = button
+    }
+
+    private func addBiometricsButton() {
+        let button = UIButton(type:.roundedRect)
+        let imageName = UserPreferences.shared!.isBiometricsEnabled
+        ? "square.dashed.inset.filled"
+        : "square.dashed"
+        button.setImage(UIImage(systemName: imageName)!, for: .normal)
+        button.tintColor = UIColor(named: "TintColor")
+        button.sizeToFit()
+        button.addTarget(nil, action: #selector(adjustBiometrics), for: .touchUpInside)
+        self.biometricsCell.accessoryView = button
     }
 
     private func showNewNameAlert() {
@@ -85,6 +115,22 @@ class SettingsVC: UITableViewController {
         present(popupVC, animated: true, completion: nil)
     }
 
+    // MARK: - Objective C methods
+
+    @objc private func goToCurrencySelections() {
+        self.performSegue(withIdentifier: AppStrings.showCurrencies, sender: nil)
+    }
+
+    @objc private func adjustBiometrics() {
+        guard BiometricManager.shared.isBiometricRegistered() else {
+            self.showError(msg: BiometricManager.shared.biometricAlertSubtitle)
+            return
+        }
+        let currentState = UserPreferences.shared!.isBiometricsEnabled
+        UserPreferences.shared?.setUserBiometrics(isOn: !currentState)
+        addBiometricsButton()
+    }
+
     // MARK: - Tableview methods
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -98,7 +144,9 @@ class SettingsVC: UITableViewController {
             case 1:
                 showEditCategoriesAlert()
             case 2:
-                self.performSegue(withIdentifier: AppStrings.showCurrencies, sender: nil)
+                goToCurrencySelections()
+            case 3:
+                adjustBiometrics()
             default:
                 return
             }

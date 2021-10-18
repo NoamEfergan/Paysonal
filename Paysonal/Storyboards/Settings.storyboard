@@ -59,7 +59,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="slE-Fn-Gj8" detailTextLabel="UU4-LY-bDa" style="IBUITableViewCellStyleValue1" id="S8h-W6-tVc" userLabel="chooseSymbol">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="slE-Fn-Gj8" style="IBUITableViewCellStyleDefault" id="S8h-W6-tVc" userLabel="chooseSymbol">
                                         <rect key="frame" x="0.0" y="131.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="S8h-W6-tVc" id="AfJ-me-TJH">
@@ -67,14 +67,24 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Select your currency's symbol" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="slE-Fn-Gj8">
-                                                    <rect key="frame" x="20" y="15" width="171" height="14.5"/>
+                                                    <rect key="frame" x="20" y="0.0" width="356.5" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UU4-LY-bDa">
-                                                    <rect key="frame" x="368.5" y="15" width="8" height="14.5"/>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" textLabel="uZu-8O-FTd" style="IBUITableViewCellStyleDefault" id="kum-V8-OiC" userLabel="biometricsCell">
+                                        <rect key="frame" x="0.0" y="175" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kum-V8-OiC" id="lKU-Z0-Ruv">
+                                            <rect key="frame" x="0.0" y="0.0" width="373.5" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Login with biometrics is on" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uZu-8O-FTd">
+                                                    <rect key="frame" x="20" y="0.0" width="345.5" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                                     <nil key="textColor"/>
@@ -88,7 +98,7 @@
                             <tableViewSection headerTitle="General" id="3EK-Rf-E8Q" userLabel="general">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="t39-Yd-SqD" style="IBUITableViewCellStyleDefault" id="dk3-YK-2SZ" userLabel="termsAndConditions">
-                                        <rect key="frame" x="0.0" y="242" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="285.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dk3-YK-2SZ" id="asj-7e-IzU">
                                             <rect key="frame" x="0.0" y="0.0" width="384.5" height="43.5"/>
@@ -105,7 +115,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="hec-EG-QXQ" style="IBUITableViewCellStyleDefault" id="wrI-Yb-dKc" userLabel="privacy policy">
-                                        <rect key="frame" x="0.0" y="285.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="329" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wrI-Yb-dKc" id="Rsg-T0-xN8">
                                             <rect key="frame" x="0.0" y="0.0" width="384.5" height="43.5"/>
@@ -122,7 +132,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Mtk-cH-fgi" style="IBUITableViewCellStyleDefault" id="gVf-GJ-vY2" userLabel="contact us">
-                                        <rect key="frame" x="0.0" y="329" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="372.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gVf-GJ-vY2" id="IYi-Za-hxr">
                                             <rect key="frame" x="0.0" y="0.0" width="384.5" height="43.5"/>
@@ -143,7 +153,7 @@
                             <tableViewSection headerTitle="Logout" id="1gD-yC-DfH">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="qbY-Hb-0k6" style="IBUITableViewCellStyleDefault" id="nje-oP-4H4" userLabel="logout">
-                                        <rect key="frame" x="0.0" y="439.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="483" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nje-oP-4H4" id="YGT-s8-gDM">
                                             <rect key="frame" x="0.0" y="0.0" width="384.5" height="43.5"/>
@@ -168,8 +178,10 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="biometricsCell" destination="kum-V8-OiC" id="BiZ-NW-hoG"/>
+                        <outlet property="coinCell" destination="S8h-W6-tVc" id="MYf-QQ-tx1"/>
+                        <outlet property="loginWithBiometricsLabel" destination="uZu-8O-FTd" id="QPd-Zj-jy9"/>
                         <outlet property="mainTableView" destination="Sh3-24-fr8" id="Jfh-kj-ooG"/>
-                        <outlet property="userCurrencyLabel" destination="UU4-LY-bDa" id="xwe-Zz-NKM"/>
                         <outlet property="userNameLabel" destination="HuT-oR-WMy" id="RTZ-57-h1G"/>
                         <segue destination="AjY-am-asd" kind="presentation" identifier="showLogin" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="W0I-QP-Mmt"/>
                         <segue destination="bPW-5u-Lpw" kind="show" identifier="showCurrencies" id="W8t-VL-FFU"/>

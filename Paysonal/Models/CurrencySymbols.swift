@@ -13,4 +13,19 @@ enum CurrencySymbols: String, CaseIterable {
     case pound = "£"
     case shekels = "₪"
     case yen = "¥"
+
+    func getSFSymbol() -> String {
+        switch self {
+        case .dollar:
+            return "dollarsign.circle"
+        case .euro:
+            return "eurosign.circle"
+        case .pound:
+            return "sterlingsign.circle"
+        case .shekels:
+            return "shekelsign.circle"
+        case .yen:
+            return "yensign.circle"
+        }
+    }
 }

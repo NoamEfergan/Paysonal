@@ -80,13 +80,14 @@ public class DashboardViewModel: ChartViewDelegate {
         let rangeNormal = (fullString as NSString).range(of: AppStrings.balanceLabel)
 
         let mutableAttributedString = NSMutableAttributedString.init(string: fullString)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+
 
         mutableAttributedString.addAttribute(
             NSAttributedString.Key.foregroundColor,
             value: amounts > 0 ? UIColor.systemGreen : UIColor.systemRed,
             range: rangeRed)
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = .center
         mutableAttributedString.addAttribute(
             .paragraphStyle,
             value: paragraphStyle,

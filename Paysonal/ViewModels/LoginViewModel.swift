@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseAuth
+import Combine
 
 protocol LoginService: AnyObject {
     func showLoader()
@@ -14,6 +15,7 @@ protocol LoginService: AnyObject {
     func onErrorLogin(msg: String)
     func onSuccessLogin()
     func onSuccessReset()
+    func focusOnPassword()
 }
 
 class LoginViewModel {
@@ -21,6 +23,7 @@ class LoginViewModel {
     // MARK: - Variables
 
     private var service: LoginService?
+    private var biometricsObservable: AnyCancellable?
 
     // MARK: - init method
 
@@ -46,6 +49,35 @@ class LoginViewModel {
         }
     }
 
+    public func performLoginWithBiometrics(email: String) {
+        self.service?.showLoader()
+        self.biometricsObservable = BiometricManager.shared.requestBioMetricAuthentication().sink { didFinish in
+            switch didFinish {
+            case .finished:
+                print("finish loading biometrics")
+            case .failure(_):
+                self.service?.onErrorLogin(msg: AppStrings.errorLogin)
+            }
+        } receiveValue: { result in
+            self.service?.hideLoader()
+            switch result {
+            case .success:
+                guard let password = SecureStorageManager.getHashedPassword() else {
+                    self.service?.onErrorLogin(msg: "No password was saved")
+                    return
+                }
+                self.performLogIn(email: email, password: password)
+            case .error(message: let message):
+                self.service?.onErrorLogin(msg: message)
+            case .errorWithTooManyAttempt(message: let message):
+                self.service?.onErrorLogin(msg: message)
+            case .appAuthentication:
+                self.service?.focusOnPassword()
+            }
+        }
+
+    }
+
     public func performLogIn(email: String, password: String) {
         self.service?.showLoader()
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
@@ -62,6 +94,7 @@ class LoginViewModel {
                 self.service?.onErrorLogin(msg: "No user ID found")
                 return
             }
+            SecureStorageManager.storeHashedPassword(hashedPassword: password)
             UserPreferences.shared?.loginUser(email: email, userID: result.user.uid)
             self.service?.onSuccessLogin()
         }
